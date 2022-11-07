@@ -48,10 +48,10 @@ class DACOutput(Output):
         self._usb.write(str(binary))      # Write to usb
 
 if __name__ == '__main__':
-    cal = LinearCalibration(1/35, 'V', 'V')
+    cal = LinearCalibration(350, 'V', 'V')
     port = 'COM3'
 
-    with DACOutput("COM3", cal, 400) as dac:
+    with DACOutput("COM3", cal, 300) as dac:
         print(dac.target)
         print(dac.control)
         while True:
@@ -66,4 +66,3 @@ if __name__ == '__main__':
                 print(dac.control)
             except ValueError as e:
                 print(e)
-            
