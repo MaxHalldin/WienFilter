@@ -8,7 +8,7 @@ class Output(ABC):
     and the connection details should be covered in the enter/exit methods.
     Writing values should be internally implemented in the '_write' method, and invoked using the
     'target' property. By default, reading the 'target' property returns the last set target value. Change this
-    behaviour to implement feedback by editing the 'target' setter and changing 'has_feedback' to return
+    behaviour to implement feedback by editing the 'target' getter and changing 'has_feedback' to return
     true.
     """
 
@@ -35,7 +35,7 @@ class Output(ABC):
     @property
     def target(self) -> float:
         """
-        Getter for the 'value' property. Returns last set target value, by default
+        Getter for the 'target' property. Returns last set target value, by default
         """
         return self._last_set
 
@@ -49,10 +49,17 @@ class Output(ABC):
 
     @property
     def control(self) -> float:
+        """
+        Returns the last set control signal, by default
+        """
         return self._calibration.to_control(self._last_set)
 
     @property
     def has_feedback() -> bool:
+        """
+        Returns whether the target property getter provides information about on the output signal value (True),
+        or just returns whichever value was last set (False).
+        """
         return False
     
     @abstractmethod
