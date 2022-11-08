@@ -1,8 +1,8 @@
-from usb import USB
-from calibration import Calibration, LinearCalibration
-from output import Output
+from interfaces.usb import USB
+from interfaces.calibration import Calibration, LinearCalibration
+from interfaces.output import Output
 
-class DACOutput(Output):
+class PicoOutput(Output):
     """
     Specialization of the Output class for a Pico running a DAC for a voltage supply.
     Target signal is the output voltage of the voltage supply.
@@ -47,22 +47,22 @@ class DACOutput(Output):
         binary = round(control * (2**self.bits - 1)) # Discretize
         self._usb.write(str(binary))      # Write to usb
 
-if __name__ == '__main__':
-    cal = LinearCalibration(350, 'V', 'V')
-    port = 'COM3'
+#if __name__ == '__main__':
+    #cal = LinearCalibration(350, 'V', 'V')
+    #port = 'COM3'
 
-    with DACOutput("COM3", cal, 300) as dac:
-        print(dac.target)
-        print(dac.control)
-        while True:
-            try:
-                x = float(input('Enter a voltage (max 300): '))
-            except ValueError:
-                print('Non-numerical input found. Exiting...')
-                break
-            try:
-                dac.target = x
-                print(dac.target)
-                print(dac.control)
-            except ValueError as e:
-                print(e)
+    #with PicoOutput("COM3", cal, 300) as dac:
+        #print(dac.target)
+        #print(dac.control)
+        #while True:
+            #try:
+                #x = float(input('Enter a voltage (max 300): '))
+            #except ValueError:
+                #print('Non-numerical input found. Exiting...')
+                #break
+            #try:
+                #dac.target = x
+                #print(dac.target)
+                #print(dac.control)
+            #except ValueError as e:
+                #print(e)

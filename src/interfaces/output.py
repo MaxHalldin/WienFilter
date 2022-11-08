@@ -1,6 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from calibration import Calibration
+from interfaces.calibration import Calibration
 
 class Output(ABC):
     """
@@ -55,7 +55,7 @@ class Output(ABC):
         return self._calibration.to_control(self._last_set)
 
     @property
-    def has_feedback() -> bool:
+    def has_feedback(self) -> bool:
         """
         Returns whether the target property getter provides information about on the output signal value (True),
         or just returns whichever value was last set (False).
