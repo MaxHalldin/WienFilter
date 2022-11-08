@@ -1,4 +1,4 @@
-from usb import USB
+from usb import USBConnection
 from calibration import Calibration, LinearCalibration
 from output import Output
 
@@ -13,7 +13,7 @@ class DACOutput(Output):
     signal being sent (provided that the target voltage is safe)
     """
     def __init__(self, port: str, calibration: Calibration, voltage_limit: float = None, bits = 12):
-        self._usb = USB(port)
+        self._usb = USBConnection(port)
         self.voltage_limit = voltage_limit
         self.bits = bits
         self._last_control = None # Use this local variable to overwrite control signal getter,
