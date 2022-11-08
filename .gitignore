@@ -1,2 +1,5 @@
 *.pyc
 venv
+devenv
+devdependencies.txt
+gui/ui
