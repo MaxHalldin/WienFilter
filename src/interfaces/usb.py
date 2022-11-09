@@ -1,3 +1,4 @@
+from __future__ import annotations
 import serial
 import time
 
@@ -5,29 +6,25 @@ import time
 # For example, to control a pi pico.
 
 class USB:
-    def __init__(self, port):
+    def __init__(self, port: str) -> None:
         self.port = port
         self.ser = None
     
-    def __enter__(self):
+    def __enter__(self) -> USB:
         self.ser = serial.Serial(self.port, 115200)
-        print(f'Opened connection to port {self.port}')
         return self
     
-    def __exit__(self, exc_type, exc_value, tb):
+    def __exit__(self, exc_type, exc_value, tb) -> None:
         if self.ser is not None:
-            print('Closing...')
             self.ser.close()
-            print('Closed')
         self.ser = None
     
     def write(self, message: str):
         if self.ser is None:
             raise Exception('Port is closed. Use "with" block to access this interface.')
         s = str.encode(message + '\n')
-        print(f'Writing message {s}')
         self.ser.write(s)
-        print('Written')
+        print(f'Just wrote {s}')
         if (self.ser.inWaiting() > 0):
             # read the bytes and convert from binary array to ASCII
             data_str = self.ser.read(self.ser.inWaiting()).decode('ascii') 
