@@ -1,7 +1,7 @@
 import sys
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication
-from interfaces.pico_output import PicoOutput
+from interfaces.output import MockOutput, PicoOutput
 from interfaces.calibration import LinearCalibration
 from output_component import OutputComponent
 
@@ -9,7 +9,7 @@ from output_component import OutputComponent
 MAX_VOLTAGE = 10
 port = 'COM3'
 cal = LinearCalibration(10)
-pico = PicoOutput(port, cal)
+pico = MockOutput(calibration=cal)
 
 # Setup GUI
 

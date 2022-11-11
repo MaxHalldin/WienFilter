@@ -24,11 +24,11 @@ class Calibration(ABC):
         pass
 
     @staticmethod
-    def standard(unit: str = None) -> LinearOutputCalibration:
+    def standard(unit: str = None) -> LinearCalibration:
         """
         Factory method for the trivial relation (control=target). Specify only unit of both signals.
         """
-        return LinearOutputCalibration(1, unit, unit)
+        return LinearCalibration(1, unit, unit)
 
 class LinearCalibration(Calibration):
     """
