@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Output</class>
- <widget class="QMainWindow" name="Output">
+ <widget class="QWidget" name="Output">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,94 +11,81 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Output</string>
+   <string>Output Device</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>160</width>
-      <height>261</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Voltage Supply</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLCDNumber" name="lastValueLCD">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 0, 0);</string>
-       </property>
-       <property name="segmentStyle">
-        <enum>QLCDNumber::Flat</enum>
-       </property>
-       <property name="value" stdset="0">
-        <double>0.000000000000000</double>
-       </property>
-       <property name="intValue" stdset="0">
-        <number>0</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>(last set target value)</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDial" name="voltageDial">
-       <property name="maximum">
-        <number>500</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLCDNumber" name="newValueLCD">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 0, 0);</string>
-       </property>
-       <property name="segmentStyle">
-        <enum>QLCDNumber::Flat</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>(new target value)</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="setBtn">
-       <property name="text">
-        <string>Set value</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>182</width>
-     <height>18</height>
+     <x>10</x>
+     <y>10</y>
+     <width>160</width>
+     <height>261</height>
     </rect>
    </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Voltage Supply</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLCDNumber" name="lastValueLCD">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 0, 0);</string>
+      </property>
+      <property name="segmentStyle">
+       <enum>QLCDNumber::Flat</enum>
+      </property>
+      <property name="value" stdset="0">
+       <double>0.000000000000000</double>
+      </property>
+      <property name="intValue" stdset="0">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>(last set target value)</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QDial" name="voltageDial">
+      <property name="maximum">
+       <number>500</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLCDNumber" name="newValueLCD">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 0, 0);</string>
+      </property>
+      <property name="segmentStyle">
+       <enum>QLCDNumber::Flat</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>(new target value)</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="setBtn">
+      <property name="text">
+       <string>Set value</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

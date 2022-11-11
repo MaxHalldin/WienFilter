@@ -1,9 +1,9 @@
 from __future__ import annotations
 from layout.output import Ui_Output
-from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
+from PyQt5.QtWidgets import QApplication, QDialog, QWidget, QMessageBox
 from interfaces.output import Output
 
-class OutputComponent(QMainWindow, Ui_Output):
+class OutputComponent(QWidget, Ui_Output):
     def __init__(self, max_value: int, interface: Output, parent=None):
         # Boilerplate initialization
         super().__init__(parent)

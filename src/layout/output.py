@@ -15,9 +15,7 @@ class Ui_Output(object):
     def setupUi(self, Output):
         Output.setObjectName("Output")
         Output.resize(182, 309)
-        self.centralwidget = QtWidgets.QWidget(Output)
-        self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.verticalLayoutWidget = QtWidgets.QWidget(Output)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 160, 261))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
@@ -51,21 +49,13 @@ class Ui_Output(object):
         self.setBtn = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.setBtn.setObjectName("setBtn")
         self.verticalLayout.addWidget(self.setBtn)
-        Output.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(Output)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 182, 18))
-        self.menubar.setObjectName("menubar")
-        Output.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(Output)
-        self.statusbar.setObjectName("statusbar")
-        Output.setStatusBar(self.statusbar)
 
         self.retranslateUi(Output)
         QtCore.QMetaObject.connectSlotsByName(Output)
 
     def retranslateUi(self, Output):
         _translate = QtCore.QCoreApplication.translate
-        Output.setWindowTitle(_translate("Output", "Output"))
+        Output.setWindowTitle(_translate("Output", "Output Device"))
         self.label.setText(_translate("Output", "Voltage Supply"))
         self.label_2.setText(_translate("Output", "(last set target value)"))
         self.label_3.setText(_translate("Output", "(new target value)"))
