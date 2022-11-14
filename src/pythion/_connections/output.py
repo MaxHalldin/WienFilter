@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from interfaces.calibration import Calibration, LinearCalibration
-from interfaces.usb import USB
+from pythion.connections import Calibration
+from pythion.connections import USBConnection
 
 class Output(ABC):
     """
@@ -12,7 +12,6 @@ class Output(ABC):
     behaviour to implement feedback by editing the 'target' getter and changing 'has_feedback' to return
     true.
     """
-
     def __init__(self, *, calibration: Calibration = None) -> None:
         self._last_set = None       # Last set value of TARGET signal
         self._calibration = Calibration.standard() if calibration is None else calibration
@@ -85,7 +84,7 @@ class PicoOutput(Output):
     signal being sent (provided that the target voltage is safe)
     """
     def __init__(self, port: str, calibration: Calibration, voltage_limit: float = None, bits = 12):
-        self._usb = USB(port)
+        self._usb = USBConnection(port)
         self.voltage_limit = voltage_limit
         self.bits = bits
         self._last_control = None # Use this local variable to overwrite control signal getter,

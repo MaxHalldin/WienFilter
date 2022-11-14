@@ -1,7 +1,8 @@
 from __future__ import annotations
-from layout.output import Ui_Output
 from PyQt5.QtWidgets import QApplication, QDialog, QWidget, QMessageBox
-from interfaces.output import Output
+
+from pythion._layout.output import Ui_Output
+from pythion.connections import Output
 
 class OutputComponent(QWidget, Ui_Output):
     def __init__(self, max_value: int, interface: Output, parent=None):
