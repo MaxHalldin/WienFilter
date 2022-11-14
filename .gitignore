@@ -1,6 +1,7 @@
 *.pyc
 devdependencies.txt
 src/layout/xml/*.py
+*.egg-info
 
 # My virtual environments 
 venv
@@ -9,3 +10,4 @@ devenv
 # Custom bash scripts
 enter
 compile
+run

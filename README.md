@@ -1,12 +1,16 @@
 # Wien Filter Tuning - Project code
 This git repo contains all code I produced for the project course at Uppsala University, Fall 22.
 
-This (hopefully soon) includes hardware interfaces for communication with lab equipment, a GUI and some optimization routines. Best of luck with it!
+The current code structure puts the majority code in the installable pythion package. This package contains GUI components in its [root folder](src/pythion/), that can be used to assemble your own GUI as needed. The subfolder [interfaces](src/pythion/interfaces) contains additional classes that help with connecting the GUI to hardware components. 
+
+Additionally, the particular GUI developed for this project is assembled in the [main.py](main.py) file. This file can be used for inspiration as to how the [pythion](src/pythion/)-package can be used in practise. Of course, if your only interested in running the GUI, then the [main.py](main.py) file is all you'll ever need. It should of course be made into an executable sooner or later, for example using `pyinstaller`.
 
 ## Getting started:
-For now, there's really no demo executable file.
+As no executable file yet exists, running the program is easiest achieved by cloning the project via `git` and installing dependencies using `pip`. To do so, make sure you have `git` installed (for example, by opening a command prompt and writing `git -v`. If you don't see a text with some version number, you need to install `git`). Also make sure to have python 3 installed (not sure which specific version is needed). A python installation can similarily be checked by running `python --version` or `python3 --version`.
 
-To install dependencies, you might want to create a virtual environment, for example by writing: `python -m venv ./venv`. Then, activate the virtual environment using `source ./venv/Scripts/activate` (at least on my machine, you may have to locate the activation script yourself). Finally, install packages through `pip install -r requirements.txt`, and you should be able to run everything in the project (except the MicroPython files under `./Pico`)! When done, exit the virtual environment using `deactivate`.
+Next, navigate in the command prompt to the folder where you wish to install the project, and run `git clone https://github.com/GustavLidberg/WienFilter.git`. This will add all project files to your own computer.
+
+To install dependencies, you might want to create a virtual environment, to make sure you don't pollute your global python environment with packages. This can, for example, be achieved by writing `python -m venv ./venv` in the command prompt (make sure you're situated in the project's root folder). Then, activate the virtual environment using `source ./venv/Scripts/activate` (at least on my windows machine, you may have to locate the activation script yourself). Finally, install project dependencies by writing `pip install -e .`. Now, you should be able to run the program by writing `python main.py` or `python3 main.py`.
 
 ## Project structure
 Here's how the project is (currently) structured! This might change at any time with little to no notice so be aware.

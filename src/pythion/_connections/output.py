@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from interfaces.calibration import Calibration, LinearCalibration
-from interfaces.usb import USBConnection
+from pythion.connections import Calibration
+from pythion.connections import USBConnection
 
 class Output(ABC):
     """
@@ -12,7 +12,6 @@ class Output(ABC):
     behaviour to implement feedback by editing the 'target' getter and changing 'has_feedback' to return
     true.
     """
-
     def __init__(self, *, calibration: Calibration = None) -> None:
         self._last_set = None       # Last set value of TARGET signal
         self._calibration = Calibration.standard() if calibration is None else calibration
