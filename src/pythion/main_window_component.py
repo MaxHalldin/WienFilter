@@ -3,13 +3,11 @@ from __future__ import annotations
 from typing import ClassVar, Any
 import sys
 
-
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox, QWidget
-
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 
 from pythion._layout.main_window import Ui_MainWindow
+
 
 class MainWindowComponent(QMainWindow, Ui_MainWindow):
     _instance: ClassVar[MainWindowComponent | None] = None
@@ -17,9 +15,9 @@ class MainWindowComponent(QMainWindow, Ui_MainWindow):
 
     def __new__(cls, *args: Any, **kwargs: Any) -> MainWindowComponent:
         # This __new__ method serves two purposes: enforcing a singleton pattern (i.e. only one MainWindowComponent may ever
-        # be instantiated), and instantiating the QApplication object. 
+        # be instantiated), and instantiating the QApplication object.
 
-        if cls._instance is None: # Only run once! 
+        if cls._instance is None:  # Only run once!
 
             # Do some initial configuration of Qt
             # The following four lines fix some resolution issues.
@@ -37,7 +35,7 @@ class MainWindowComponent(QMainWindow, Ui_MainWindow):
     def __init__(self) -> None:
         # Boilerplate initialization
         super().__init__(None)
-        self.setupUi(self) # type: ignore
+        self.setupUi(self)  # type: ignore
 
     def add_children(self, *children: QWidget) -> None:
         for child in children:

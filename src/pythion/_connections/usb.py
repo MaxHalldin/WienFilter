@@ -1,9 +1,10 @@
 from __future__ import annotations
 from typing import Iterable, Any
-from serial.tools import list_ports # type: ignore
-from serial import Serial # type: ignore
+from serial.tools import list_ports  # type: ignore
+from serial import Serial  # type: ignore
 import time
 from dataclasses import dataclass
+
 
 @dataclass
 class USBDevice:
@@ -28,17 +29,19 @@ class USBDevice:
         """
         Check if USB device other could be same device type as this. Check vendor ID and, if available on THIS object,
         the product ID. Note that other MUST have product ID available if this object has it.
-        """   
+        """
         if self.vendor_id != self.vendor_id:
             return False
         if self.product_id is None:
             return True
         return (self.product_id == other.product_id)
 
+
 # List of known device types
 DEVICES = {
     'pico': USBDevice(0x2e8a, 0x0005, 'Raspberry PI', 'Pico')
 }
+
 
 class PortSelector:
     @staticmethod
@@ -64,7 +67,7 @@ class PortSelector:
         comlist = list_ports.comports()
         return_list = []
         for port in comlist:
-            device = USBDevice(port.vid, port.pid) # pylance doesn't like this line but it works in the tests
+            device = USBDevice(port.vid, port.pid)  # Pylance doesn't like this line but it works fine
             if products is not None:
                 if not PortSelector._get_names_from_list(device, products):
                     continue
@@ -73,20 +76,21 @@ class PortSelector:
             return_list.append((port.device, device))
         return return_list
 
+
 class USBConnection:
     def __init__(self, port: str) -> None:
         self.port = port
         self.ser = None
-    
+
     def __enter__(self) -> USBConnection:
         self.ser = Serial(self.port, 115200)
         return self
-    
+
     def __exit__(self, *_: Any) -> None:
         if self.ser is not None:
             self.ser.close()
         self.ser = None
-    
+
     def write(self, message: str) -> None:
         if self.ser is None:
             raise Exception('Port is closed. Use "with" block to access this interface.')
@@ -95,14 +99,15 @@ class USBConnection:
         print(f'Just wrote {s}')
         if (self.ser.inWaiting() > 0):
             # read the bytes and convert from binary array to ASCII
-            data_str = self.ser.read(self.ser.inWaiting()).decode('ascii') 
+            data_str = self.ser.read(self.ser.inWaiting()).decode('ascii')
             # print the incoming string without putting a new-line
             # ('\n') automatically after every print()
-            print(f'Recieving: {data_str}') 
+            print(f'Recieving: {data_str}')
             # Put the rest of your code you want here
-            # Optional, but recommended: sleep 10 ms (0.01 sec) once per loop to let 
+            # Optional, but recommended: sleep 10 ms (0.01 sec) once per loop to let
             # other threads on your PC run during this time.
-        time.sleep(0.01) 
+        time.sleep(0.01)
+
 
 def main() -> None:
     # Demo script for getting a device
@@ -118,6 +123,7 @@ def main() -> None:
     with USBConnection(port) as usb:
         while True:
             usb.write(input('Enter message: '))
+
 
 if __name__ == '__main__':
     main()
