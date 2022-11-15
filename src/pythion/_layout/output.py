@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './src/layout/xml/output.ui'
+# Form implementation generated from reading ui file './src/pythion/_layout/xml/output.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #

@@ -2,6 +2,7 @@
 devdependencies.txt
 src/layout/xml/*.py
 *.egg-info
+.vscode/
 
 # My virtual environments 
 venv

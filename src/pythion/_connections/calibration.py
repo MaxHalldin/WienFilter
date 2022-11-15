@@ -5,7 +5,7 @@ class Calibration(ABC):
     """
     This is a base class for the relations between a target signal and a control signal of an input or output device.
     """
-    def __init__(self, control_unit: str = None, target_unit: str = None) -> None:
+    def __init__(self, control_unit: str | None = None, target_unit: str | None = None) -> None:
         self.control_unit = control_unit # Units for control signal
         self.target_unit = target_unit   # Units for target signal
 
@@ -24,7 +24,7 @@ class Calibration(ABC):
         pass
 
     @staticmethod
-    def standard(unit: str = None) -> LinearCalibration:
+    def standard(unit: str | None = None) -> LinearCalibration:
         """
         Factory method for the trivial relation (control=target). Specify only unit of both signals.
         """
@@ -34,7 +34,7 @@ class LinearCalibration(Calibration):
     """
     Describes a linear relationship between control- and target signals.
     """
-    def __init__(self, prop: float, control_unit: str = None, target_unit: str = None) -> None:
+    def __init__(self, prop: float, control_unit: str | None = None, target_unit: str | None = None) -> None:
         """
         Prop: constant of proportionality, i.e. target = control * prop
         """

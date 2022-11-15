@@ -1,1 +1,3 @@
-from pythion.main_window_component import MainWindow
+def test_output() -> None:
+    print('Testing')
+    assert(True)

@@ -1,7 +1,9 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from pythion.connections import Calibration
-from pythion.connections import USBConnection
+from typing import Any
+
+from pythion.connections import Calibration, USBConnection
 
 class Output(ABC):
     """
@@ -9,11 +11,16 @@ class Output(ABC):
     and the connection details should be covered in the enter/exit methods.
     Writing values should be internally implemented in the '_write' method, and invoked using the
     'target' property. By default, reading the 'target' property returns the last set target value. Change this
-    behaviour to implement feedback by editing the 'target' getter and changing 'has_feedback' to return
-    true.
+    behaviour to implement feedback by editing the 'target' getter and changing 'has_feedback' to return true.
     """
-    def __init__(self, *, calibration: Calibration = None) -> None:
-        self._last_set = None       # Last set value of TARGET signal
+
+    _last_set_target: float | None
+    _last_set_control: float | None
+    _calibration: Calibration
+
+    def __init__(self, *, calibration: Calibration | None = None):
+        self._last_set_target = None
+        self._last_set_control = None
         self._calibration = Calibration.standard() if calibration is None else calibration
         # TODO: Implement default values
 
@@ -22,35 +29,37 @@ class Output(ABC):
         """
         Open connection with device.
         """
-        pass
+        return self
     
-    def __exit__(self, *_) -> None:
+    def __exit__(self, *_: Any) -> None:
         """
         Close connections with device.
         """
         pass
 
     @property
-    def target(self) -> float:
-        """
-        Getter for the 'target' property. Returns last set target value, by default
-        """
-        return self._last_set
+    def target(self) -> float | None:
+        return self._last_set_target
 
     @target.setter
-    def target(self, value: float) -> None:
+    def target(self, target_value: float) -> None:
         """
         Set a target value for the signal.
         """
-        self._write(self._calibration.to_control(value))
-        self._last_set = value
+        control = self._calibration.to_control(target_value)
+        self._last_set_control = control
+        self._last_set_target = target_value
+        self._write(control) # Important! _write could possibly overwrite the value of _last_set_control and
+                             # last_set_target if necessary. It's therefore important to make the _write call
+                             # last. 
 
     @property
-    def control(self) -> float:
+    def control(self) -> float | None:
         """
-        Returns the last set control signal, by default
+        Note that control is get-only by default - setting the value has to be done by specifying a target value.
+        This can of course be changed if needed.
         """
-        return self._calibration.to_control(self._last_set)
+        return self._last_set_control
 
     @property
     def has_feedback(self) -> bool:
@@ -70,7 +79,7 @@ class Output(ABC):
 # IMPLEMENTATIONS
 
 class MockOutput(Output):
-    def _write(self, control_value) -> None:
+    def _write(self, control_value: float) -> None:
         print(f'Writing control signal value {control_value}')
 
 class PicoOutput(Output):
@@ -83,37 +92,38 @@ class PicoOutput(Output):
     Setting a value that's out of bounds for the DAC will result in a maximum/minimum
     signal being sent (provided that the target voltage is safe)
     """
-    def __init__(self, port: str, calibration: Calibration, voltage_limit: float = None, bits = 12):
+    def __init__(self, port: str, calibration: Calibration, voltage_limit: float | None = None, bits: int = 12):
         self._usb = USBConnection(port)
         self.voltage_limit = voltage_limit
         self.bits = bits
-        self._last_control = None # Use this local variable to overwrite control signal getter,
-                                  # as this might differ if value is out of DAC range.
         super().__init__(calibration = calibration)
     
-    def __enter__(self):
+    def __enter__(self) -> PicoOutput:
         self._usb.__enter__()
         return self
     
-    def __exit__(self, exc_type, exc_value, tb):
-        self._usb.__exit__(exc_type, exc_value, tb)
+    def __exit__(self, *args: Any) -> None:
+        self._usb.__exit__(*args)
     
-    @Output.target.setter
-    def target(self, value: float):
-        if self.voltage_limit is not None and value > self.voltage_limit:
-            raise ValueError(f'A voltage of {value} exceeds the listed DAC capability.')
-        Output.target.fset(self, value)
-    
-    @Output.control.getter
-    def control(self):
-        return self._last_control
+    @Output.target.setter # type: ignore
+    def target(self, target_value: float) -> None:
+        """
+        Overwrite the target setter to enforce check that the output target is
+         - below safe operating limit
+         - within specified range
+        """
+        if self.voltage_limit is not None and target_value > self.voltage_limit:
+            raise ValueError(f'A voltage of {target_value} exceeds the listed DAC capability.')
+        control_value = self._calibration.to_control(target_value)
+        control_value = max(min(control_value, 1), 0) # Make sure control signal is within range
+        self._last_set_control = control_value
+        self._last_set_target = self._calibration.to_target(self._last_set_control)
+        self._write(control_value)
 
-    def _write(self, control: float) -> None:
+    def _write(self, control_value: float) -> None:
         """
         Write signal to DAC. control is a float between 0 and 1,
         and will be converted to a binary number.
         """
-        control = max(min(control, 1), 0) # Make sure control signal is within range
-        self._last_control = control
-        binary = round(control * (2**self.bits - 1)) # Discretize
+        binary = round(control_value * (2**self.bits - 1)) # Discretize
         self._usb.write(str(binary))      # Write to usb
