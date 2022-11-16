@@ -114,7 +114,7 @@ class USBConnection:
             self.ser.close()
         self.ser = None
 
-    def listen(self, timeout: float = 0.01, bytes=False) -> None:
+    def listen(self, timeout: float = 0.01, bytes: bool = False) -> None:
         if self.ser is None:
             raise Exception('Port is closed. Use "with" block to access this interface.')
         time.sleep(timeout)
