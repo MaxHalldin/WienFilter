@@ -38,8 +38,12 @@ class USBDevice:
 
 
 # List of known device types
+# OBS OBS these are not the device names you'll find from a vendor id lookup, but just some names
+# I use for verification within the project. For example, I believe the RS3005P vendor id actually refers
+# to the manifacturer of the connection port, rather than the power supply.
 DEVICES = {
-    'pico': USBDevice(0x2e8a, 0x0005, 'Raspberry PI', 'Pico')
+    'pico': USBDevice(0x2e8a, 0x0005, 'Raspberry PI', 'Pico'),
+    'rs': USBDevice(0x0416, 0x5011, 'RS', '3005P')
 }
 
 
@@ -67,7 +71,8 @@ class PortSelector:
         comlist = list_ports.comports()
         return_list = []
         for port in comlist:
-            device = USBDevice(port.vid, port.pid)  # Pylance doesn't like this line but it works fine
+            assert isinstance(port.vid, int)
+            device = USBDevice(port.vid, port.pid)
             if products is not None:
                 if not PortSelector._get_names_from_list(device, products):
                     continue
@@ -75,6 +80,16 @@ class PortSelector:
                 PortSelector._get_names_from_list(device, DEVICES.values())
             return_list.append((port.device, device))
         return return_list
+
+    @staticmethod
+    def get_port_of(device_key: str) -> str | None:
+        if device_key not in DEVICES:
+            return None
+        devices = PortSelector.get_devices([DEVICES[device_key]])
+        if not devices:
+            return None
+        port, _ = devices[0]
+        return port
 
 
 class USBConnection:
@@ -87,10 +102,10 @@ class USBConnection:
         self.port = port
         self.baud_rate = baud_rate
         self.add_line_break = add_line_break
-        self.serial = None
+        self.ser = None
 
     def __enter__(self) -> USBConnection:
-        self.ser = Serial(self.port, self.baud_rate)
+        self.ser = Serial(self.port, self.baud_rate, timeout=1)
         self.ser.flush()
         return self
 
@@ -98,6 +113,20 @@ class USBConnection:
         if self.ser is not None:
             self.ser.close()
         self.ser = None
+
+    def listen(self, timeout: float = 0.01, bytes=False) -> None:
+        if self.ser is None:
+            raise Exception('Port is closed. Use "with" block to access this interface.')
+        time.sleep(timeout)
+        while self.ser.inWaiting() > 0:
+            # read the bytes and convert from binary array to ASCII
+            data_str = self.ser.read(self.ser.inWaiting())
+            if bytes:
+                data_str = str(bin(int.from_bytes(data_str)))[2:].rjust(8, '0')
+            else:
+                data_str = data_str.decode('ascii')
+            print(f'Recieving: {data_str}')
+            time.sleep(timeout)
 
     def write(self, message: str) -> None:
         if self.ser is None:
@@ -107,13 +136,16 @@ class USBConnection:
         s = str.encode(message)
         self.ser.write(s)
         print(f'Just wrote {s!r}')
-        if (self.ser.inWaiting() > 0):
-            # read the bytes and convert from binary array to ASCII
-            data_str = self.ser.read(self.ser.inWaiting()).decode('ascii')
-            # print the incoming string without putting a new-line
-            # ('\n') automatically after every print()
-            print(f'Recieving: {data_str}')
-            # Put the rest of your code you want here
-            # Optional, but recommended: sleep 10 ms (0.01 sec) once per loop to let
-            # other threads on your PC run during this time.
         time.sleep(0.01)
+
+
+def main() -> None:
+    dev = USBConnection(port="COM4", baud_rate=9600)
+    with dev:
+        while True:
+            dev.write(input('Command: '))
+            dev.listen(0.1)
+
+
+if __name__ == '__main__':
+    main()

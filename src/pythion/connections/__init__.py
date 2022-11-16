@@ -12,10 +12,12 @@ __all__ = [
     'Output',
     'MockOutput',
     'PicoOutput',
-    'USBOutput'
+    'USBOutput',
+    'RS3000Output'
 ]
 from .._connections.calibration import Calibration, LinearCalibration
 from .._connections.usb import USBConnection, USBDevice, PortSelector
 from .._connections.output import Output, MockOutput
 from .._connections.pico_output import PicoOutput
 from .._connections.usb_output import USBOutput
+from .._connections.rs3000_output import RS3000Output
