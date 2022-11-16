@@ -78,12 +78,20 @@ class PortSelector:
 
 
 class USBConnection:
-    def __init__(self, port: str) -> None:
+    port: str
+    baud_rate: int
+    add_line_break: bool
+    ser: Serial | None
+
+    def __init__(self, port: str, baud_rate: int, add_line_break: bool = False) -> None:
         self.port = port
-        self.ser = None
+        self.baud_rate = baud_rate
+        self.add_line_break = add_line_break
+        self.serial = None
 
     def __enter__(self) -> USBConnection:
-        self.ser = Serial(self.port, 115200)
+        self.ser = Serial(self.port, self.baud_rate)
+        self.ser.flush()
         return self
 
     def __exit__(self, *_: Any) -> None:
@@ -94,9 +102,11 @@ class USBConnection:
     def write(self, message: str) -> None:
         if self.ser is None:
             raise Exception('Port is closed. Use "with" block to access this interface.')
-        s = str.encode(message + '\n')
+        if self.add_line_break:
+            message = message + '\n'
+        s = str.encode(message)
         self.ser.write(s)
-        print(f'Just wrote {s}')
+        print(f'Just wrote {s!r}')
         if (self.ser.inWaiting() > 0):
             # read the bytes and convert from binary array to ASCII
             data_str = self.ser.read(self.ser.inWaiting()).decode('ascii')
@@ -107,23 +117,3 @@ class USBConnection:
             # Optional, but recommended: sleep 10 ms (0.01 sec) once per loop to let
             # other threads on your PC run during this time.
         time.sleep(0.01)
-
-
-def main() -> None:
-    # Demo script for getting a device
-    # Get port
-    pico = DEVICES['pico']
-    matches = PortSelector.get_devices([pico])
-    if not matches:
-        print('No pico detected :(')
-        return
-    port, _ = matches[0]
-
-    # Write
-    with USBConnection(port) as usb:
-        while True:
-            usb.write(input('Enter message: '))
-
-
-if __name__ == '__main__':
-    main()
