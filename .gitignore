@@ -1,14 +1,17 @@
 *.pyc
-devdependencies.txt
 src/layout/xml/*.py
 *.egg-info
 .vscode/
+.coverage
 
 # My virtual environments 
 venv
 devenv
+testenv
 
 # Custom bash scripts
 enter
 compile
 run
+resetenv
+runtests
