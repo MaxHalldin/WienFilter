@@ -40,7 +40,7 @@ class USBDevice:
 # List of known device types
 # OBS OBS these are not the device names you'll find from a vendor id lookup, but just some names
 # I use for verification within the project. For example, I believe the RS3005P vendor id actually refers
-# to the manifacturer of the connection port, rather than the power supply.
+# to the manifacturer of the USB serial conversion chip, rather than the actual power supply.
 DEVICES = {
     'pico': USBDevice(0x2e8a, 0x0005, 'Raspberry PI', 'Pico'),
     'rs': USBDevice(0x0416, 0x5011, 'RS', '3005P')

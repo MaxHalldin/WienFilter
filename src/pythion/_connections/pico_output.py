@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 from typing import Tuple
-from pythion._connections.usb_output import USBOutput
 from pythion._connections.calibration import Calibration
+from pythion._connections.output import Output
+from pythion._connections.usb import USBConnection
 
 
-class PicoOutput(USBOutput):
+class PicoOutput(Output, USBConnection):
     """
     Specialization of the Output class for a Pico running a DAC for a voltage supply.
     Target signal is the output voltage of the voltage supply.
@@ -18,12 +19,18 @@ class PicoOutput(USBOutput):
     def __init__(self, *, port: str, calibration: Calibration, voltage_limit: float | None = None, bits: int = 12):
         self.bits = bits
         BAUD_RATE = 115200
-        super().__init__(
+        # Initialize USB Connection
+        USBConnection.__init__(
+            self,
             port=port,
             baud_rate=BAUD_RATE,
-            calibration=calibration,
-            target_limit=voltage_limit,
             add_line_break=True
+        )
+        # Initialize the output parent class
+        Output.__init__(
+            self,
+            calibration=calibration,
+            target_limit=voltage_limit
         )
 
     def _write(self, control_value: float) -> None:
@@ -32,7 +39,7 @@ class PicoOutput(USBOutput):
         and will be converted to a binary number.
         """
         binary = round(control_value * (2**self.bits - 1))  # Discretize
-        self._usb.write(str(binary))      # Write to usb
+        self.write(str(binary))      # Write to usb
 
     def _validate(self, target_value: float, control_value: float) -> Tuple[bool, float, float]:
         # Not only must output voltage be safe (super()._validate(...)),
@@ -54,3 +61,6 @@ class PicoOutput(USBOutput):
             if not control_validation:
                 raise ValueError('No valid output could be set with the current configuration')
         return parent_valid and not changed, target_value, control_value
+
+
+PicoOutput(port='COM3', calibration=Calibration.standard())

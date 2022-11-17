@@ -3,11 +3,12 @@ from enum import Enum
 from typing import Self
 import time
 
-from pythion._connections.usb_output import USBOutput
+from pythion._connections.output import Output
+from pythion._connections.usb import USBConnection
 from pythion._connections.calibration import Calibration, LinearCalibration
 
 
-class RS3000Output(USBOutput):
+class RS3000Output(Output, USBConnection):
     """
     Specialization of the Output class for a RS3005P power supply.
     Control and target signal is the output voltage of the voltage supply.
@@ -20,7 +21,8 @@ class RS3000Output(USBOutput):
         VOLTAGE = 0
         CURRENT = 1
 
-    def __init__(self, *,
+    def __init__(self,
+                 *,
                  port: str,
                  voltage_limit: float | None = None,
                  current_limit: float | None = None,
@@ -45,7 +47,16 @@ class RS3000Output(USBOutput):
         target_limit = voltage_limit if mode == self.PowerOptions.VOLTAGE else current_limit
 
         BAUD_RATE = 9600
-        super().__init__(port=port, baud_rate=BAUD_RATE, calibration=calibration, target_limit=target_limit)
+        USBConnection.__init__(
+            self,
+            port=port,
+            baud_rate=BAUD_RATE
+        )
+        Output.__init__(
+            self,
+            calibration=calibration,
+            target_limit=target_limit
+        )
 
     def __enter__(self) -> Self:
         super().__enter__()
@@ -62,22 +73,21 @@ class RS3000Output(USBOutput):
 
     def _initial_config(self) -> None:
         DELAY = 0.3
-        self._usb.write('VSET1:00.00')
+        self.write('VSET1:00.00')
         time.sleep(DELAY)
-        self._usb.write('ISET1:0.000')
+        self.write('ISET1:0.000')
         time.sleep(DELAY)
-        self._usb.write('OUT1')
+        self.write('OUT1')
         time.sleep(DELAY)
         if self._mode == self.PowerOptions.VOLTAGE:
-            self._usb.write(f'ISET1:{self._to_current_string(self._current_limit)}')
+            self.write(f'ISET1:{self._to_current_string(self._current_limit)}')
         else:
-            self._usb.write(f'VSET1:{self._to_voltage_string(self._voltage_limit)}')
-        
+            self.write(f'VSET1:{self._to_voltage_string(self._voltage_limit)}')
+
     def _write(self, control_value: float) -> None:
         is_voltage = self._mode == self.PowerOptions.VOLTAGE
         if is_voltage:
             str = self._to_voltage_string(control_value)
         else:
             str = self._to_current_string(control_value)
-        self._usb.write(f'{"V" if is_voltage else "I"}SET1:{str}')
-        # print(f'{"V" if is_voltage else "I"}SET1:{str}')
+        self.write(f'{"V" if is_voltage else "I"}SET1:{str}')

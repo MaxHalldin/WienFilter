@@ -27,18 +27,28 @@ class Output(ABC):
         self.target_limit = target_limit
         self._on_invalid_output = []
 
-    # __enter__ and __exit__ are only defined to allow subclasses to override them.
+    # __enter__ and __exit__ are defined since most Outputs require IO handling, and it's
+    # nice if all Outputs then accept the use of context managers. However, to avoid masking
+    # __enter__/__exit__ calls to classes higher in the mro, the call is passed forward to super()
+
     def __enter__(self) -> Self:
         """
         Open connection with device.
         """
+        try:
+            super().__enter__()  # type: ignore
+        except AttributeError:
+            pass
         return self
 
-    def __exit__(self, *_: Any) -> None:
+    def __exit__(self, *args: Any) -> None:
         """
         Close connections with device.
         """
-        pass
+        try:
+            super().__exit__(*args)  # type: ignore
+        except AttributeError:
+            pass
 
     @property
     def target(self) -> float | None:
