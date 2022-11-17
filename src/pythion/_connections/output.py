@@ -30,11 +30,7 @@ class Output(ABC):
     # __enter__ and __exit__ are defined since most Outputs require IO handling, and it's
     # nice if all Outputs then accept the use of context managers. However, to avoid masking
     # __enter__/__exit__ calls to classes higher in the mro, the call is passed forward to super()
-
     def __enter__(self) -> Self:
-        """
-        Open connection with device.
-        """
         try:
             super().__enter__()  # type: ignore
         except AttributeError:
@@ -42,9 +38,6 @@ class Output(ABC):
         return self
 
     def __exit__(self, *args: Any) -> None:
-        """
-        Close connections with device.
-        """
         try:
             super().__exit__(*args)  # type: ignore
         except AttributeError:
