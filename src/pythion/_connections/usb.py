@@ -117,7 +117,7 @@ class USBConnection:
     def listen(self, timeout: float = 0.01, bytes: bool = False) -> None:
         if self.ser is None:
             raise Exception('Port is closed. Use "with" block to access this interface.')
-        time.sleep(timeout)
+        time.sleep(timeout)  # TODO: listening could be done with a timer to not block any threads
         while self.ser.inWaiting() > 0:
             # read the bytes and convert from binary array to ASCII
             data_str = self.ser.read(self.ser.inWaiting())
@@ -136,7 +136,6 @@ class USBConnection:
         s = str.encode(message)
         self.ser.write(s)
         print(f'Just wrote {s!r}')
-        time.sleep(0.01)
 
 
 def main() -> None:

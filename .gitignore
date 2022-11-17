@@ -3,6 +3,8 @@ src/layout/xml/*.py
 *.egg-info
 .vscode/
 .coverage
+.mypy_cache
+.pytest_cache
 
 # My virtual environments 
 venv
