@@ -6,6 +6,7 @@
 __all__ = [
     'Calibration',
     'LinearCalibration',
+    'InterpolCalibration',
     'USBConnection',
     'USBDevice',
     'PortSelector',
@@ -14,7 +15,7 @@ __all__ = [
     'PicoOutput',
     'RS3000Output'
 ]
-from .._connections.calibration import Calibration, LinearCalibration
+from .._connections.calibration import Calibration, LinearCalibration, InterpolCalibration
 from .._connections.usb import USBConnection, USBDevice, PortSelector
 from .._connections.output import Output, MockOutput
 from .._connections.pico_output import PicoOutput

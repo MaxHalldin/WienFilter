@@ -1,11 +1,11 @@
 # Hardware interface classes
-from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, Output
+from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, Output, InterpolCalibration
 
 # GUI Classes
 from pythion import OutputComponent
 from pythion import MainWindowComponent
 
-PICO = True
+PICO = False
 RS = True
 
 # Define hardware intefaces:
@@ -14,6 +14,7 @@ MAX_VOLTAGE_RS = 5
 MAX_CURRENT_RS = 50
 MODE_RS = RS3000Output.PowerOptions.CURRENT
 INPUT_MAX_RS = MAX_VOLTAGE_RS if MODE_RS == RS3000Output.PowerOptions.VOLTAGE else MAX_CURRENT_RS
+CALIBRATION_RS = InterpolCalibration.from_file("testcal.csv", True)
 
 # Pico
 MAX_VOLTAGE_PICO = 300
@@ -36,6 +37,7 @@ def configure_pico() -> PicoOutput:
 def configure_rs() -> RS3000Output:
     assert port_rs is not None
     return RS3000Output(port=port_rs,
+                        calibration=CALIBRATION_RS,
                         voltage_limit=MAX_VOLTAGE_RS,
                         current_limit=MAX_CURRENT_RS,
                         mode=MODE_RS)
