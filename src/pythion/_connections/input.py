@@ -27,7 +27,7 @@ class Input(ABC):
         pass
 
     @abstractmethod
-    def end_sampling(self) -> None:
+    def stop_sampling(self) -> None:
         pass
 
     def _invoke_handlers(self, value: float) -> None:
@@ -56,7 +56,14 @@ class Input(ABC):
             pass
 
 
-class MockInput(Input):
+class TimerInput(Input):
+    """
+    An abstract subclass of Input that also provides a handy timer four
+    sampling asynchronously at a constant rate. The _read method can be
+    overloaded to do whatever needs to be done periodically, while the
+    read method handles external calls for a single value. In this default
+    setting, they do the same thing.
+    """
     _timer: Timer | None
     _wait_time: float
 
@@ -64,8 +71,16 @@ class MockInput(Input):
         self._timer = None
         super().__init__()
 
+    def __exit__(self, *args: Any) -> None:
+        self.stop_sampling()
+        super().__exit__()
+
+    @abstractmethod
+    def _read(self) -> float:
+        pass
+
     def read(self) -> float:
-        return 0
+        return self._read()
 
     def start_sampling(self, sample_rate: int) -> None:
         self._wait_time = 1 / sample_rate
@@ -75,14 +90,19 @@ class MockInput(Input):
         self._timer = Timer(self._wait_time, self._callback)
         self._timer.start()
 
-    def end_sampling(self) -> None:
+    def stop_sampling(self) -> None:
         if self._timer is not None:
             self._timer.cancel()
             self._timer = None
 
     def _callback(self) -> None:
         self._start_sampling()
-        self._invoke_handlers(self.read())
+        self._invoke_handlers(self._read())
+
+
+class MockInput(TimerInput):
+    def _read(self) -> float:
+        return 0
 
 
 def main() -> None:
@@ -90,7 +110,7 @@ def main() -> None:
     x.add_input_handler(print)
     x.start_sampling(3)
     input('Press enter to quit reading\n')
-    x.end_sampling()
+    x.stop_sampling()
     input('Enter to exit')
 
 

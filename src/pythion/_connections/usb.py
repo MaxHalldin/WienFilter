@@ -2,8 +2,11 @@ from __future__ import annotations
 from typing import Iterable, Any
 from serial.tools import list_ports  # type: ignore
 from serial import Serial  # type: ignore
-import time
 from dataclasses import dataclass
+
+
+class USBConnectionException(Exception):
+    pass
 
 
 @dataclass
@@ -105,45 +108,80 @@ class USBConnection:
         self.ser = None
 
     def __enter__(self) -> USBConnection:
-        self.ser = Serial(self.port, self.baud_rate, timeout=1)
+        # Serial default configuration:
+        #    Byte size: 8
+        #       Parity: None
+        #    Stop bits: 1
+        # Flow control: None (xonxoff = False)
+        # If you need any other config, please implement that
+        # yourself by adding parameters to the class constructor and use them here
+        self.ser = Serial(self.port, self.baud_rate, timeout=5)
         self.ser.flush()
+        try:
+            super().__enter__()  # type: ignore
+        except AttributeError:
+            pass
         return self
 
-    def __exit__(self, *_: Any) -> None:
+    def __exit__(self, *args: Any) -> None:
         if self.ser is not None:
             self.ser.close()
-        self.ser = None
-
-    def listen(self, timeout: float = 0.01, bytes: bool = False) -> None:
-        if self.ser is None:
-            raise Exception('Port is closed. Use "with" block to access this interface.')
-        time.sleep(timeout)  # TODO: listening could be done with a timer to not block any threads
-        while self.ser.inWaiting() > 0:
-            # read the bytes and convert from binary array to ASCII
-            data_str = self.ser.read(self.ser.inWaiting())
-            if bytes:
-                data_str = str(bin(int.from_bytes(data_str)))[2:].rjust(8, '0')
-            else:
-                data_str = data_str.decode('ascii')
-            print(f'Recieving: {data_str}')
-            time.sleep(timeout)
+        try:
+            super().__exit__(*args)  # type: ignore
+        except AttributeError:
+            pass
 
     def write(self, message: str) -> None:
-        if self.ser is None:
-            raise Exception('Port is closed. Use "with" block to access this interface.')
+        self._check_port_open()
+        assert self.ser is not None
         if self.add_line_break:
             message = message + '\n'
         s = str.encode(message)
         self.ser.write(s)
         print(f'Just wrote {s!r}')
 
+    def read_newlines(self, max_lines: int | None = None) -> list[str]:
+        """
+        Important: only call this method if you're expecting a steady stream on lines,
+        otherwise, this method might lock the main thread.
+
+        Returns a generator that flushes the new lines in the buffer and returns them one by one.
+
+        This blogpost (https://be189.github.io/lessons/14/asynchronous_streaming.html) describes why
+        reading with read_all on a windows machine could be problematic, hence the read_until loop.
+        However, this reading is done in a completely synchronous fashion, so the caller needs to be
+        responsible of handling the async business (i.e. not just call this method on repeat in a while
+        loop)
+        """
+        self._check_port_open()
+        assert self.ser is not None
+        data: list[bytes] = []
+        while self.ser.in_waiting > 0:
+            # Could it happen that this while loop never exit if the stream writes fast enough?
+            # Only one way to find out!
+            # For that reason, a max_lines argument is also passed
+            line = self.ser.read_until()
+            data.append(line)
+            if max_lines is not None and len(data) > max_lines:
+                break
+        # Decode after looping is finished, to reduce risk of getting stuck in loop
+        return [b.decode() for b in data]
+
+    def _check_port_open(self) -> None:
+        if self.ser is None:
+            raise USBConnectionException('Port is closed. Use "with" block to access this interface.')
+
 
 def main() -> None:
-    dev = USBConnection(port="COM4", baud_rate=9600)
+    dev = USBConnection(port="COM3", baud_rate=115200, add_line_break=True)
     with dev:
         while True:
-            dev.write(input('Command: '))
-            dev.listen(0.1)
+            com = input('Command: ')
+            if com == "read":
+                for line in dev.read_newlines():
+                    print(line.strip())
+            else:
+                dev.write(com)
 
 
 if __name__ == '__main__':
