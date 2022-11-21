@@ -4,6 +4,7 @@
 .coverage
 .mypy_cache
 .pytest_cache
+.VSCodeCounter
 
 # My virtual environments 
 venv
