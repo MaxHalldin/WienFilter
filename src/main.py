@@ -2,7 +2,7 @@
 from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, InterpolCalibration, OutputInterface
 
 # GUI Classes
-from pythion import Output, Input, MainWindow
+from pythion import Output, Input, MainWindow, PlotBase
 from pythion._connections.buffer_input import PicoMockBufferInput
 
 PICO = False
@@ -54,8 +54,10 @@ inp = PicoMockBufferInput(port_pico)
 with rs, pico, inp:
     inp.start_sampling(1)
     win = MainWindow()
-    pico_component = Output(max_value=400, interface=pico, parent=win, name="High voltage supply", unit="V")
-    rs_component = Output(max_value=INPUT_MAX_RS, interface=rs, parent=win, name="Magnet current", unit="mA")
-    input_component = Input(interface=inp, name='Beam current', unit='nA')
-    win.add_children(pico_component, rs_component, input_component)
+    pico_component = Output(max_value=400, interface=pico, parent=win.main_widget(), name="High voltage supply", unit="V")
+    # rs_component = Output(max_value=INPUT_MAX_RS, interface=rs, parent=win, name="Magnet current", unit="mA")
+    input_component = Input(interface=inp, name='Beam current', unit='nA', parent=win.main_widget())
+    plt = PlotBase(parent=win.main_widget())
+    plt.plot([0, 1, 2, 3], [1, 2, 8, 4])
+    win.add_children(pico_component, input_component, plt)
     win.run()

@@ -6,78 +6,123 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>182</width>
-    <height>309</height>
+    <width>165</width>
+    <height>304</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Output Device</string>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
+  <widget class="QFrame" name="frame_2">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>160</width>
-     <height>261</height>
+     <width>151</width>
+     <height>281</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLabel" name="nameLabel">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLCDNumber" name="lastValueLCD">
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 0, 0);</string>
-      </property>
-      <property name="segmentStyle">
-       <enum>QLCDNumber::Flat</enum>
-      </property>
-      <property name="value" stdset="0">
-       <double>0.000000000000000</double>
-      </property>
-      <property name="intValue" stdset="0">
-       <number>0</number>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="outputLabel">
-      <property name="text">
-       <string>(last set target value)</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QDial" name="outputDial">
-      <property name="maximum">
-       <number>500</number>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QSpinBox" name="outputSpinbox"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>(new target value)</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="setBtn">
-      <property name="text">
-       <string>Set value</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>131</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="nameLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="frame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lastValueLCD">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 0, 0);</string>
+       </property>
+       <property name="segmentStyle">
+        <enum>QLCDNumber::Flat</enum>
+       </property>
+       <property name="value" stdset="0">
+        <double>0.000000000000000</double>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>0</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="outputLabel">
+       <property name="text">
+        <string>(last set target value)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDial" name="outputDial">
+       <property name="maximum">
+        <number>500</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="outputSpinbox"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>(new target value)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="setBtn">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 1px solid #444444;
+background-color: #dddddd</string>
+       </property>
+       <property name="text">
+        <string>Set value</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
  </widget>
  <resources/>

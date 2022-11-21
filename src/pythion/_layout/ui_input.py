@@ -14,9 +14,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Input(object):
     def setupUi(self, Input):
         Input.setObjectName("Input")
-        Input.resize(182, 69)
-        self.verticalLayoutWidget = QtWidgets.QWidget(Input)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 160, 51))
+        Input.resize(172, 95)
+        self.frame = QtWidgets.QFrame(Input)
+        self.frame.setGeometry(QtCore.QRect(10, 10, 151, 71))
+        self.frame.setFrameShape(QtWidgets.QFrame.Box)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.frame)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 131, 51))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)

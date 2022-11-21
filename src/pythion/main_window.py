@@ -37,6 +37,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__(None)
         self.setupUi(self)  # type: ignore
 
+    def main_widget(self):
+        return self.horizontalLayoutWidget
+
     def add_children(self, *children: QWidget) -> None:
         for child in children:
             self.mainLayout.addWidget(child)
