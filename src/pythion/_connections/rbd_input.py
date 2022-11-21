@@ -27,6 +27,7 @@ class RBDInput(BufferInput, USBConnection):
         timestr = str(time_interval).rjust(4, '0')
         print(f'&I{timestr}')
         #  self.write(timestr)
+        self.flush()
         return self
 
     def __exit__(self, *args: Any):
