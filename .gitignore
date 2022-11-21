@@ -1,5 +1,4 @@
 *.pyc
-src/layout/xml/*.py
 *.egg-info
 .vscode/
 .coverage

@@ -16,15 +16,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __new__(cls, *args: Any, **kwargs: Any) -> MainWindow:
         # This __new__ method serves two purposes: enforcing a singleton pattern (i.e. only one MainWindowComponent may ever
         # be instantiated), and instantiating the QApplication object.
-
         if cls._instance is None:  # Only run once!
-
             # Do some initial configuration of Qt
-            # The following four lines fix some resolution issues.
-            if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
-                QApplication.setAttribute(QtCore.Qt.ApplicationAttribute.AA_EnableHighDpiScaling, True)
-            if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
-                QApplication.setAttribute(QtCore.Qt.ApplicationAttribute.AA_UseHighDpiPixmaps, True)
+            if 'high_resolution' in kwargs and kwargs['high_resolution']:
+                # The following four lines enables using the system dpi settings - however - they aren't compatible with matplotlib
+                if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
+                    QApplication.setAttribute(QtCore.Qt.ApplicationAttribute.AA_EnableHighDpiScaling, True)
+                if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
+                    QApplication.setAttribute(QtCore.Qt.ApplicationAttribute.AA_UseHighDpiPixmaps, True)
 
             # The Qapplication must be instantiated before any QWidgets, hence the class variable
             cls._app = QApplication(sys.argv)
@@ -32,12 +31,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             cls._instance = super().__new__(cls, *args, **kwargs)
         return cls._instance
 
-    def __init__(self) -> None:
+    def __init__(self, high_resolution: bool = False) -> None:
         # Boilerplate initialization
         super().__init__(None)
         self.setupUi(self)  # type: ignore
 
-    def main_widget(self):
+    def main_widget(self) -> QWidget:
         return self.horizontalLayoutWidget
 
     def add_children(self, *children: QWidget) -> None:

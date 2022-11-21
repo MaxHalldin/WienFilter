@@ -53,7 +53,7 @@ inp = PicoMockBufferInput(port_pico)
 # Setup GUI
 with rs, pico, inp:
     inp.start_sampling(1)
-    win = MainWindow()
+    win = MainWindow(high_resolution=False)
     pico_component = Output(max_value=400, interface=pico, parent=win.main_widget(), name="High voltage supply", unit="V")
     # rs_component = Output(max_value=INPUT_MAX_RS, interface=rs, parent=win, name="Magnet current", unit="mA")
     input_component = Input(interface=inp, name='Beam current', unit='nA', parent=win.main_widget())
