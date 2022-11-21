@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Iterable, Any
+from typing import Iterable, Any, Self
 from serial.tools import list_ports  # type: ignore
 from serial import Serial  # type: ignore
 from dataclasses import dataclass
@@ -101,13 +101,13 @@ class USBConnection:
     add_line_break: bool
     ser: Serial | None
 
-    def __init__(self, port: str, baud_rate: int, add_line_break: bool = False) -> None:
+    def __init__(self, port: str, baud_rate: int, eol_char: str | None = None):
         self.port = port
         self.baud_rate = baud_rate
-        self.add_line_break = add_line_break
+        self.eol_char = eol_char
         self.ser = None
 
-    def __enter__(self) -> USBConnection:
+    def __enter__(self) -> Self:
         # Serial default configuration:
         #    Byte size: 8
         #       Parity: None
@@ -134,8 +134,8 @@ class USBConnection:
     def write(self, message: str) -> None:
         self._check_port_open()
         assert self.ser is not None
-        if self.add_line_break:
-            message = message + '\n'
+        if self.eol_char:
+            message = message + self.eol_char
         s = str.encode(message)
         self.ser.write(s)
         print(f'Just wrote {s!r}')
@@ -173,7 +173,7 @@ class USBConnection:
 
 
 def main() -> None:
-    dev = USBConnection(port="COM3", baud_rate=115200, add_line_break=True)
+    dev = USBConnection(port="COM3", baud_rate=115200, eol_char='\n')
     with dev:
         while True:
             com = input('Command: ')

@@ -94,7 +94,7 @@ class PicoMockBufferInput(BufferInput, USBConnection):
             self,
             port=port,
             baud_rate=BAUD_RATE,
-            add_line_break=True
+            eol_char='\n'
         )
         BufferInput.__init__(self, buffer, 2 if pull else None)
 

@@ -24,7 +24,7 @@ class PicoOutput(Output, USBConnection):
             self,
             port=port,
             baud_rate=BAUD_RATE,
-            add_line_break=True
+            eol_char='\n'
         )
         # Initialize the output parent class
         Output.__init__(
