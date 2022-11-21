@@ -1,7 +1,7 @@
 from __future__ import annotations
 from PyQt5.QtWidgets import QWidget
 
-from pythion._layout.output import Ui_Output
+from pythion._layout.ui_output import Ui_Output
 from pythion.connections import Output
 
 

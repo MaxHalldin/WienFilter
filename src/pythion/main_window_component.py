@@ -6,7 +6,7 @@ import sys
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 
-from pythion._layout.main_window import Ui_MainWindow
+from pythion._layout.ui_main_window import Ui_MainWindow
 
 
 class MainWindowComponent(QMainWindow, Ui_MainWindow):

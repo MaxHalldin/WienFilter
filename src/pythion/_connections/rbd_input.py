@@ -29,8 +29,9 @@ class RBDInput(BufferInput, USBConnection):
         #  self.write(timestr)
         return self
 
-    def __exit__(self, *args: Any):
+    def __exit__(self, *args: Any) -> None:
         self.write('&I0000')
+        super().__exit__(*args)
 
     @staticmethod
     def parse_response_string(message: str) -> float:
