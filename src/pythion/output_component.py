@@ -43,4 +43,5 @@ class OutputComponent(QWidget, Ui_Output):
     def set_value(self) -> None:
         val = self.outputDial.value()
         self.interface.target = val
+        val = self.interface.target  # Outgoing value might have changed due to illegal output
         self.lastValueLCD.display(val)

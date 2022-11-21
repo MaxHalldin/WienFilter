@@ -59,7 +59,7 @@ with rs, pico:
     pico.target = 0
 
     win = MainWindowComponent()
-    pico_component = OutputComponent(max_value=MAX_VOLTAGE_PICO, interface=pico, parent=win, name="High voltage supply", unit="V")
+    pico_component = OutputComponent(max_value=400, interface=pico, parent=win, name="High voltage supply", unit="V")
     rs_component = OutputComponent(max_value=INPUT_MAX_RS, interface=rs, parent=win, name="Magnet current", unit="mA")
     win.add_children(pico_component, rs_component)
     win.run()
