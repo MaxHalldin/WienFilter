@@ -1,37 +1,65 @@
-import sys
-from PyQt5 import QtCore
-from PyQt5.QtWidgets import QApplication
-
 # Hardware interface classes
-from interfaces.output import MockOutput, PicoOutput
-from interfaces.calibration import LinearCalibration
+from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, Output, InterpolCalibration
 
 # GUI Classes
-from output_component import OutputComponent
-from main_window_component import MainWindowComponent
+from pythion import OutputComponent
+from pythion import MainWindowComponent
+
+PICO = False
+RS = True
 
 # Define hardware intefaces:
-MAX_VOLTAGE = 10
-port = 'COM3'
-cal = LinearCalibration(10)
-pico = PicoOutput(port, cal, MAX_VOLTAGE)
+# RS 3005P
+MAX_VOLTAGE_RS = 5
+MAX_CURRENT_RS = 50
+MODE_RS = RS3000Output.PowerOptions.CURRENT
+INPUT_MAX_RS = MAX_VOLTAGE_RS if MODE_RS == RS3000Output.PowerOptions.VOLTAGE else MAX_CURRENT_RS
+CALIBRATION_RS = InterpolCalibration.from_file("testcal.csv", True)
 
-mock = MockOutput()
+# Pico
+MAX_VOLTAGE_PICO = 300
+CALIBRATION_PICO = LinearCalibration(350)
+
+
+def on_invalid() -> None:
+    print('Invalid!')
+
+
+port_pico = PortSelector.get_port_of('pico')
+port_rs = PortSelector.get_port_of('rs')
+
+
+def configure_pico() -> PicoOutput:
+    assert port_pico is not None
+    return PicoOutput(port=port_pico, calibration=CALIBRATION_PICO, voltage_limit=MAX_VOLTAGE_PICO)
+
+
+def configure_rs() -> RS3000Output:
+    assert port_rs is not None
+    return RS3000Output(port=port_rs,
+                        calibration=CALIBRATION_RS,
+                        voltage_limit=MAX_VOLTAGE_RS,
+                        current_limit=MAX_CURRENT_RS,
+                        mode=MODE_RS)
+
+
+pico: Output
+rs: Output
+if PICO:
+    pico = configure_pico()
+else:
+    pico = MockOutput()
+if RS:
+    rs = configure_rs()
+else:
+    rs = MockOutput()
+
 # Setup GUI
+with rs, pico:
+    pico.target = 0
 
-# (fixes resolution issues on some screens)
-if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
-    QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
-if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
-    QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
-
-app = QApplication(sys.argv)
-
-with pico, mock:
-    pico.target = 0 # Initialize voltage at 0
     win = MainWindowComponent()
-    output_component1 = OutputComponent(MAX_VOLTAGE, pico, parent=win)
-    output_component2 = OutputComponent(350, mock, parent=win)
-    win.add_children(output_component1, output_component2)
-    win.show()
-    sys.exit(app.exec())
+    pico_component = OutputComponent(MAX_VOLTAGE_PICO, pico, parent=win)
+    rs_component = OutputComponent(INPUT_MAX_RS, rs, parent=win)
+    win.add_children(pico_component, rs_component)
+    win.run()

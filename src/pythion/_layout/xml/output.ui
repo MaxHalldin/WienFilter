@@ -24,9 +24,9 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="nameLabel">
       <property name="text">
-       <string>Voltage Supply</string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -47,28 +47,21 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="outputLabel">
       <property name="text">
        <string>(last set target value)</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QDial" name="voltageDial">
+     <widget class="QDial" name="outputDial">
       <property name="maximum">
        <number>500</number>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLCDNumber" name="newValueLCD">
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 0, 0);</string>
-      </property>
-      <property name="segmentStyle">
-       <enum>QLCDNumber::Flat</enum>
-      </property>
-     </widget>
+     <widget class="QSpinBox" name="outputSpinbox"/>
     </item>
     <item>
      <widget class="QLabel" name="label_3">
