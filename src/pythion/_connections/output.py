@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from pythion.connections import Calibration
-from pythion.connections import USBConnection
+from typing import Any, Callable, Self, Tuple
+
+from pythion._connections.calibration import Calibration
+
 
 class Output(ABC):
     """
@@ -9,48 +12,63 @@ class Output(ABC):
     and the connection details should be covered in the enter/exit methods.
     Writing values should be internally implemented in the '_write' method, and invoked using the
     'target' property. By default, reading the 'target' property returns the last set target value. Change this
-    behaviour to implement feedback by editing the 'target' getter and changing 'has_feedback' to return
-    true.
+    behaviour to implement feedback by editing the 'target' getter and changing 'has_feedback' to return true.
     """
-    def __init__(self, *, calibration: Calibration = None) -> None:
-        self._last_set = None       # Last set value of TARGET signal
-        self._calibration = Calibration.standard() if calibration is None else calibration
-        # TODO: Implement default values
 
-    # __enter__ and __exit__ are only defined to allow subclasses to override them.
-    def __enter__(self) -> Output:
-        """
-        Open connection with device.
-        """
-        pass
-    
-    def __exit__(self, *_) -> None:
-        """
-        Close connections with device.
-        """
-        pass
+    _last_set_target: float | None
+    _last_set_control: float | None
+    _calibration: Calibration
+    _on_invalid_output: list[Callable[[], None]]
+
+    def __init__(self, *, calibration: Calibration | None = None, target_limit: float | None = None):
+        self._last_set_target = None
+        self._last_set_control = None
+        self._calibration = Calibration.standard() if calibration is None else calibration
+        self.target_limit = target_limit
+        self._on_invalid_output = []
+
+    # __enter__ and __exit__ are defined since most Outputs require IO handling, and it's
+    # nice if all Outputs then accept the use of context managers. However, to avoid masking
+    # __enter__/__exit__ calls to classes higher in the mro, the call is passed forward to super()
+    def __enter__(self) -> Self:
+        try:
+            super().__enter__()  # type: ignore
+        except AttributeError:
+            pass
+        return self
+
+    def __exit__(self, *args: Any) -> None:
+        try:
+            super().__exit__(*args)  # type: ignore
+        except AttributeError:
+            pass
 
     @property
-    def target(self) -> float:
-        """
-        Getter for the 'target' property. Returns last set target value, by default
-        """
-        return self._last_set
+    def target(self) -> float | None:
+        return self._last_set_target
 
     @target.setter
-    def target(self, value: float) -> None:
+    def target(self, target_value: float) -> None:
         """
         Set a target value for the signal.
         """
-        self._write(self._calibration.to_control(value))
-        self._last_set = value
+
+        control_value = self._calibration.to_control(target_value)
+        is_valid, new_target, new_control = self._validate(target_value, control_value)
+        if not is_valid:
+            for handler in self._on_invalid_output:
+                handler()
+        self._last_set_control = new_control
+        self._last_set_target = new_target
+        self._write(new_control)
 
     @property
-    def control(self) -> float:
+    def control(self) -> float | None:
         """
-        Returns the last set control signal, by default
+        Note that control is get-only by default - setting the value has to be done by specifying a target value.
+        This can of course be changed if needed.
         """
-        return self._calibration.to_control(self._last_set)
+        return self._last_set_control
 
     @property
     def has_feedback(self) -> bool:
@@ -59,7 +77,10 @@ class Output(ABC):
         or just returns whichever value was last set (False).
         """
         return False
-    
+
+    def add_invalid_output_handler(self, handler: Callable[[], None]) -> None:
+        self._on_invalid_output.append(handler)
+
     @abstractmethod
     def _write(self, control_signal: float) -> None:
         """
@@ -67,53 +88,25 @@ class Output(ABC):
         """
         pass
 
+    def _validate(self, target_signal: float, control_signal: float) -> Tuple[bool, float, float]:
+        """
+        Returns (isValid, new_target, new_control)
+        if isValid, then new_target and new_control must remain unchanged.
+        """
+        changed = False
+        if target_signal < 0:
+            changed = True
+            target_signal = 0
+        elif self.target_limit is not None and target_signal > self.target_limit:
+            changed = True
+            target_signal = self.target_limit
+        if changed:
+            control_signal = self._calibration.to_control(target_signal)
+        return not changed, target_signal, control_signal
+
 # IMPLEMENTATIONS
 
+
 class MockOutput(Output):
-    def _write(self, control_value) -> None:
+    def _write(self, control_value: float) -> None:
         print(f'Writing control signal value {control_value}')
-
-class PicoOutput(Output):
-    """
-    Specialization of the Output class for a Pico running a DAC for a voltage supply.
-    Target signal is the output voltage of the voltage supply.
-    Control signal is a 0-1 float corresponding to minimum/maximum output of the DAC.
-
-    Setting voltage_limit allows for a safety-check if a higher voltage is set.
-    Setting a value that's out of bounds for the DAC will result in a maximum/minimum
-    signal being sent (provided that the target voltage is safe)
-    """
-    def __init__(self, port: str, calibration: Calibration, voltage_limit: float = None, bits = 12):
-        self._usb = USBConnection(port)
-        self.voltage_limit = voltage_limit
-        self.bits = bits
-        self._last_control = None # Use this local variable to overwrite control signal getter,
-                                  # as this might differ if value is out of DAC range.
-        super().__init__(calibration = calibration)
-    
-    def __enter__(self):
-        self._usb.__enter__()
-        return self
-    
-    def __exit__(self, exc_type, exc_value, tb):
-        self._usb.__exit__(exc_type, exc_value, tb)
-    
-    @Output.target.setter
-    def target(self, value: float):
-        if self.voltage_limit is not None and value > self.voltage_limit:
-            raise ValueError(f'A voltage of {value} exceeds the listed DAC capability.')
-        Output.target.fset(self, value)
-    
-    @Output.control.getter
-    def control(self):
-        return self._last_control
-
-    def _write(self, control: float) -> None:
-        """
-        Write signal to DAC. control is a float between 0 and 1,
-        and will be converted to a binary number.
-        """
-        control = max(min(control, 1), 0) # Make sure control signal is within range
-        self._last_control = control
-        binary = round(control * (2**self.bits - 1)) # Discretize
-        self._usb.write(str(binary))      # Write to usb
