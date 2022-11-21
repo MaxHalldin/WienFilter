@@ -3,12 +3,12 @@ from enum import Enum
 from typing import Self
 import time
 
-from pythion._connections.output import Output
+from pythion._connections.output import OutputInterface
 from pythion._connections.usb import USBConnection
 from pythion._connections.calibration import Calibration, LinearCalibration
 
 
-class RS3000Output(Output, USBConnection):
+class RS3000Output(OutputInterface, USBConnection):
     """
     Specialization of the Output class for a RS3005P power supply.
     Control and target signal is the output voltage of the voltage supply.
@@ -52,7 +52,7 @@ class RS3000Output(Output, USBConnection):
             port=port,
             baud_rate=BAUD_RATE
         )
-        Output.__init__(
+        OutputInterface.__init__(
             self,
             calibration=calibration,
             target_limit=target_limit

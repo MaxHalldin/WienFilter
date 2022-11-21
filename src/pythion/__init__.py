@@ -1,5 +1,5 @@
-__all__ = ['MainWindowComponent', 'OutputComponent', 'InputComponent']
+__all__ = ['MainWindow', 'Output', 'Input']
 
-from .main_window_component import MainWindowComponent
-from .output_component import OutputComponent
-from .input_component import InputComponent
+from .main_window import MainWindow
+from .output import Output
+from .input import Input

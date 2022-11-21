@@ -3,7 +3,7 @@ from typing import Callable, Self, Any
 from threading import Timer
 
 
-class Input(ABC):
+class InputInterface(ABC):
     """
     Abstract base class for an input device. A derived class is to be made for every type of output,
     and the connection details should be covered in the enter/exit methods.
@@ -56,7 +56,7 @@ class Input(ABC):
             pass
 
 
-class TimerInput(Input):
+class TimerInput(InputInterface):
     """
     An abstract subclass of Input that also provides a handy timer four
     sampling asynchronously at a constant rate. The _read method can be

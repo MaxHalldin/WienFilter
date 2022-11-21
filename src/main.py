@@ -1,8 +1,8 @@
 # Hardware interface classes
-from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, InterpolCalibration, Output
+from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, InterpolCalibration, OutputInterface
 
 # GUI Classes
-from pythion import OutputComponent, InputComponent, MainWindowComponent
+from pythion import Output, Input, MainWindow
 from pythion._connections.buffer_input import PicoMockBufferInput
 
 PICO = False
@@ -22,8 +22,8 @@ MODE_RS = RS3000Output.PowerOptions.CURRENT
 INPUT_MAX_RS = MAX_VOLTAGE_RS if MODE_RS == RS3000Output.PowerOptions.VOLTAGE else MAX_CURRENT_RS
 CALIBRATION_RS = InterpolCalibration.from_file("testcal.csv", True)
 
-rs: Output
-pico: Output
+rs: OutputInterface
+pico: OutputInterface
 if RS:
     port_rs = PortSelector.get_port_of('rs')
     assert port_rs is not None
@@ -53,9 +53,9 @@ inp = PicoMockBufferInput(port_pico)
 # Setup GUI
 with rs, pico, inp:
     inp.start_sampling(1)
-    win = MainWindowComponent()
-    pico_component = OutputComponent(max_value=400, interface=pico, parent=win, name="High voltage supply", unit="V")
-    rs_component = OutputComponent(max_value=INPUT_MAX_RS, interface=rs, parent=win, name="Magnet current", unit="mA")
-    input_component = InputComponent(interface=inp, name='Beam current', unit='nA')
+    win = MainWindow()
+    pico_component = Output(max_value=400, interface=pico, parent=win, name="High voltage supply", unit="V")
+    rs_component = Output(max_value=INPUT_MAX_RS, interface=rs, parent=win, name="Magnet current", unit="mA")
+    input_component = Input(interface=inp, name='Beam current', unit='nA')
     win.add_children(pico_component, rs_component, input_component)
     win.run()

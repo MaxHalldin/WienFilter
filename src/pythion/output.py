@@ -2,14 +2,14 @@ from __future__ import annotations
 from PyQt5.QtWidgets import QWidget
 
 from pythion._layout.ui_output import Ui_Output
-from pythion.connections import Output
+from pythion.connections import OutputInterface
 
 
-class OutputComponent(QWidget, Ui_Output):
+class Output(QWidget, Ui_Output):
     def __init__(
         self, *,
         max_value: int,
-        interface: Output,
+        interface: OutputInterface,
         parent: QWidget | None = None,
         name: str | None = None,
         unit: str | None = None

@@ -9,11 +9,11 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from pythion._layout.ui_main_window import Ui_MainWindow
 
 
-class MainWindowComponent(QMainWindow, Ui_MainWindow):
-    _instance: ClassVar[MainWindowComponent | None] = None
+class MainWindow(QMainWindow, Ui_MainWindow):
+    _instance: ClassVar[MainWindow | None] = None
     _app: ClassVar[QApplication]
 
-    def __new__(cls, *args: Any, **kwargs: Any) -> MainWindowComponent:
+    def __new__(cls, *args: Any, **kwargs: Any) -> MainWindow:
         # This __new__ method serves two purposes: enforcing a singleton pattern (i.e. only one MainWindowComponent may ever
         # be instantiated), and instantiating the QApplication object.
 

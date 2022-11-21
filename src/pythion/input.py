@@ -2,13 +2,13 @@ from __future__ import annotations
 from PyQt5.QtWidgets import QWidget
 
 from pythion._layout.ui_input import Ui_Input
-from pythion.connections import Input
+from pythion.connections import InputInterface
 
 
-class InputComponent(QWidget, Ui_Input):
+class Input(QWidget, Ui_Input):
     def __init__(
         self, *,
-        interface: Input,
+        interface: InputInterface,
         parent: QWidget | None = None,
         name: str | None = None,
         unit: str | None = None
