@@ -2,7 +2,7 @@ from __future__ import annotations
 # from typing import Callable
 from typing import Self
 from abc import ABC, abstractmethod
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  # type: ignore
 import numpy as np
 
 

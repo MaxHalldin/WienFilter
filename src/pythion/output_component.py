@@ -23,7 +23,7 @@ class OutputComponent(QWidget, Ui_Output):
         self.outputDial.setRange(0, self.max_value)
         self.outputSpinbox.setRange(0, self.max_value)
         self.outputDial.valueChanged.connect(self.outputSpinbox.setValue)  # type: ignore
-        self.outputSpinbox.valueChanged.connect(self.outputDial.setValue)
+        self.outputSpinbox.valueChanged.connect(self.outputDial.setValue)  # type: ignore
         self.setBtn.clicked.connect(self.set_value)  # type: ignore
 
     def set_value(self) -> None:
