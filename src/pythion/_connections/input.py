@@ -101,8 +101,11 @@ class TimerInput(Input):
 
 
 class MockInput(TimerInput):
+    _val: float = 0
+
     def _read(self) -> float:
-        return 0
+        self._val = (self._val + 1) % 10
+        return self._val
 
 
 def main() -> None:
