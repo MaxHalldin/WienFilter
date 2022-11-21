@@ -20,11 +20,13 @@ class OutputComponent(QWidget, Ui_Output):
             raise NotImplementedError('Outputs with live feedback have not been implemented!')
 
         # Connect dial to input voltage display
-        self.voltageDial.setRange(0, self.max_value)
-        self.voltageDial.valueChanged.connect(self.newValueLCD.display)  # type: ignore
+        self.outputDial.setRange(0, self.max_value)
+        self.outputSpinbox.setRange(0, self.max_value)
+        self.outputDial.valueChanged.connect(self.outputSpinbox.setValue)  # type: ignore
+        self.outputSpinbox.valueChanged.connect(self.outputDial.setValue)
         self.setBtn.clicked.connect(self.set_value)  # type: ignore
 
     def set_value(self) -> None:
-        val = self.voltageDial.value()
+        val = self.outputDial.value()
         self.interface.target = val
         self.lastValueLCD.display(val)
