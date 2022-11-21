@@ -1,6 +1,6 @@
-__all__ = ['MainWindow', 'Output', 'Input', 'PlotBase']
+__all__ = ['MainWindow', 'Output', 'Input', 'PlotBase', 'PlotStream']
 
 from .main_window import MainWindow
 from .output import Output
 from .input import Input
-from .plotbase import PlotBase
+from .plotbase import PlotBase, PlotStream
