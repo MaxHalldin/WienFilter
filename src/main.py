@@ -5,8 +5,8 @@ from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCa
 from pythion import OutputComponent
 from pythion import MainWindowComponent
 
-PICO = False
-RS = True
+PICO = True
+RS = False
 
 # Define hardware intefaces:
 # RS 3005P
@@ -17,7 +17,7 @@ INPUT_MAX_RS = MAX_VOLTAGE_RS if MODE_RS == RS3000Output.PowerOptions.VOLTAGE el
 CALIBRATION_RS = InterpolCalibration.from_file("testcal.csv", True)
 
 # Pico
-MAX_VOLTAGE_PICO = 300
+MAX_VOLTAGE_PICO = 350
 CALIBRATION_PICO = LinearCalibration(350)
 
 
@@ -59,7 +59,7 @@ with rs, pico:
     pico.target = 0
 
     win = MainWindowComponent()
-    pico_component = OutputComponent(MAX_VOLTAGE_PICO, pico, parent=win)
-    rs_component = OutputComponent(INPUT_MAX_RS, rs, parent=win)
+    pico_component = OutputComponent(max_value=MAX_VOLTAGE_PICO, interface=pico, parent=win, name="High voltage supply", unit="V")
+    rs_component = OutputComponent(max_value=INPUT_MAX_RS, interface=rs, parent=win, name="Magnet current", unit="mA")
     win.add_children(pico_component, rs_component)
     win.run()
