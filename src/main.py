@@ -63,7 +63,7 @@ with rs, pico, inp:
     t = Timer(10, reset)
     input_component = Input(interface=inp, name='Beam current', unit='nA', parent=win.main_widget())
     plt = PlotStream(parent=win.main_widget(), input=inp, timespan=10, fix_scale=False)
-    plt.set_ylim((0, 100))
+    plt.set_ylim((0, 12))
     win.add_children(pico_component, input_component, plt)
     t.start()
     win.run()

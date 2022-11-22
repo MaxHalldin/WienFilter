@@ -56,7 +56,7 @@ class LinePlot(PlotBase):
 
 
 class PlotStream(LinePlot):
-    init_time: float  # Standard time
+    init_time: float | None  # Standard time
     time_list: ArrayLike  # Time relative to init_time
     data_list: ArrayLike
     timespan: int
@@ -65,7 +65,7 @@ class PlotStream(LinePlot):
 
     def __init__(self, *, parent: QWidget, input: InputInterface, timespan: int = 60, fix_scale: bool = False):
         super().__init__(parent=parent)
-        self.init_time = time()
+        self.init_time = None
         self.time_list = np.empty((0,))
         self.data_list = np.empty((0,))
         self.timespan = timespan
@@ -76,6 +76,8 @@ class PlotStream(LinePlot):
 
     def _add_point(self, data: float) -> None:
         current_time = time()
+        if self.init_time is None:
+            self.init_time = current_time
         cut_time = current_time - self.timespan - self.init_time
         cut_index = np.searchsorted(self.time_list, cut_time)
         cut = cut_index != 0
