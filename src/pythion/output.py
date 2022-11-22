@@ -38,10 +38,26 @@ class Output(QWidget, Ui_Output):
         self.outputSpinbox.setRange(0, self.max_value)
         self.outputDial.valueChanged.connect(self.outputSpinbox.setValue)  # type: ignore
         self.outputSpinbox.valueChanged.connect(self.outputDial.setValue)  # type: ignore
-        self.setBtn.clicked.connect(self.set_value)  # type: ignore
+        self.setBtn.clicked.connect(self._on_button_pressed)  # type: ignore
 
-    def set_value(self) -> None:
-        val = self.outputDial.value()
-        self.interface.target = val
-        val = self.interface.target  # Outgoing value might have changed due to illegal output
-        self.lastValueLCD.display(val)
+    def _on_button_pressed(self) -> None:
+        self._set_value(self.outputDial.value())
+
+    def _set_value(self, val: float) -> None:
+        self.interface.target = val  # Try to set value on the underlying interface
+        val = self.interface.target  # Outgoing value might have changed due to illegal output, so get back the set value
+        self.lastValueLCD.display(val)  # Make sure that the knobs are able to set this value!
+
+    def set_value(self, val: float, move_knobs: bool = False) -> None:
+        """
+        External method that can be invoked to change the output value.
+        If move_knobs is true, the graphical knobs will also move to the
+        corresponding output value.
+        """
+        if move_knobs:
+            # Change value just like the user would:
+            self.outputDial.setValue(val)
+            self._on_button_pressed()
+        else:
+            # Change value "silently"
+            self._set_value(val)

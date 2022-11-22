@@ -1,10 +1,11 @@
 # Hardware interface classes
-from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, InterpolCalibration, OutputInterface
+from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, InterpolCalibration, OutputInterface, MockInput
 
 # GUI Classes
 from pythion import Output, Input, MainWindow, PlotStream
 from pythion._connections.buffer_input import PicoMockBufferInput
 
+from threading import Timer
 PICO = False
 RS = False
 
@@ -47,17 +48,22 @@ else:
 
 # Input
 port_pico = PortSelector.get_port_of('pico')
-assert port_pico
-inp = PicoMockBufferInput(port=port_pico)
+inp = MockInput()
 
 # Setup GUI
+
 with rs, pico, inp:
     inp.start_sampling(10)
     win = MainWindow(high_resolution=False)
     pico_component = Output(max_value=400, interface=pico, parent=win.main_widget(), name="High voltage supply", unit="V")
     # rs_component = Output(max_value=INPUT_MAX_RS, interface=rs, parent=win, name="Magnet current", unit="mA")
+
+    def reset() -> None:
+        pico_component.set_value(0, True)
+    t = Timer(10, reset)
     input_component = Input(interface=inp, name='Beam current', unit='nA', parent=win.main_widget())
     plt = PlotStream(parent=win.main_widget(), input=inp, timespan=10, fix_scale=False)
     plt.set_ylim((0, 100))
     win.add_children(pico_component, input_component, plt)
+    t.start()
     win.run()
