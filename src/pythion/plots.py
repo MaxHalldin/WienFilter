@@ -6,6 +6,7 @@ from time import time
 from PyQt5.QtWidgets import QWidget
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg  # type: ignore
 from matplotlib.figure import Figure  # type: ignore
+from matplotlib.ticker import FormatStrFormatter  # type: ignore
 from matplotlib.lines import Line2D  # type: ignore
 from pythion.connections import InputInterface
 
@@ -32,6 +33,8 @@ class LinePlot(PlotBase):
 
     def __init__(self, *, parent: QWidget):
         super().__init__(parent=parent)
+        self._xlim_set = False
+        self._ylim_set = False
         self._line = None
 
     def set_xlim(self, xlim: tuple[float, float]) -> None:
@@ -49,7 +52,6 @@ class LinePlot(PlotBase):
             self._line.set_ydata(y)
             self._line.set_xdata(x)
             if not (self._xlim_set and self._ylim_set):
-                print('Hej')
                 self.axes.relim()
                 self.axes.autoscale_view()
         self.draw()

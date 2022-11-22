@@ -100,7 +100,6 @@ class PicoMockBufferInput(BufferInput, USBConnection):
 
     def _read_from_device(self) -> list[float]:
         lines = self.read_newlines()
-
         try:
             return [float(str.strip()) for str in lines]
         except ValueError:

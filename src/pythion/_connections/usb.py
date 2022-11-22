@@ -46,7 +46,8 @@ class USBDevice:
 # to the manifacturer of the USB serial conversion chip, rather than the actual power supply.
 DEVICES = {
     'pico': USBDevice(0x2e8a, 0x0005, 'Raspberry PI', 'Pico'),
-    'rs': USBDevice(0x0416, 0x5011, 'RS', '3005P')
+    'rs': USBDevice(0x0416, 0x5011, 'RS', '3005P'),
+    'rbd': USBDevice(0x0403, 0x6001, 'RBD', 'Picoammeter')
 }
 
 
@@ -173,7 +174,7 @@ class USBConnection:
 
 
 def main() -> None:
-    dev = USBConnection(port="COM3", baud_rate=115200, eol_char='\n')
+    dev = USBConnection(port="COM5", baud_rate=57600, eol_char='\r\n')
     with dev:
         while True:
             com = input('Command: ')
