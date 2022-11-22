@@ -75,14 +75,14 @@ class PortSelector:
         comlist = list_ports.comports()
         return_list = []
         for port in comlist:
-            assert isinstance(port.vid, int)
-            device = USBDevice(port.vid, port.pid)
-            if products is not None:
-                if not PortSelector._get_names_from_list(device, products):
-                    continue
-            else:
-                PortSelector._get_names_from_list(device, DEVICES.values())
-            return_list.append((port.device, device))
+            if isinstance(port.vid, int):
+                device = USBDevice(port.vid, port.pid)
+                if products is not None:
+                    if not PortSelector._get_names_from_list(device, products):
+                        continue
+                else:
+                    PortSelector._get_names_from_list(device, DEVICES.values())
+                return_list.append((port.device, device))
         return return_list
 
     @staticmethod
