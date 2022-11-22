@@ -23,7 +23,7 @@ input_device = RBDInput(
 )
 
 # Setup GUI
-with input_device:
+with input_device, magnet_output_device:
     input_device.start_sampling(5)
     win = MainWindow(high_resolution=False)
     output_component = Output(
