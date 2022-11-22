@@ -48,15 +48,16 @@ else:
 # Input
 port_pico = PortSelector.get_port_of('pico')
 assert port_pico
-inp = PicoMockBufferInput(port_pico)
+inp = PicoMockBufferInput(port=port_pico)
 
 # Setup GUI
 with rs, pico, inp:
-    inp.start_sampling(1)
+    inp.start_sampling(10)
     win = MainWindow(high_resolution=False)
     pico_component = Output(max_value=400, interface=pico, parent=win.main_widget(), name="High voltage supply", unit="V")
     # rs_component = Output(max_value=INPUT_MAX_RS, interface=rs, parent=win, name="Magnet current", unit="mA")
     input_component = Input(interface=inp, name='Beam current', unit='nA', parent=win.main_widget())
-    plt = PlotStream(parent=win.main_widget(), input=inp)
+    plt = PlotStream(parent=win.main_widget(), input=inp, timespan=10, fix_scale=False)
+    plt.set_ylim((0, 100))
     win.add_children(pico_component, input_component, plt)
     win.run()

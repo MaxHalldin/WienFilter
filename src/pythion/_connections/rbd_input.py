@@ -4,7 +4,7 @@ from typing import Self, Any
 
 
 class RBDInput(BufferInput, USBConnection):
-    def __init__(self, port: str, rbd_sample_rate: int, pull_rate: int):
+    def __init__(self, *, port: str, rbd_sample_rate: int, pull_rate: int):
         self.rbd_sample_rate = rbd_sample_rate
 
         BAUD_RATE = 57600
