@@ -2,11 +2,11 @@ from __future__ import annotations
 
 from typing import Tuple
 from pythion._connections.calibration import Calibration
-from pythion._connections.output import Output
+from pythion._connections.output import OutputInterface
 from pythion._connections.usb import USBConnection
 
 
-class PicoOutput(Output, USBConnection):
+class PicoOutput(OutputInterface, USBConnection):
     """
     Specialization of the Output class for a Pico running a DAC for a voltage supply.
     Target signal is the output voltage of the voltage supply.
@@ -24,10 +24,10 @@ class PicoOutput(Output, USBConnection):
             self,
             port=port,
             baud_rate=BAUD_RATE,
-            add_line_break=True
+            eol_char='\n'
         )
         # Initialize the output parent class
-        Output.__init__(
+        OutputInterface.__init__(
             self,
             calibration=calibration,
             target_limit=voltage_limit

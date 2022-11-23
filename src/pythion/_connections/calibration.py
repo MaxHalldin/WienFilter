@@ -14,7 +14,7 @@ class Calibration(ABC):
         self.control_unit = control_unit  # Units for control signal
         self.target_unit = target_unit    # Units for target signal
 
-    def plot(self, min_target: float, max_target: float, samples: int):
+    def plot(self, min_target: float, max_target: float, samples: int) -> None:
         xx = np.linspace(min_target, max_target, samples)
         yy = [self.to_control(x) for x in xx]
         plt.plot(xx, yy)

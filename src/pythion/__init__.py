@@ -1,4 +1,7 @@
-__all__ = ['MainWindowComponent', 'OutputComponent']
+__all__ = ['MainWindow', 'Output', 'Input', 'PlotBase', 'PlotStream', 'Action', 'GUIUpdater']
 
-from .main_window_component import MainWindowComponent
-from .output_component import OutputComponent
+from .main_window import MainWindow
+from .output import Output
+from .input import Input
+from .plots import PlotBase, PlotStream
+from .action import Action, GUIUpdater

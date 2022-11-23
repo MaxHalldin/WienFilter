@@ -1,9 +1,9 @@
-from pythion import MainWindowComponent
+from pythion import MainWindow
 from pythion.connections import RS3000Output, PortSelector
 
 
 def test_main() -> None:
-    assert MainWindowComponent._instance is None
+    assert MainWindow._instance is None
 
 
 def test_rs() -> None:

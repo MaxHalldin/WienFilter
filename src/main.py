@@ -1,65 +1,34 @@
+import numpy as np
 # Hardware interface classes
-from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, Output, InterpolCalibration
+from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, InterpolCalibration, OutputInterface, MockInput
 
 # GUI Classes
-from pythion import OutputComponent
-from pythion import MainWindowComponent
+from pythion import Output, Input, MainWindow, PlotStream, Action
 
-PICO = False
-RS = True
+from grid_search import grid_search
 
-# Define hardware intefaces:
-# RS 3005P
-MAX_VOLTAGE_RS = 5
-MAX_CURRENT_RS = 50
-MODE_RS = RS3000Output.PowerOptions.CURRENT
-INPUT_MAX_RS = MAX_VOLTAGE_RS if MODE_RS == RS3000Output.PowerOptions.VOLTAGE else MAX_CURRENT_RS
-CALIBRATION_RS = InterpolCalibration.from_file("testcal.csv", True)
-
-# Pico
-MAX_VOLTAGE_PICO = 300
-CALIBRATION_PICO = LinearCalibration(350)
-
-
-def on_invalid() -> None:
-    print('Invalid!')
-
-
-port_pico = PortSelector.get_port_of('pico')
-port_rs = PortSelector.get_port_of('rs')
-
-
-def configure_pico() -> PicoOutput:
-    assert port_pico is not None
-    return PicoOutput(port=port_pico, calibration=CALIBRATION_PICO, voltage_limit=MAX_VOLTAGE_PICO)
-
-
-def configure_rs() -> RS3000Output:
-    assert port_rs is not None
-    return RS3000Output(port=port_rs,
-                        calibration=CALIBRATION_RS,
-                        voltage_limit=MAX_VOLTAGE_RS,
-                        current_limit=MAX_CURRENT_RS,
-                        mode=MODE_RS)
-
-
-pico: Output
-rs: Output
-if PICO:
-    pico = configure_pico()
-else:
-    pico = MockOutput()
-if RS:
-    rs = configure_rs()
-else:
-    rs = MockOutput()
+op1 = MockOutput()
+op2 = MockOutput()
 
 # Setup GUI
-with rs, pico:
-    pico.target = 0
+inp = MockInput()
 
-    win = MainWindowComponent()
-    pico_component = OutputComponent(MAX_VOLTAGE_PICO, pico, parent=win)
-    rs_component = OutputComponent(INPUT_MAX_RS, rs, parent=win)
-    win.add_children(pico_component, rs_component)
+with op1, op2, inp:
+    inp.start_sampling(10)
+    win = MainWindow(high_resolution=False)
+    com1 = Output(max_value=400, interface=op1, parent=win.main_widget(), name="High voltage supply", unit="V")
+    com2 = Output(max_value=400, interface=op2, parent=win.main_widget(), name="High voltage supply", unit="V")
+
+    value_list = [round(x) for x in np.linspace(0, 100, 11)]
+    grid_search_args = [
+        (com1, value_list, 0.1),
+        (com2, value_list, 0.1)
+    ]
+    grid_search_kwargs = {
+        'measure': (lambda: 5)
+    }
+    action = Action(grid_search, grid_search_args, grid_search_kwargs, parent=win.main_widget(), text='Tryck på mig!')
+    # input_component = Input(interface=inp, name='Beam current', unit='nA', parent=win.main_widget())
+    plt = PlotStream(parent=win.main_widget(), input=inp, timespan=10, fix_scale=False)
+    win.add_children(com1, com2, action, plt)
     win.run()

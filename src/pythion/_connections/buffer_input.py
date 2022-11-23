@@ -29,7 +29,7 @@ class BufferInput(TimerInput):
     _pull_timer: Timer | None
     _pull_wait_time: float
 
-    def __init__(self, buffer: bool = False, pull_rate: int | None = None):
+    def __init__(self, *, buffer: bool = False, pull_rate: int | None = None):
         self._buffer = [] if buffer else None
         self._latest = 0
         super().__init__()
@@ -88,22 +88,28 @@ class BufferInput(TimerInput):
 
 
 class PicoMockBufferInput(BufferInput, USBConnection):
-    def __init__(self, port: str, buffer: bool = False, pull: bool = False):
+    def __init__(self, *, port: str, buffer: bool = False, pull_rate: int | None = None):
         BAUD_RATE = 115200
         USBConnection.__init__(
             self,
             port=port,
             baud_rate=BAUD_RATE,
-            add_line_break=True
+            eol_char='\n'
         )
-        BufferInput.__init__(self, buffer, 2 if pull else None)
+        BufferInput.__init__(self, buffer=buffer, pull_rate=pull_rate)
 
     def _read_from_device(self) -> list[float]:
-        return [float(str.strip()) for str in self.read_newlines()]
+        lines = self.read_newlines()
+        try:
+            return [float(str.strip()) for str in lines]
+        except ValueError:
+            # Bad read from device, throw away data
+            print(f'Discarding a corrupted batch of {len(lines)} points')
+            return []
 
 
 def main() -> None:
-    pico = PicoMockBufferInput('COM3', pull=True)
+    pico = PicoMockBufferInput(port='COM3', pull_rate=1)
 
     pico.add_input_handler(lambda s: print(f'New input: {s}'))
     while True:

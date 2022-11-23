@@ -6,7 +6,7 @@ from typing import Any, Callable, Self, Tuple
 from pythion._connections.calibration import Calibration
 
 
-class Output(ABC):
+class OutputInterface(ABC):
     """
     Abstract base class for an output device. A derived class is to be made for every type of output,
     and the connection details should be covered in the enter/exit methods.
@@ -107,6 +107,7 @@ class Output(ABC):
 # IMPLEMENTATIONS
 
 
-class MockOutput(Output):
+class MockOutput(OutputInterface):
     def _write(self, control_value: float) -> None:
-        print(f'Writing control signal value {control_value}')
+        # print(f'Writing control signal value {control_value}')
+        pass

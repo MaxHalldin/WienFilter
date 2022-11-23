@@ -1,10 +1,10 @@
 *.pyc
-src/layout/xml/*.py
 *.egg-info
 .vscode/
 .coverage
 .mypy_cache
 .pytest_cache
+.VSCodeCounter
 
 # My virtual environments 
 venv
