@@ -17,15 +17,16 @@ class GUIUpdater:
 
 
 class CustomRunnable(QRunnable):
-    def __init__(self, parent: Action, action: Callable[..., None], args: Any):
+    def __init__(self, parent: Action, action: Callable[..., None], args: list[Any], kwargs: dict[str, Any]):
         QRunnable.__init__(self)
         self.action = action
         self.args = args
+        self.kwargs = kwargs
         self.parent = parent
         self.setAutoDelete(False)
 
     def run(self) -> None:
-        self.action(*self.args)
+        self.action(*self.args, **self.kwargs)
         GUIUpdater.update(self.parent, 'reactivate')
 
 
@@ -41,17 +42,17 @@ class Action(QWidget, Ui_Action):
     def __init__(
         self,
         action: Callable[..., None],
-        *args: Any,
+        args: list[Any],
+        kwargs: dict[str, Any],
         parent: QWidget | None = None,
         text: str | None = None,
-
     ):
         # Boilerplate initialization
         super().__init__(parent)
         self.setupUi(self)  # type: ignore
         # Custom initialization
         self.text = 'Activate' if text is not None else text
-        self.runner = CustomRunnable(self, action, args)
+        self.runner = CustomRunnable(self, action, args, kwargs)
         self.ready = True
         self.configure()
 
