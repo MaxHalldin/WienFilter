@@ -109,4 +109,5 @@ class OutputInterface(ABC):
 
 class MockOutput(OutputInterface):
     def _write(self, control_value: float) -> None:
-        print(f'Writing control signal value {control_value}')
+        # print(f'Writing control signal value {control_value}')
+        pass

@@ -6,6 +6,7 @@ from pythion import Output, Input, MainWindow, PlotStream
 
 # Magnet output
 port_magnet = PortSelector.get_port_of('rs')
+assert port_magnet
 magnet_output_device = RS3000Output(
     port=port_magnet,
     voltage_limit=5,
@@ -15,6 +16,7 @@ magnet_output_device = RS3000Output(
 
 # Input
 port_rbd = PortSelector.get_port_of('rbd')
+assert port_rbd
 input_device = RBDInput(
     port=port_rbd,
     rbd_sample_rate=5,

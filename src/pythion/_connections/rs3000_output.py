@@ -12,10 +12,14 @@ class RS3000Output(OutputInterface, USBConnection):
     """
     Specialization of the Output class for a RS3005P power supply.
     Control and target signal is the output voltage of the voltage supply.
-
-    Setting voltage_limit allows for a safety-check if a higher voltage is set.
-    Setting a value that's out of bounds will result in a maximum/minimum
-    signal being sent
+    PARAMETERS:
+        port: str                                   - The port to use, like "COM#"
+        voltage_limit   : float | None              - Maximum allowed voltage (in V)
+        current_limit   : float | None              - Maximum allowed current (in mA)
+        calibration     : Calibration               - Relationship between control signal and target signal.
+                                                      Given by a pythion.connections.Calibration object.
+        mode            : RS3000Output.PowerOption  - Determines whether voltage [V] or current [mA] will
+                                                      be used as target signal.
     """
     class PowerOptions(Enum):
         VOLTAGE = 0

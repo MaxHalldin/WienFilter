@@ -2,10 +2,10 @@
 from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, InterpolCalibration, OutputInterface, MockInput
 
 # GUI Classes
-from pythion import Output, Input, MainWindow, PlotStream
-from pythion._connections.buffer_input import PicoMockBufferInput
+from pythion import Output, Input, MainWindow, PlotStream, Action
 
-from threading import Timer
+from grid_search import grid_search
+
 PICO = False
 RS = False
 
@@ -47,23 +47,29 @@ else:
     pico = MockOutput()
 
 # Input
-port_pico = PortSelector.get_port_of('pico')
+# port_rbd = PortSelector.get_port_of('rbd')
+# inp = RBDInput(
+# port=port_rbd,
+# rbd_sample_rate=5,
+# pull_rate=5,
+# unit=RBDInput.CurrentUnit.NANO
+# )
 inp = MockInput()
 
 # Setup GUI
 
 with rs, pico, inp:
-    inp.start_sampling(10)
+    inp.start_sampling(5)
     win = MainWindow(high_resolution=False)
     pico_component = Output(max_value=400, interface=pico, parent=win.main_widget(), name="High voltage supply", unit="V")
-    # rs_component = Output(max_value=INPUT_MAX_RS, interface=rs, parent=win, name="Magnet current", unit="mA")
+    rs_component = Output(max_value=INPUT_MAX_RS, interface=rs, parent=win, name="Magnet current", unit="mA")
 
-    def reset() -> None:
-        pico_component.set_value(0, True)
-    t = Timer(10, reset)
+    grid_search_args = [
+        (pico_component, [0, 100, 200, 300], 2),
+        (rs_component, [0, 5, 10, 15], 1)
+    ]
+    action = Action(grid_search, *grid_search_args, parent=win.main_widget(), text='Tryck på mig!')
     input_component = Input(interface=inp, name='Beam current', unit='nA', parent=win.main_widget())
     plt = PlotStream(parent=win.main_widget(), input=inp, timespan=10, fix_scale=False)
-    plt.set_ylim((0, 12))
-    win.add_children(pico_component, input_component, plt)
-    t.start()
+    win.add_children(pico_component, rs_component, action, input_component, plt)
     win.run()

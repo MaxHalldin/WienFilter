@@ -1,11 +1,13 @@
 from __future__ import annotations
 from PyQt5.QtWidgets import QWidget
-
+from PyQt5.QtCore import pyqtSlot, pyqtSignal
 from pythion._layout.ui_output import Ui_Output
 from pythion.connections import OutputInterface
 
 
 class Output(QWidget, Ui_Output):
+    valueChanged = pyqtSignal(float)
+
     def __init__(
         self, *,
         max_value: int,
@@ -46,9 +48,15 @@ class Output(QWidget, Ui_Output):
     def _set_value(self, val: float) -> None:
         self.interface.target = val  # Try to set value on the underlying interface
         val = self.interface.target  # Outgoing value might have changed due to illegal output, so get back the set value
-        self.lastValueLCD.display(val)  # Make sure that the knobs are able to set this value!
+        changed = False
+        if self.lastValueLCD.value() != val:
+            changed = True
+        self.lastValueLCD.display(val)
+        if changed:
+            self.valueChanged.emit(val)
 
-    def set_value(self, val: float, move_knobs: bool = False) -> None:
+    @pyqtSlot(int, bool)
+    def set_value(self, val: int, move_knobs: bool) -> None:
         """
         External method that can be invoked to change the output value.
         If move_knobs is true, the graphical knobs will also move to the
@@ -56,7 +64,7 @@ class Output(QWidget, Ui_Output):
         """
         if move_knobs:
             # Change value just like the user would:
-            self.outputDial.setValue(val)
+            self.outputDial.setValue(val)  # TODO: support float values for output
             self._on_button_pressed()
         else:
             # Change value "silently"

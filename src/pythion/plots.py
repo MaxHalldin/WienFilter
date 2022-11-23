@@ -1,12 +1,11 @@
 import matplotlib  # type: ignore
 import numpy as np
-from numpy.typing import ArrayLike
+import numpy.typing as npt
 from time import time
 
 from PyQt5.QtWidgets import QWidget
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg  # type: ignore
 from matplotlib.figure import Figure  # type: ignore
-from matplotlib.ticker import FormatStrFormatter  # type: ignore
 from matplotlib.lines import Line2D  # type: ignore
 from pythion.connections import InputInterface
 
@@ -45,7 +44,7 @@ class LinePlot(PlotBase):
         self._ylim_set = True
         self.axes.set_ylim(ylim)
 
-    def _update_plot(self, x: ArrayLike, y: ArrayLike) -> None:
+    def _update_plot(self, x: npt.ArrayLike, y: npt.ArrayLike) -> None:
         if self._line is None:
             self._line, = self.axes.plot(x, y)
         else:
@@ -59,8 +58,8 @@ class LinePlot(PlotBase):
 
 class PlotStream(LinePlot):
     init_time: float | None  # Standard time
-    time_list: ArrayLike  # Time relative to init_time
-    data_list: ArrayLike
+    time_list: npt.NDArray[np.float64]  # Time relative to init_time
+    data_list: npt.NDArray[np.float64]
     timespan: int
     fix_scale: bool  # If set to true, then x values will be fixed between 0 and timespan.
     _cutting: bool  # Internal state variable that keeps track of whether data has overflown the timespan
@@ -86,15 +85,15 @@ class PlotStream(LinePlot):
         if cut:
             cut_index = cut_index - 1  # Keep one data point to the left of the cut.
             self._cutting = True
-        self.time_list = np.append(self.time_list[cut_index:], current_time-self.init_time)
-        self.data_list = np.append(self.data_list[cut_index:], data)
+        self.time_list = np.append(self.time_list[int(cut_index):], current_time-self.init_time)
+        self.data_list = np.append(self.data_list[int(cut_index):], data)
 
         plot_time = self.time_list
         if self._cutting:
             if self.fix_scale:
-                plot_time = self.time_list - self.time_list[-1] + self.timespan  # type: ignore
+                plot_time = self.time_list - self.time_list[-1] + self.timespan
             else:
-                self.set_xlim(((self.time_list[-1]-self.timespan), self.time_list[-1]))  # type: ignore
+                self.set_xlim(((self.time_list[-1]-self.timespan), self.time_list[-1]))
         if len(plot_time) != len(self.data_list):
             raise Exception('Sampling too fast!')
         self._update_plot(plot_time, self.data_list)

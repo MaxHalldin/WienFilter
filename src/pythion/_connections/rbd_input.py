@@ -2,7 +2,7 @@ from __future__ import annotations
 import time
 from pythion._connections.buffer_input import BufferInput
 from pythion._connections.usb import USBConnection
-from typing import Self, Any
+from typing import Self, Any, TypeGuard
 from enum import Enum
 
 
@@ -11,6 +11,8 @@ class RBDInput(BufferInput, USBConnection):
         NANO = 0
         MICRO = 1
         MILLI = 2
+
+    exp: int
 
     def __init__(self, *, port: str, rbd_sample_rate: int, pull_rate: int, unit: RBDInput.CurrentUnit):
         self.rbd_sample_rate = rbd_sample_rate
@@ -33,7 +35,7 @@ class RBDInput(BufferInput, USBConnection):
     def _read_from_device(self) -> list[float]:
         generator = (self.parse_response_string(str) for str in self.read_newlines())
 
-        def check_value(x: float | None):
+        def check_value(x: float | None) -> TypeGuard[float]:
             return x is not None
 
         return list(filter(check_value, generator))
@@ -52,7 +54,7 @@ class RBDInput(BufferInput, USBConnection):
         self.write('&I0000')
         super().__exit__(*args)
 
-    def parse_response_string(self, message: str) -> float:
+    def parse_response_string(self, message: str) -> float | None:
         try:
             message = message.strip()
             start = message.index('&')
@@ -69,7 +71,9 @@ class RBDInput(BufferInput, USBConnection):
                 exp = exp-3
             else:
                 exp = exp-6
-            return num * 10 ** exp
+            res: float = num * 10 ** exp
+            return res
+
         except (ValueError, AssertionError):
             return None
 
