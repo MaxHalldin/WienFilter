@@ -9,6 +9,8 @@ from statistics import mean
 from PyQt5.QtWidgets import QWidget
 import seaborn as sns
 import matplotlib.pyplot as plt
+from datetime import datetime
+from itertools import product
 
 
 @dataclass
@@ -27,6 +29,7 @@ class GridSearch(Action):
     input: BufferInput
     results: npt.NDArray | None
     move_knobs: bool
+
     # Plotting parameters
     ax: plt.Axes | None
     cbar_ax: plt.Axes | None = None
@@ -35,7 +38,23 @@ class GridSearch(Action):
     plot_every: int
     current: int
 
-    def __init__(self, *, input: BufferInput, measuring_time: float, parent: QWidget, move_knobs: bool = True, plot_every: int = 1):
+    # File settings
+    filename: str
+    filepath: str
+    add_datetime: bool
+    measurement_str: str
+
+    def __init__(self,
+                 *,
+                 input: BufferInput,
+                 measuring_time: float,
+                 parent: QWidget,
+                 move_knobs: bool = True,
+                 plot_every: int = 1,
+                 filepath: str = './',
+                 filename: str = 'grid_results',
+                 add_datetime: bool = True,
+                 measurement_str: bool | None = None):
         self.input = input
         self.measure_time = measuring_time
         self.results = None
@@ -47,14 +66,36 @@ class GridSearch(Action):
         self.ticks = None
         self.plot_every = plot_every
         self.current = 0
+        self.filepath = filepath
+        self.filename = filename
+        self.add_datetime = add_datetime
+        self.measurement_str = 'Measurement' if measurement_str is None else measurement_str
 
         super().__init__(action=self.run, args=[], kwargs={}, parent=parent, text='Start Grid Search')
 
     def add_device(self, output_control: Output, values: list[int], wait_time: float) -> None:
         self.devices.append(OutputConfiguration(output_control, values, wait_time))
 
-    def write_to_file(self, filepath):
-        raise NotImplementedError('Not able to write to file yet!')
+    def write_to_file(self):
+        f = self.filepath
+        if self.add_datetime:
+            now = datetime.now()
+            f = f + f'{now:%y%m%d}T{now:%H%M}_'
+        f = f + self.filename + '.csv'
+
+        header = ','.join([d.output.namestr for d in self.devices] + [self.measurement_str])
+        with open(f, 'wt') as file:
+            file.write(header)
+            for config in self._iterate_result():
+                indices, values = zip(*config)
+                measurement = self.results[tuple(indices)]
+                file.write(f"\n{ ','.join([str(x) for x in values]) },{measurement}")
+
+    def _iterate_result(self):
+        yield from product(*[enumerate(d.values) for d in self.devices])
+
+    def _get_output_config_at(self, indices):
+        return [d.values[indices[i]] for i, d in enumerate(self.devices)]
 
     def before_execution(self):
         shape = [len(d.values) for d in self.devices]
@@ -87,6 +128,7 @@ class GridSearch(Action):
     @pyqtSlot()
     def complete(self):
         self.current = 0
+        self.write_to_file()
 
 
 class AsyncWorker:
