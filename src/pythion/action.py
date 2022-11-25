@@ -41,6 +41,7 @@ class Action(QWidget, Ui_Action):
     """
     def __init__(
         self,
+        *,
         action: Callable[..., None],
         args: list[Any],
         kwargs: dict[str, Any],
@@ -71,5 +72,8 @@ class Action(QWidget, Ui_Action):
         if self.ready:
             self.ready = False
             self.button.setEnabled(False)
+            self.before_execution()
             QThreadPool.globalInstance().start(self.runner)
-            print('Carrying on...')
+
+    def before_execution(self) -> None:
+        pass
