@@ -1,10 +1,12 @@
-from pythion import Output, GUIUpdater
+from pythion import Output, GUIUpdater, HeatMap
 from typing import Callable
 from time import sleep
 import numpy as np
 
 
-def grid_search(*args: tuple[Output, list[int], float], measure: Callable[[], float]) -> None:
+def grid_search(*args: tuple[Output, list[int], float],
+                measure: Callable[[], float],
+                result_plot: HeatMap | None = None):
     """
     This is an example of a worker function, that defines something tedious that should be done over
     some period of time. Such a function has to be run using an Action component. Also, any updates to the
@@ -24,17 +26,21 @@ def grid_search(*args: tuple[Output, list[int], float], measure: Callable[[], fl
         allows iterating over the values in either forward- or backwards direction, eliminating the need for "jumps"
         back to the initial value.
     """
-    obj = GridSearcher(args, measure)
+    obj = GridSearcher(args, measure, result_plot)
     obj.initialize()
     obj.grid_search()
 
 
 class GridSearcher:
-    def __init__(self, devices: tuple[tuple[Output, list[int], float], ...], measure: Callable[[], float]):
+    def __init__(self,
+                 devices: tuple[tuple[Output, list[int], float], ...],
+                 measure: Callable[[], float],
+                 result_plot: HeatMap | None):
         self.devices = devices
         shape = [len(values) for _, values, _ in devices]
         self.results = np.empty(shape)
         self.measure = measure
+        self.result_plot = result_plot
 
     def initialize(self) -> None:
         max_wait = 0.
@@ -53,7 +59,11 @@ class GridSearcher:
             self._measure()
             self._grid_search(0)
             del self.indices
-            print(self.results)
+            if self.result_plot:
+                assert len(self.devices) == 2  # Can only heatmap-plot 2D grid searches!
+                labels, ticks = zip(*[(device.namestr, values) for device, values, _ in reversed(self.devices)])
+                print(labels, ticks)
+                GUIUpdater.update(self.result_plot, 'plot', self.results, *labels, *ticks)
         except AttributeError:
             raise Exception('Must call initialize before grid_search!')
 

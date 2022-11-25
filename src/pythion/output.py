@@ -6,7 +6,8 @@ from pythion.connections import OutputInterface
 
 
 class Output(QWidget, Ui_Output):
-    valueChanged = pyqtSignal(float)
+    valueChanged: pyqtSignal = pyqtSignal(float)
+    namestr: str
 
     def __init__(
         self, *,
@@ -24,6 +25,8 @@ class Output(QWidget, Ui_Output):
         self.max_value = max_value
         self.name = name
         self.unit = unit
+        namestr = name if name else 'Output'
+        self.namestr = namestr + (f' [{unit}]' if unit else '')
         self.configure()
 
     def configure(self) -> None:
@@ -31,9 +34,7 @@ class Output(QWidget, Ui_Output):
             raise NotImplementedError('Outputs with live feedback have not been implemented!')
 
         # Set name label
-        namestr = self.name if self.name else 'Output'
-        namestr = namestr + (f' [{self.unit}]' if self.unit else '')
-        self.nameLabel.setText(namestr)
+        self.nameLabel.setText(self.namestr)
 
         # Connect dial and text field to input voltage display
         self.outputDial.setRange(0, self.max_value)
