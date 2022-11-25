@@ -11,7 +11,100 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from datetime import datetime
 from itertools import product
+from typing import Self
 
+class GridSearchResults:
+    values: tuple[list[int]]
+    names: tuple[str]
+    results: npt.NDArray
+    is_2d: bool
+    measurement_str: str
+
+    def __init__(self, *devices: tuple[list[int], str], measurement_str: str):
+        """
+        Arguments are (device_values, device_name) for all devices
+        """
+        self.values, self.names = zip(*devices)
+        self.measurement_str = measurement_str
+        shape = [len(vals) for vals in self.values]
+        self.results = np.zeros(shape)
+        self.is_2d = len(self.names) == 2
+        if self.is_2d:
+            self.prepare_plot()
+
+    def value_at(self, indices: tuple[int, ...]):
+        return self.results[indices]
+
+    def set_final_results(self, results: npt.NDArray):
+        self.results = results
+
+    def update_results(self, indices: tuple[int, ...], value: float, suppress_plot: bool = False):
+        self.results[indices] = value
+        if self.is_2d and not suppress_plot:
+            self.update_plot()
+
+    def prepare_plot(self):
+        grid_kws = {'width_ratios': (0.9, 0.05), 'wspace': 0.2}
+        _, (self.ax, self.cbar_ax) = plt.subplots(1, 2, gridspec_kw=grid_kws, figsize=(10, 8))
+        plt.show()
+        self.update_plot()
+
+    def update_plot(self):
+        ylabel, xlabel = self.names
+        yticks, xticks = self.values
+        sns.heatmap(ax=self.ax, data=self.results, cmap="crest", cbar_ax=self.cbar_ax, xticklabels=xticks, yticklabels=yticks)
+        self.ax.set_xlabel(xlabel)
+        self.ax.set_ylabel(ylabel)
+        plt.draw()
+
+    def _iterate_matrix(self):
+        yield from product(*[enumerate(vals) for vals in self.values])
+
+    def write_to_file(self, filepath: str, filename: str, add_datetime: bool):
+        f = filepath
+        if add_datetime:
+            now = datetime.now()
+            f = f + f'{now:%y%m%d}T{now:%H%M}_'
+        f = f + filename + '.csv'
+
+        header = ','.join(self.names + (self.measurement_str,))
+        with open(f, 'wt') as file:
+            file.write(header)
+            for config in self._iterate_matrix():
+                indices, values = zip(*config)
+                measurement = self.value_at(tuple(indices))
+                file.write(f"\n{ ','.join([str(x) for x in values]) },{measurement}")
+        print('Finished writing to file!')
+
+    @classmethod
+    def from_file(cls, filepath: str) -> Self:
+        # To avoid allocating all data in memory, file is read in two passes:
+        # First determining the step sizes, and second, getting the values.
+        device_values: tuple[list[int], ...]
+        dims: tuple[int, ...]
+
+        with open(filepath, 'rt') as file:
+            header = file.readline()
+            device_names = header.split(',')
+            measurement_name = device_names.pop()
+            device_values = [set() for _ in device_names]
+            for line in file.readlines():
+                vals = line.split(',')[0:-1]
+                for val, dev_vals in zip(vals, device_values):
+                    dev_vals.add(int(val))
+            dims, device_values = zip(*[(len(dev_vals), sorted(dev_vals)) for dev_vals in device_values])
+            results = np.empty(dims)
+            file.seek(0)  # Set read pointer at beginning again
+            file.readline()
+            for line in file.readlines():
+                vals = line.split(',')
+                measurement_val = vals.pop()
+                indices = tuple(dev_vals.index(int(val)) for dev_vals, val in zip(device_values, vals))
+                results[indices] = measurement_val
+            res = cls(*zip(device_values, device_names), measurement_str=measurement_name)
+
+            res.set_final_results(results)
+            res.update_plot()
 
 @dataclass
 class OutputConfiguration:
@@ -27,7 +120,7 @@ class GridSearch(Action):
     devices: list[OutputConfiguration]
     measure_time: float
     input: BufferInput
-    results: npt.NDArray | None
+    results: GridSearchResults | None
     move_knobs: bool
 
     # Plotting parameters
@@ -76,59 +169,23 @@ class GridSearch(Action):
     def add_device(self, output_control: Output, values: list[int], wait_time: float) -> None:
         self.devices.append(OutputConfiguration(output_control, values, wait_time))
 
-    def write_to_file(self):
-        f = self.filepath
-        if self.add_datetime:
-            now = datetime.now()
-            f = f + f'{now:%y%m%d}T{now:%H%M}_'
-        f = f + self.filename + '.csv'
-
-        header = ','.join([d.output.namestr for d in self.devices] + [self.measurement_str])
-        with open(f, 'wt') as file:
-            file.write(header)
-            for config in self._iterate_result():
-                indices, values = zip(*config)
-                measurement = self.results[tuple(indices)]
-                file.write(f"\n{ ','.join([str(x) for x in values]) },{measurement}")
-
-    def _iterate_result(self):
-        yield from product(*[enumerate(d.values) for d in self.devices])
-
-    def _get_output_config_at(self, indices):
-        return [d.values[indices[i]] for i, d in enumerate(self.devices)]
-
     def before_execution(self):
-        shape = [len(d.values) for d in self.devices]
-        self.results = np.zeros(shape)
-        if len(self.devices) == 2:
-            grid_kws = {'width_ratios': (0.9, 0.05), 'wspace': 0.2}
-            _, (self.ax, self.cbar_ax) = plt.subplots(1, 2, gridspec_kw=grid_kws, figsize=(10, 8))
-            plt.show()
-            self.labels, self.ticks = zip(*[(d.output.namestr, d.values) for d in self.devices])
-            self._update_plot()
-
-    def _update_plot(self):
-        ylabel, xlabel = self.labels
-        yticks, xticks = self.ticks
-        sns.heatmap(ax=self.ax, data=self.results, cmap="crest", cbar_ax=self.cbar_ax, xticklabels=xticks, yticklabels=yticks)
-        self.ax.set_xlabel(xlabel)
-        self.ax.set_ylabel(ylabel)
-        plt.draw()
+        # Instantiate result object
+        self.results = GridSearchResults(*[(d.values, d.output.name) for d in self.devices], measurement_str=self.measurement_str)
 
     def run(self):
         AsyncWorker(self)
 
     @pyqtSlot(list, float)
     def measure(self, indices: list[int], value: float):
-        self.results[tuple(indices)] = value
-        if self.ax is not None and (self.current % self.plot_every == 0):
-            self._update_plot()
+        suppress_plot = self.current % self.plot_every != 0
+        self.results.update_results(tuple(indices), value, suppress_plot)
         self.current = self.current + 1
 
     @pyqtSlot()
     def complete(self):
         self.current = 0
-        self.write_to_file()
+        self.results.write_to_file(self.filepath, self.filename, self.add_datetime)
 
 
 class AsyncWorker:
@@ -227,3 +284,6 @@ class AsyncWorker:
     Note that this implementation does NOT perform a measurement in the initial configuration!! Therefore, the entry function
     will perform a single measurement after initialization is complete.
     """
+
+if __name__ == '__main__':
+    GridSearchResults.from_file('221125T1552_grid_results.csv')
