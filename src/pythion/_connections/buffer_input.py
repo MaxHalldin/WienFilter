@@ -31,7 +31,7 @@ class BufferInput(TimerInput):
     _pull_timer: Timer | None
     _pull_wait_time: float
 
-    def __init__(self, *, buffer: bool = False, pull_rate: int | None = None, pull_on_buffer_read=True):
+    def __init__(self, *, buffer: bool = False, pull_rate: int | None = None, pull_on_buffer_read: bool = True):
         self._buffer = [] if buffer else None
         self._latest = 0
         self.pull_on_buffer_read = pull_on_buffer_read
@@ -93,7 +93,7 @@ class BufferInput(TimerInput):
 
 
 class MockBufferInput(BufferInput):
-    _init_time: int
+    _init_time: float
     _next_index: int
 
     def __init__(self, *, buffer: bool = False, pull_rate: int | None = None, pull_on_buffer_read: bool = True, rate: float = 1, mod: int = 50):

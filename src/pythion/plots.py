@@ -1,11 +1,9 @@
-import matplotlib  # type: ignore:w
-import seaborn as sns
+import matplotlib  # type: ignore
 import numpy as np
 import numpy.typing as npt
 from time import time
 
 from PyQt5.QtWidgets import QWidget, QSizePolicy
-from PyQt5.QtCore import pyqtSlot, QRect
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg  # type: ignore
 from matplotlib.figure import Figure  # type: ignore
 from matplotlib.lines import Line2D  # type: ignore
@@ -19,7 +17,7 @@ class PlotBase(FigureCanvasQTAgg):  # type: ignore
         self.plt = Figure(figsize=(1, 1))
         self.axes = self.plt.add_subplot(111)
         super().__init__(self.plt)
-        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
@@ -98,28 +96,3 @@ class PlotStream(LinePlot):
         if len(plot_time) != len(self.data_list):
             raise Exception('Sampling too fast!')
         self._update_plot(plot_time, self.data_list)
-
-
-class HeatMap(PlotBase):
-    @pyqtSlot(np.ndarray, str, str, list, list)
-    def plot(self,
-             matrix: npt.NDArray,
-             xlabel: str = '',
-             ylabel: str = '',
-             xticklabels: list[int] = [],
-             yticklabels: list[int] = []):
-
-        # self.plt.clf()
-        # self.ax = self.plt.add_subplot(111)
-        self.axes.cla()
-        if not xticklabels:
-            xticklabels = False
-        if not yticklabels:
-            yticklabels = False
-        self.axes.set_xlabel(xlabel)
-        self.axes.set_ylabel(ylabel)
-        sns.heatmap(matrix, ax=self.axes, square=True, xticklabels=xticklabels, yticklabels=yticklabels)
-        self.draw()
-
-    def _custom_resize(self):
-        self.setGeometry(QRect(0, 0, self.width(), self.height()-20))
