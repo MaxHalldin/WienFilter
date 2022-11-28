@@ -1,8 +1,8 @@
 # Hardware interface classes
 from pythion.connections import PortSelector, RBDInput, RS3000Output, PicoOutput, LinearCalibration
-
+import numpy as np
 # GUI Classes
-from pythion import Output, Input, MainWindow, PlotStream
+from pythion import Output, Input, MainWindow, PlotStream, GridSearch
 
 # Magnet output
 port_magnet = PortSelector.get_port_of('rs')
@@ -57,11 +57,10 @@ with input_device, magnet_output_device, velocity_output_device:
         unit='nA',
         parent=win.main_widget()
     )
-    plt_component = PlotStream(
-        parent=win.main_widget(),
-        input=input_device,
-        timespan=10,
-        fix_scale=False
-    )
-    win.add_children(magnet_component, velocity_filter_component, input_component, plt_component)
+    gs = GridSearch(input=input_device, measuring_time=1, parent=win.main_widget(), move_knobs=True, measurement_str='Battery Current')
+    volt_values = [round(x) for x in np.arange(0, 301, 30)]
+    magnet_values = [round(x) for x in np.arange(0, 1001, 100)]
+    gs.add_device(magnet_component, magnet_values, 1)
+    gs.add_device(velocity_filter_component, volt_values, 1)
+    win.add_children(magnet_component, velocity_filter_component, input_component, gs)
     win.run()
