@@ -20,7 +20,7 @@ class GridSearchResults:
     is_2d: bool
     measurement_str: str
 
-    def __init__(self, *devices: tuple[list[int], str], measurement_str: str):
+    def __init__(self, *devices: tuple[list[int], str], measurement_str: str, show_plot: bool = True):
         """
         Arguments are (device_values, device_name) for all devices
         """
@@ -30,7 +30,7 @@ class GridSearchResults:
         self.results = np.zeros(shape)
         self.is_2d = len(self.names) == 2
         if self.is_2d:
-            self.prepare_plot()
+            self.prepare_plot(show_plot)
 
     def value_at(self, indices: tuple[int, ...]):
         return self.results[indices]
@@ -43,10 +43,11 @@ class GridSearchResults:
         if self.is_2d and not suppress_plot:
             self.update_plot()
 
-    def prepare_plot(self):
+    def prepare_plot(self, show: bool = True):
         grid_kws = {'width_ratios': (0.9, 0.05), 'wspace': 0.2}
         _, (self.ax, self.cbar_ax) = plt.subplots(1, 2, gridspec_kw=grid_kws, figsize=(10, 8))
-        plt.show()
+        if show:
+            plt.show(block=False)
         self.update_plot()
 
     def update_plot(self):
@@ -101,10 +102,10 @@ class GridSearchResults:
                 measurement_val = vals.pop()
                 indices = tuple(dev_vals.index(int(val)) for dev_vals, val in zip(device_values, vals))
                 results[indices] = measurement_val
-            res = cls(*zip(device_values, device_names), measurement_str=measurement_name)
-
+            res = cls(*zip(device_values, device_names), measurement_str=measurement_name, show_plot=False)
             res.set_final_results(results)
             res.update_plot()
+            return res
 
 @dataclass
 class OutputConfiguration:
@@ -285,5 +286,7 @@ class AsyncWorker:
     will perform a single measurement after initialization is complete.
     """
 
+
 if __name__ == '__main__':
     GridSearchResults.from_file('221125T1552_grid_results.csv')
+    plt.show()
