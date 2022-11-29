@@ -5,6 +5,7 @@ import numpy as np
 from pythion import Output, Input, MainWindow, PlotStream, GridSearch
 
 
+PORT_RBD = 'COM0'
 # Lab GUI parameters, to be read from config file!
 #   Device setting params
 MAGNETCONTROL_MAXCURRENT = 3000  # mA
@@ -43,7 +44,7 @@ velocity_output_device = PicoOutput(
     voltage_limit=300
 )
 # Input
-port_rbd = PortSelector.get_port_of('rbd')
+port_rbd = PORT_RBD
 assert port_rbd
 input_device = RBDInput(
     port=port_rbd,

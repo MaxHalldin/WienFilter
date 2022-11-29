@@ -194,5 +194,12 @@ def main() -> None:
                 dev.write(com)
 
 
+def find_ports(key: str):
+    device = DEVICES[key]
+    matches = PortSelector.get_devices([device])
+    for port, device in matches:
+        print(port, device)
+
+
 if __name__ == '__main__':
-    main()
+    find_ports('rs')
