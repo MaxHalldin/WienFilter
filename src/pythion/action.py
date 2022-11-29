@@ -55,25 +55,33 @@ class Action(QWidget, Ui_Action):
         self.text = 'Activate' if text is not None else text
         self.runner = CustomRunnable(self, action, args, kwargs)
         self.ready = True
+        self._cancelled = False
         self.configure()
 
     @pyqtSlot()
     def reactivate(self) -> None:
         self.ready = True
-        self.button.setEnabled(True)
+        self._cancelled = False
+        self.button.setText(self.text)
 
     def configure(self) -> None:
         # Set name label
         if self.text:
             self.button.setText(self.text)
-        self.button.clicked.connect(self._start)  # type: ignore
+        self.button.clicked.connect(self._button_pressed)  # type: ignore
 
-    def _start(self) -> None:
+    def _button_pressed(self) -> None:
         if self.ready:
+            # Activate pressed
             self.ready = False
-            self.button.setEnabled(False)
+            self.button.setText('Cancel')
             self.before_execution()
             QThreadPool.globalInstance().start(self.runner)
+        else:
+            # Cancel pressed
+            self._cancelled = True
+            if QThreadPool.globalInstance().activeThreadCount():
+                QThreadPool.globalInstance().waitForDone()
 
     def before_execution(self) -> None:
         pass

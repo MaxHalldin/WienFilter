@@ -247,13 +247,15 @@ class AsyncWorker:
             GUIUpdater.update(d.output, "set_value", d.values[0], self.move_knobs)
         sleep(max_wait)
 
-    def _grid_search(self, depth: int) -> None:
+    def _grid_search(self, depth: int) -> bool:
         d = self.devices[depth]
         assert self.indices is not None
         is_inverted = self.indices[depth] > 0
         iter_list = list(enumerate(d.values))
         first = True
         for i, val in reversed(iter_list) if is_inverted else iter_list:
+            if self.parent._cancelled:
+                return False
             if not first:
                 self.indices[depth] = i
                 GUIUpdater.update(d.output, "set_value", val, self.move_knobs)
@@ -262,7 +264,11 @@ class AsyncWorker:
             else:
                 first = False
             if depth+1 < len(self.devices):
-                self._grid_search(depth + 1)
+                if not self._grid_search(depth + 1):
+                    return False
+        return True
+        # Return True to its caller if run to completion. Return False (early) if 
+        # cancel flag is set to true, or child routine discover cancel flag set to true
 
     """
     This is an example of a worker function, that defines something tedious that should be done over
