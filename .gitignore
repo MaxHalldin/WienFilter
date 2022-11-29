@@ -5,6 +5,8 @@
 .mypy_cache
 .pytest_cache
 .VSCodeCounter
+*grid_results.csv
+log.txt
 
 # My virtual environments 
 venv

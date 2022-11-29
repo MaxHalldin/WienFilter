@@ -12,6 +12,10 @@ import matplotlib.pyplot as plt  # type: ignore
 from datetime import datetime
 from itertools import product
 from typing import Self, Generator
+import logging
+
+
+logger = logging.getLogger('pythion')
 
 
 class GridSearchResults:
@@ -232,6 +236,7 @@ class AsyncWorker:
             vals = self.input.clear_buffer()
             if vals:
                 break
+        logger.debug(f'Recieved {len(vals)} values from measurement ({vals}). Returning average.')
         GUIUpdater.update(self.parent, "measure", self.indices, float(mean(vals)))
 
     def initialize_outputs(self) -> None:

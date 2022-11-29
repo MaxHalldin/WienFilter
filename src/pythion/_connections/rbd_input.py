@@ -1,9 +1,13 @@
 from __future__ import annotations
 import time
+import logging
 from pythion._connections.buffer_input import BufferInput
 from pythion._connections.usb import USBConnection
 from typing import Self, Any, TypeGuard
 from enum import Enum
+
+
+logger = logging.getLogger('pythion')
 
 
 class RBDInput(BufferInput, USBConnection):
@@ -56,6 +60,7 @@ class RBDInput(BufferInput, USBConnection):
 
     def parse_response_string(self, message: str) -> float | None:
         try:
+            o_message = message
             message = message.strip()
             start = message.index('&')
             message = message[start:]
@@ -72,9 +77,11 @@ class RBDInput(BufferInput, USBConnection):
             else:
                 exp = exp-6
             res: float = num * 10 ** exp
+            logger.debug(f'Interpreted {o_message} as {res}')
             return res
 
         except (ValueError, AssertionError):
+            logging.warning(f'The line {message} is garbage!')
             return None
 
 

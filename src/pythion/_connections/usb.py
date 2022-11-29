@@ -6,7 +6,7 @@ from serial import Serial  # type: ignore
 from dataclasses import dataclass
 
 
-logger = logging.getLogger()
+logger = logging.getLogger('pythion')
 
 
 class USBConnectionException(Exception):
@@ -145,7 +145,8 @@ class USBConnection:
             message = message + self.eol_char
         s = str.encode(message)
         self.ser.write(s)
-        logger.info(f'Written {s!r} on port {self.port}')
+        print('logging')
+        logger.debug(f'Written {s!r} on port {self.port}')
 
     def read_newlines(self, max_lines: int | None = None) -> list[str]:
         """
@@ -163,13 +164,13 @@ class USBConnection:
         self._check_port_open()
         assert self.ser is not None
         data: list[bytes] = []
-        logger.info(f'Start reading on port {self.port}')
+        logger.debug(f'Start reading on port {self.port}')
         while self.ser.in_waiting > 0:
             # Could it happen that this while loop never exit if the stream writes fast enough?
             # Only one way to find out!
             # For that reason, a max_lines argument is also passed
             line = self.ser.read_until()
-            logger.info(f'Read line: {line!r}')
+            logger.debug(f'Read line: {line!r}')
             data.append(line)
             if max_lines is not None and len(data) > max_lines:
                 break
