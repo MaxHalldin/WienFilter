@@ -17,7 +17,7 @@ output_device = PicoOutput(
 
 # Setup GUI
 with output_device:
-    win = MainWindow(high_resolution=False)
+    win = MainWindow(high_resolution=True)
     output_component = Output(
         max_value=100,
         interface=output_device,

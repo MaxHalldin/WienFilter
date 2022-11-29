@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import Iterable, Any, Self
+from enum import Enum
 from serial.tools import list_ports  # type: ignore
 from serial import Serial  # type: ignore
 from dataclasses import dataclass
@@ -51,6 +52,21 @@ DEVICES = {
 }
 
 
+class ConnectionSettings(Enum):
+    """
+    These connection settings are for example used by PortSelector.get_options_list below.
+    They correspond to the following options:   
+          - (AUTO)      Return only the first match, if any. Can be used when only one device of type is connected.
+          - (MATCH)     Return all devices matching the type.
+          - (RECOMMEND) Return all devices, but add a recommendation to the matches.
+          - (ANY)       Return all devices.
+    """
+    AUTO = 1
+    MATCH = 2
+    RECOMMEND = 3
+    ANY = 4
+
+
 class PortSelector:
     @staticmethod
     def _get_names_from_list(device: USBDevice, devicelist: Iterable[USBDevice]) -> bool:
@@ -86,6 +102,34 @@ class PortSelector:
         return return_list
 
     @staticmethod
+    def get_options_list(device_key: str | None, option: ConnectionSettings) -> dict[str, str]:
+        """
+        To be used, for example, with a USB selection dropdown menu. Returns a dictionary with
+        all matching devices as entries, whose key is the COM port and value is a presentation
+        string. The result will be formatted in accordance to the ConnectionSetting options.
+        """
+        device = DEVICES.get(device_key)
+        if device is None:
+            option = ConnectionSettings.ANY
+
+        if option != ConnectionSettings.ANY:
+            device_list = [device] if device else None
+            ret = {port: str(dev) for port, dev in PortSelector.get_devices(device_list)}
+
+        if option == ConnectionSettings.ANY or option == ConnectionSettings.RECOMMEND:
+            all = {port: str(device) for port, device in PortSelector.get_devices()}
+            if option == ConnectionSettings.RECOMMEND:
+                for port, str in all.items():
+                    if port in ret:
+                        all[port] = str + ' (recommended)'
+            ret = all
+
+        if option == ConnectionSettings.AUTO and len(ret) > 0:
+            key, value = next(ret.items())
+            ret = {key: value}
+        return ret
+
+    @staticmethod
     def get_port_of(device_key: str) -> str | None:
         if device_key not in DEVICES:
             return None
@@ -97,12 +141,16 @@ class PortSelector:
 
 
 class USBConnection:
-    port: str
+    port: str | None
     baud_rate: int
     add_line_break: bool
     ser: Serial | None
 
     def __init__(self, port: str, baud_rate: int, eol_char: str | None = None):
+        """
+        The port need not be set at the time of initialization, but it must have a value by the time
+        __enter__ is called!
+        """
         self.port = port
         self.baud_rate = baud_rate
         self.eol_char = eol_char
@@ -116,6 +164,9 @@ class USBConnection:
         # Flow control: None (xonxoff = False)
         # If you need any other config, please implement that
         # yourself by adding parameters to the class constructor and use them here
+        if self.port is None:
+            return
+
         self.ser = Serial(self.port, self.baud_rate, timeout=5)
         self.ser.flush()
         try:
@@ -139,7 +190,6 @@ class USBConnection:
             message = message + self.eol_char
         s = str.encode(message)
         self.ser.write(s)
-        print(f'Just wrote {s!r}')
 
     def read_newlines(self, max_lines: int | None = None) -> list[str]:
         """

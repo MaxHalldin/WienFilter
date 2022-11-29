@@ -27,7 +27,7 @@ class RS3000Output(OutputInterface, USBConnection):
 
     def __init__(self,
                  *,
-                 port: str,
+                 port: str | None,
                  voltage_limit: float | None = None,
                  current_limit: float | None = None,
                  calibration: Calibration | None = None,
@@ -76,13 +76,6 @@ class RS3000Output(OutputInterface, USBConnection):
         return f'{(current / 1000):.3f}'
 
     def _initial_config(self) -> None:
-        DELAY = 0.3
-        self.write('VSET1:00.00')
-        time.sleep(DELAY)
-        self.write('ISET1:0.000')
-        time.sleep(DELAY)
-        self.write('OUT1')
-        time.sleep(DELAY)
         if self._mode == self.PowerOptions.VOLTAGE:
             self.write(f'ISET1:{self._to_current_string(self._current_limit)}')
         else:

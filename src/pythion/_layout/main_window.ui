@@ -17,7 +17,22 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #ffffff;</string>
+   <string notr="true">QWidget {
+	background-color: #ffffff;
+}
+
+QPushButton { 
+	border: 1px solid #444444; 
+	background-color: #eeeeee;
+}
+
+QPushButton::hover {
+	background-color: #dddddd;
+}
+
+QPushButton::pressed {
+	background-color: #aaaaaa;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="horizontalLayoutWidget">
