@@ -6,3 +6,10 @@ from .input import Input
 from .action import Action, GUIUpdater
 from .plots import PlotStream
 from .grid_search import GridSearch
+
+import logging
+
+LOGFILE = './log.txt'
+logging.basicConfig(filename=LOGFILE,
+                    format='%(asctime)s %(message)s',
+                    filemode='a')

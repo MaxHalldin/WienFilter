@@ -1,8 +1,12 @@
 from __future__ import annotations
+import logging
 from typing import Iterable, Any, Self
 from serial.tools import list_ports  # type: ignore
 from serial import Serial  # type: ignore
 from dataclasses import dataclass
+
+
+logger = logging.getLogger()
 
 
 class USBConnectionException(Exception):
@@ -122,6 +126,7 @@ class USBConnection:
             super().__enter__()  # type: ignore
         except AttributeError:
             pass
+        logger.info(f'Successfully opened USB connection on port {self.port}')
         return self
 
     def __exit__(self, *args: Any) -> None:
@@ -131,6 +136,7 @@ class USBConnection:
             super().__exit__(*args)  # type: ignore
         except AttributeError:
             pass
+        logger.info(f'Successfully closed connection on port {self.port}')
 
     def write(self, message: str) -> None:
         self._check_port_open()
@@ -139,7 +145,7 @@ class USBConnection:
             message = message + self.eol_char
         s = str.encode(message)
         self.ser.write(s)
-        print(f'Just wrote {s!r}')
+        logger.info(f'Written {s!r} on port {self.port}')
 
     def read_newlines(self, max_lines: int | None = None) -> list[str]:
         """
@@ -157,11 +163,13 @@ class USBConnection:
         self._check_port_open()
         assert self.ser is not None
         data: list[bytes] = []
+        logger.info(f'Start reading on port {self.port}')
         while self.ser.in_waiting > 0:
             # Could it happen that this while loop never exit if the stream writes fast enough?
             # Only one way to find out!
             # For that reason, a max_lines argument is also passed
             line = self.ser.read_until()
+            logger.info(f'Read line: {line!r}')
             data.append(line)
             if max_lines is not None and len(data) > max_lines:
                 break
