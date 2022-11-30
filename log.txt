@@ -1,0 +1,1372 @@
+2022-11-29 10:26:34,597 STARTING NEW SESSION
+2022-11-29 10:26:37,977 Recieved 1 values from measurement ([32]). Returning average.
+2022-11-29 10:26:38,078 Recieved 1 values from measurement ([33]). Returning average.
+2022-11-29 10:26:38,178 Recieved 1 values from measurement ([34]). Returning average.
+2022-11-29 10:26:38,279 Recieved 1 values from measurement ([35]). Returning average.
+2022-11-29 10:26:38,380 Recieved 1 values from measurement ([36]). Returning average.
+2022-11-29 10:26:38,483 Recieved 1 values from measurement ([37]). Returning average.
+2022-11-29 10:26:38,598 Recieved 1 values from measurement ([39]). Returning average.
+2022-11-29 10:26:38,700 Recieved 1 values from measurement ([40]). Returning average.
+2022-11-29 10:26:38,802 Recieved 1 values from measurement ([41]). Returning average.
+2022-11-29 10:26:38,903 Recieved 1 values from measurement ([42]). Returning average.
+2022-11-29 10:26:39,005 Recieved 1 values from measurement ([43]). Returning average.
+2022-11-29 10:26:39,116 Recieved 1 values from measurement ([44]). Returning average.
+2022-11-29 10:26:39,216 Recieved 1 values from measurement ([45]). Returning average.
+2022-11-29 10:26:39,317 Recieved 1 values from measurement ([46]). Returning average.
+2022-11-29 10:26:39,419 Recieved 1 values from measurement ([47]). Returning average.
+2022-11-29 10:26:39,520 Recieved 1 values from measurement ([48]). Returning average.
+2022-11-29 10:26:39,622 Recieved 1 values from measurement ([49]). Returning average.
+2022-11-29 10:26:39,723 Recieved 1 values from measurement ([0]). Returning average.
+2022-11-29 10:26:39,824 Recieved 1 values from measurement ([1]). Returning average.
+2022-11-29 10:26:39,927 Recieved 1 values from measurement ([2]). Returning average.
+2022-11-29 10:26:40,029 Recieved 1 values from measurement ([3]). Returning average.
+2022-11-29 10:26:40,130 Recieved 1 values from measurement ([4]). Returning average.
+2022-11-29 10:26:40,231 Recieved 1 values from measurement ([5]). Returning average.
+2022-11-29 10:26:40,332 Recieved 1 values from measurement ([6]). Returning average.
+2022-11-29 10:26:40,433 Recieved 1 values from measurement ([7]). Returning average.
+2022-11-29 10:26:40,534 Recieved 1 values from measurement ([8]). Returning average.
+2022-11-29 10:26:40,640 Recieved 1 values from measurement ([9]). Returning average.
+2022-11-29 10:26:40,745 Recieved 1 values from measurement ([10]). Returning average.
+2022-11-29 10:26:40,846 Recieved 1 values from measurement ([11]). Returning average.
+2022-11-29 10:26:40,947 Recieved 1 values from measurement ([12]). Returning average.
+2022-11-29 10:26:41,048 Recieved 1 values from measurement ([13]). Returning average.
+2022-11-29 10:26:41,151 Recieved 1 values from measurement ([14]). Returning average.
+2022-11-29 10:26:41,256 Recieved 1 values from measurement ([15]). Returning average.
+2022-11-29 10:26:41,358 Recieved 1 values from measurement ([16]). Returning average.
+2022-11-29 10:26:41,460 Recieved 1 values from measurement ([17]). Returning average.
+2022-11-29 10:26:41,576 Recieved 1 values from measurement ([18]). Returning average.
+2022-11-29 10:26:41,678 Recieved 1 values from measurement ([19]). Returning average.
+2022-11-29 10:26:41,779 Recieved 1 values from measurement ([20]). Returning average.
+2022-11-29 10:26:41,880 Recieved 1 values from measurement ([21]). Returning average.
+2022-11-29 10:26:41,981 Recieved 1 values from measurement ([22]). Returning average.
+2022-11-29 10:26:42,088 Recieved 1 values from measurement ([23]). Returning average.
+2022-11-29 10:26:42,192 Recieved 1 values from measurement ([24]). Returning average.
+2022-11-29 10:26:42,293 Recieved 1 values from measurement ([25]). Returning average.
+2022-11-29 10:26:42,394 Recieved 1 values from measurement ([26]). Returning average.
+2022-11-29 10:26:42,496 Recieved 1 values from measurement ([27]). Returning average.
+2022-11-29 10:26:42,597 Recieved 1 values from measurement ([28]). Returning average.
+2022-11-29 10:26:42,710 Recieved 2 values from measurement ([29, 30]). Returning average.
+2022-11-29 10:26:42,812 Recieved 1 values from measurement ([31]). Returning average.
+2022-11-29 10:26:42,914 Recieved 1 values from measurement ([32]). Returning average.
+2022-11-29 10:26:43,017 Recieved 1 values from measurement ([33]). Returning average.
+2022-11-29 10:26:43,125 Recieved 1 values from measurement ([34]). Returning average.
+2022-11-29 10:26:43,227 Recieved 1 values from measurement ([35]). Returning average.
+2022-11-29 10:26:43,331 Recieved 1 values from measurement ([36]). Returning average.
+2022-11-29 10:26:43,433 Recieved 1 values from measurement ([37]). Returning average.
+2022-11-29 10:26:43,545 Recieved 1 values from measurement ([38]). Returning average.
+2022-11-29 10:26:43,648 Recieved 1 values from measurement ([39]). Returning average.
+2022-11-29 10:26:43,749 Recieved 1 values from measurement ([40]). Returning average.
+2022-11-29 10:26:43,851 Recieved 1 values from measurement ([41]). Returning average.
+2022-11-29 10:26:43,962 Recieved 1 values from measurement ([42]). Returning average.
+2022-11-29 10:26:44,063 Recieved 1 values from measurement ([43]). Returning average.
+2022-11-29 10:26:44,165 Recieved 1 values from measurement ([44]). Returning average.
+2022-11-29 10:26:44,265 Recieved 1 values from measurement ([45]). Returning average.
+2022-11-29 10:26:44,390 Recieved 1 values from measurement ([46]). Returning average.
+2022-11-29 10:26:44,491 Recieved 1 values from measurement ([47]). Returning average.
+2022-11-29 10:26:44,597 Recieved 2 values from measurement ([48, 49]). Returning average.
+2022-11-29 10:26:44,700 Recieved 1 values from measurement ([0]). Returning average.
+2022-11-29 10:26:44,801 Recieved 1 values from measurement ([1]). Returning average.
+2022-11-29 10:26:44,902 Recieved 1 values from measurement ([2]). Returning average.
+2022-11-29 10:26:45,011 Recieved 1 values from measurement ([3]). Returning average.
+2022-11-29 10:26:45,112 Recieved 1 values from measurement ([4]). Returning average.
+2022-11-29 10:26:45,213 Recieved 1 values from measurement ([5]). Returning average.
+2022-11-29 10:26:45,315 Recieved 1 values from measurement ([6]). Returning average.
+2022-11-29 10:26:45,416 Recieved 1 values from measurement ([7]). Returning average.
+2022-11-29 10:26:45,519 Recieved 1 values from measurement ([8]). Returning average.
+2022-11-29 10:26:45,621 Recieved 1 values from measurement ([9]). Returning average.
+2022-11-29 10:26:45,722 Recieved 1 values from measurement ([10]). Returning average.
+2022-11-29 10:26:45,823 Recieved 1 values from measurement ([11]). Returning average.
+2022-11-29 10:26:45,928 Recieved 1 values from measurement ([12]). Returning average.
+2022-11-29 10:26:46,035 Recieved 1 values from measurement ([13]). Returning average.
+2022-11-29 10:26:46,136 Recieved 1 values from measurement ([14]). Returning average.
+2022-11-29 10:26:46,239 Recieved 1 values from measurement ([15]). Returning average.
+2022-11-29 10:26:46,340 Recieved 1 values from measurement ([16]). Returning average.
+2022-11-29 10:26:46,442 Recieved 1 values from measurement ([17]). Returning average.
+2022-11-29 10:26:46,547 Recieved 1 values from measurement ([18]). Returning average.
+2022-11-29 10:26:46,648 Recieved 1 values from measurement ([19]). Returning average.
+2022-11-29 10:26:46,749 Recieved 1 values from measurement ([20]). Returning average.
+2022-11-29 10:26:46,851 Recieved 1 values from measurement ([21]). Returning average.
+2022-11-29 10:26:46,954 Recieved 1 values from measurement ([22]). Returning average.
+2022-11-29 10:26:47,055 Recieved 1 values from measurement ([23]). Returning average.
+2022-11-29 10:26:47,159 Recieved 1 values from measurement ([24]). Returning average.
+2022-11-29 10:26:47,260 Recieved 1 values from measurement ([25]). Returning average.
+2022-11-29 10:26:47,361 Recieved 1 values from measurement ([26]). Returning average.
+2022-11-29 10:26:47,463 Recieved 1 values from measurement ([27]). Returning average.
+2022-11-29 10:26:47,564 Recieved 1 values from measurement ([28]). Returning average.
+2022-11-29 10:26:47,665 Recieved 1 values from measurement ([29]). Returning average.
+2022-11-29 10:26:47,768 Recieved 1 values from measurement ([30]). Returning average.
+2022-11-29 10:26:47,870 Recieved 1 values from measurement ([31]). Returning average.
+2022-11-29 10:26:47,972 Recieved 1 values from measurement ([32]). Returning average.
+2022-11-29 10:26:48,084 Recieved 1 values from measurement ([33]). Returning average.
+2022-11-29 10:26:48,185 Recieved 1 values from measurement ([34]). Returning average.
+2022-11-29 10:26:48,286 Recieved 1 values from measurement ([35]). Returning average.
+2022-11-29 10:26:48,388 Recieved 1 values from measurement ([36]). Returning average.
+2022-11-29 10:26:48,491 Recieved 1 values from measurement ([37]). Returning average.
+2022-11-29 10:26:48,593 Recieved 1 values from measurement ([38]). Returning average.
+2022-11-29 10:26:48,707 Recieved 2 values from measurement ([39, 40]). Returning average.
+2022-11-29 10:26:48,815 Recieved 1 values from measurement ([41]). Returning average.
+2022-11-29 10:26:48,917 Recieved 1 values from measurement ([42]). Returning average.
+2022-11-29 10:26:49,018 Recieved 1 values from measurement ([43]). Returning average.
+2022-11-29 10:26:49,133 Recieved 1 values from measurement ([44]). Returning average.
+2022-11-29 10:26:49,235 Recieved 1 values from measurement ([45]). Returning average.
+2022-11-29 10:26:49,340 Recieved 1 values from measurement ([46]). Returning average.
+2022-11-29 10:26:49,443 Recieved 1 values from measurement ([47]). Returning average.
+2022-11-29 10:26:49,546 Recieved 1 values from measurement ([48]). Returning average.
+2022-11-29 10:26:49,648 Recieved 1 values from measurement ([49]). Returning average.
+2022-11-29 10:26:49,749 Recieved 1 values from measurement ([0]). Returning average.
+2022-11-29 10:26:49,853 Recieved 1 values from measurement ([1]). Returning average.
+2022-11-29 10:26:49,958 Recieved 1 values from measurement ([2]). Returning average.
+2022-11-29 10:26:50,073 Recieved 1 values from measurement ([3]). Returning average.
+2022-11-29 10:26:50,174 Recieved 1 values from measurement ([4]). Returning average.
+2022-11-29 10:26:50,277 Recieved 1 values from measurement ([5]). Returning average.
+2022-11-29 10:26:50,380 Recieved 1 values from measurement ([6]). Returning average.
+2022-11-29 10:27:35,951 STARTING NEW SESSION
+2022-11-29 10:27:43,335 Recieved 1 values from measurement ([22]). Returning average.
+2022-11-29 10:27:43,437 Recieved 1 values from measurement ([23]). Returning average.
+2022-11-29 10:27:43,538 Recieved 1 values from measurement ([24]). Returning average.
+2022-11-29 10:27:43,640 Recieved 1 values from measurement ([25]). Returning average.
+2022-11-29 10:27:43,741 Recieved 1 values from measurement ([26]). Returning average.
+2022-11-29 10:27:43,842 Recieved 1 values from measurement ([27]). Returning average.
+2022-11-29 10:27:43,944 Recieved 1 values from measurement ([28]). Returning average.
+2022-11-29 10:27:44,047 Recieved 1 values from measurement ([29]). Returning average.
+2022-11-29 10:27:44,149 Recieved 1 values from measurement ([30]). Returning average.
+2022-11-29 10:27:44,250 Recieved 1 values from measurement ([31]). Returning average.
+2022-11-29 10:27:44,352 Recieved 2 values from measurement ([32, 33]). Returning average.
+2022-11-29 10:27:44,453 Recieved 1 values from measurement ([34]). Returning average.
+2022-11-29 10:27:44,555 Recieved 1 values from measurement ([35]). Returning average.
+2022-11-29 10:27:44,656 Recieved 1 values from measurement ([36]). Returning average.
+2022-11-29 10:27:44,757 Recieved 1 values from measurement ([37]). Returning average.
+2022-11-29 10:27:44,857 Recieved 1 values from measurement ([38]). Returning average.
+2022-11-29 10:27:44,959 Recieved 1 values from measurement ([39]). Returning average.
+2022-11-29 10:27:45,061 Recieved 1 values from measurement ([40]). Returning average.
+2022-11-29 10:27:45,161 Recieved 1 values from measurement ([41]). Returning average.
+2022-11-29 10:27:45,273 Recieved 1 values from measurement ([42]). Returning average.
+2022-11-29 10:27:45,377 Recieved 1 values from measurement ([43]). Returning average.
+2022-11-29 10:27:45,477 Recieved 1 values from measurement ([44]). Returning average.
+2022-11-29 10:27:45,578 Recieved 1 values from measurement ([45]). Returning average.
+2022-11-29 10:27:45,682 Recieved 1 values from measurement ([46]). Returning average.
+2022-11-29 10:27:45,783 Recieved 1 values from measurement ([47]). Returning average.
+2022-11-29 10:27:45,886 Recieved 1 values from measurement ([48]). Returning average.
+2022-11-29 10:27:45,996 Recieved 1 values from measurement ([49]). Returning average.
+2022-11-29 10:27:46,098 Recieved 1 values from measurement ([0]). Returning average.
+2022-11-29 10:27:46,200 Recieved 1 values from measurement ([1]). Returning average.
+2022-11-29 10:27:46,302 Recieved 1 values from measurement ([2]). Returning average.
+2022-11-29 10:27:46,402 Recieved 1 values from measurement ([3]). Returning average.
+2022-11-29 10:27:46,505 Recieved 1 values from measurement ([4]). Returning average.
+2022-11-29 10:27:46,606 Recieved 1 values from measurement ([5]). Returning average.
+2022-11-29 10:27:46,706 Recieved 1 values from measurement ([6]). Returning average.
+2022-11-29 10:27:46,809 Recieved 1 values from measurement ([7]). Returning average.
+2022-11-29 10:27:46,912 Recieved 1 values from measurement ([8]). Returning average.
+2022-11-29 10:27:47,013 Recieved 1 values from measurement ([9]). Returning average.
+2022-11-29 10:27:47,114 Recieved 1 values from measurement ([10]). Returning average.
+2022-11-29 10:27:47,215 Recieved 1 values from measurement ([11]). Returning average.
+2022-11-29 10:27:47,316 Recieved 1 values from measurement ([12]). Returning average.
+2022-11-29 10:27:47,426 Recieved 1 values from measurement ([13]). Returning average.
+2022-11-29 10:27:47,530 Recieved 1 values from measurement ([14]). Returning average.
+2022-11-29 10:27:47,631 Recieved 1 values from measurement ([15]). Returning average.
+2022-11-29 10:27:47,734 Recieved 1 values from measurement ([16]). Returning average.
+2022-11-29 10:27:47,836 Recieved 1 values from measurement ([17]). Returning average.
+2022-11-29 10:27:47,937 Recieved 1 values from measurement ([18]). Returning average.
+2022-11-29 10:27:48,038 Recieved 1 values from measurement ([19]). Returning average.
+2022-11-29 10:27:48,141 Recieved 1 values from measurement ([20]). Returning average.
+2022-11-29 10:27:48,245 Recieved 1 values from measurement ([21]). Returning average.
+2022-11-29 10:27:48,350 Recieved 1 values from measurement ([22]). Returning average.
+2022-11-29 10:27:48,452 Recieved 2 values from measurement ([23, 24]). Returning average.
+2022-11-29 10:27:48,553 Recieved 1 values from measurement ([25]). Returning average.
+2022-11-29 10:27:48,655 Recieved 1 values from measurement ([26]). Returning average.
+2022-11-29 10:27:48,756 Recieved 1 values from measurement ([27]). Returning average.
+2022-11-29 10:27:48,857 Recieved 1 values from measurement ([28]). Returning average.
+2022-11-29 10:27:48,959 Recieved 1 values from measurement ([29]). Returning average.
+2022-11-29 10:27:49,061 Recieved 1 values from measurement ([30]). Returning average.
+2022-11-29 10:27:49,162 Recieved 1 values from measurement ([31]). Returning average.
+2022-11-29 10:27:49,267 Recieved 1 values from measurement ([32]). Returning average.
+2022-11-29 10:27:49,369 Recieved 1 values from measurement ([33]). Returning average.
+2022-11-29 10:27:49,471 Recieved 1 values from measurement ([34]). Returning average.
+2022-11-29 10:27:49,575 Recieved 1 values from measurement ([35]). Returning average.
+2022-11-29 10:27:49,676 Recieved 1 values from measurement ([36]). Returning average.
+2022-11-29 10:27:49,778 Recieved 1 values from measurement ([37]). Returning average.
+2022-11-29 10:27:49,882 Recieved 1 values from measurement ([38]). Returning average.
+2022-11-29 10:27:49,988 Recieved 1 values from measurement ([39]). Returning average.
+2022-11-29 10:27:50,089 Recieved 1 values from measurement ([40]). Returning average.
+2022-11-29 10:27:50,192 Recieved 1 values from measurement ([41]). Returning average.
+2022-11-29 10:27:50,293 Recieved 1 values from measurement ([42]). Returning average.
+2022-11-29 10:27:50,395 Recieved 1 values from measurement ([43]). Returning average.
+2022-11-29 10:27:50,497 Recieved 1 values from measurement ([44]). Returning average.
+2022-11-29 10:27:50,598 Recieved 1 values from measurement ([45]). Returning average.
+2022-11-29 10:27:50,698 Recieved 1 values from measurement ([46]). Returning average.
+2022-11-29 10:27:50,801 Recieved 1 values from measurement ([47]). Returning average.
+2022-11-29 10:27:50,912 Recieved 1 values from measurement ([48]). Returning average.
+2022-11-29 10:27:51,016 Recieved 1 values from measurement ([49]). Returning average.
+2022-11-29 10:27:51,121 Recieved 1 values from measurement ([0]). Returning average.
+2022-11-29 10:27:51,224 Recieved 1 values from measurement ([1]). Returning average.
+2022-11-29 10:27:51,325 Recieved 1 values from measurement ([2]). Returning average.
+2022-11-29 10:27:51,426 Recieved 1 values from measurement ([3]). Returning average.
+2022-11-29 10:27:51,528 Recieved 1 values from measurement ([4]). Returning average.
+2022-11-29 10:27:51,629 Recieved 1 values from measurement ([5]). Returning average.
+2022-11-29 10:27:51,733 Recieved 1 values from measurement ([6]). Returning average.
+2022-11-29 10:27:51,836 Recieved 1 values from measurement ([7]). Returning average.
+2022-11-29 10:27:51,937 Recieved 1 values from measurement ([8]). Returning average.
+2022-11-29 10:27:52,039 Recieved 1 values from measurement ([9]). Returning average.
+2022-11-29 10:27:52,140 Recieved 1 values from measurement ([10]). Returning average.
+2022-11-29 10:27:52,241 Recieved 1 values from measurement ([11]). Returning average.
+2022-11-29 10:27:52,346 Recieved 1 values from measurement ([12]). Returning average.
+2022-11-29 10:27:52,454 Recieved 1 values from measurement ([14]). Returning average.
+2022-11-29 10:27:52,557 Recieved 1 values from measurement ([15]). Returning average.
+2022-11-29 10:27:52,658 Recieved 1 values from measurement ([16]). Returning average.
+2022-11-29 10:27:52,760 Recieved 1 values from measurement ([17]). Returning average.
+2022-11-29 10:27:52,861 Recieved 1 values from measurement ([18]). Returning average.
+2022-11-29 10:27:52,963 Recieved 1 values from measurement ([19]). Returning average.
+2022-11-29 10:27:53,064 Recieved 1 values from measurement ([20]). Returning average.
+2022-11-29 10:27:53,166 Recieved 1 values from measurement ([21]). Returning average.
+2022-11-29 10:27:53,269 Recieved 1 values from measurement ([22]). Returning average.
+2022-11-29 10:27:53,371 Recieved 1 values from measurement ([23]). Returning average.
+2022-11-29 10:27:53,472 Recieved 1 values from measurement ([24]). Returning average.
+2022-11-29 10:27:53,575 Recieved 1 values from measurement ([25]). Returning average.
+2022-11-29 10:27:53,683 Recieved 1 values from measurement ([26]). Returning average.
+2022-11-29 10:27:53,785 Recieved 1 values from measurement ([27]). Returning average.
+2022-11-29 10:27:53,888 Recieved 1 values from measurement ([28]). Returning average.
+2022-11-29 10:27:54,001 Recieved 1 values from measurement ([29]). Returning average.
+2022-11-29 10:27:54,101 Recieved 1 values from measurement ([30]). Returning average.
+2022-11-29 10:27:54,202 Recieved 1 values from measurement ([31]). Returning average.
+2022-11-29 10:27:54,309 Recieved 1 values from measurement ([32]). Returning average.
+2022-11-29 10:27:54,410 Recieved 1 values from measurement ([33]). Returning average.
+2022-11-29 10:27:54,511 Recieved 1 values from measurement ([34]). Returning average.
+2022-11-29 10:27:54,614 Recieved 1 values from measurement ([35]). Returning average.
+2022-11-29 10:27:54,716 Recieved 1 values from measurement ([36]). Returning average.
+2022-11-29 10:27:54,817 Recieved 1 values from measurement ([37]). Returning average.
+2022-11-29 10:27:54,924 Recieved 1 values from measurement ([38]). Returning average.
+2022-11-29 10:27:55,025 Recieved 1 values from measurement ([39]). Returning average.
+2022-11-29 10:27:55,126 Recieved 1 values from measurement ([40]). Returning average.
+2022-11-29 10:27:55,229 Recieved 1 values from measurement ([41]). Returning average.
+2022-11-29 10:27:55,331 Recieved 1 values from measurement ([42]). Returning average.
+2022-11-29 10:27:55,432 Recieved 1 values from measurement ([43]). Returning average.
+2022-11-29 10:27:55,534 Recieved 1 values from measurement ([44]). Returning average.
+2022-11-29 10:27:55,635 Recieved 1 values from measurement ([45]). Returning average.
+2022-11-29 10:28:09,274 STARTING NEW SESSION
+2022-11-29 10:28:17,031 Recieved 1 values from measurement ([26]). Returning average.
+2022-11-29 10:28:17,135 Recieved 1 values from measurement ([27]). Returning average.
+2022-11-29 10:28:17,236 Recieved 1 values from measurement ([28]). Returning average.
+2022-11-29 10:28:17,338 Recieved 1 values from measurement ([29]). Returning average.
+2022-11-29 10:28:17,440 Recieved 1 values from measurement ([30]). Returning average.
+2022-11-29 10:28:17,542 Recieved 1 values from measurement ([31]). Returning average.
+2022-11-29 10:28:17,643 Recieved 1 values from measurement ([32]). Returning average.
+2022-11-29 10:28:17,751 Recieved 1 values from measurement ([33]). Returning average.
+2022-11-29 10:28:17,855 Recieved 1 values from measurement ([34]). Returning average.
+2022-11-29 10:28:17,957 Recieved 1 values from measurement ([35]). Returning average.
+2022-11-29 10:28:18,066 Recieved 1 values from measurement ([36]). Returning average.
+2022-11-29 10:28:18,168 Recieved 1 values from measurement ([37]). Returning average.
+2022-11-29 10:28:18,269 Recieved 1 values from measurement ([38]). Returning average.
+2022-11-29 10:28:18,371 Recieved 1 values from measurement ([39]). Returning average.
+2022-11-29 10:28:18,473 Recieved 1 values from measurement ([40]). Returning average.
+2022-11-29 10:28:18,577 Recieved 2 values from measurement ([41, 42]). Returning average.
+2022-11-29 10:28:18,678 Recieved 1 values from measurement ([43]). Returning average.
+2022-11-29 10:28:18,779 Recieved 1 values from measurement ([44]). Returning average.
+2022-11-29 10:28:18,880 Recieved 1 values from measurement ([45]). Returning average.
+2022-11-29 10:28:18,981 Recieved 1 values from measurement ([46]). Returning average.
+2022-11-29 10:28:19,083 Recieved 1 values from measurement ([47]). Returning average.
+2022-11-29 10:28:19,184 Recieved 1 values from measurement ([48]). Returning average.
+2022-11-29 10:28:19,287 Recieved 1 values from measurement ([49]). Returning average.
+2022-11-29 10:28:19,390 Recieved 1 values from measurement ([0]). Returning average.
+2022-11-29 10:28:19,491 Recieved 1 values from measurement ([1]). Returning average.
+2022-11-29 10:28:19,592 Recieved 1 values from measurement ([2]). Returning average.
+2022-11-29 10:28:19,693 Recieved 1 values from measurement ([3]). Returning average.
+2022-11-29 10:28:19,795 Recieved 1 values from measurement ([4]). Returning average.
+2022-11-29 10:28:19,901 Recieved 1 values from measurement ([5]). Returning average.
+2022-11-29 10:28:20,002 Recieved 1 values from measurement ([6]). Returning average.
+2022-11-29 10:28:20,104 Recieved 1 values from measurement ([7]). Returning average.
+2022-11-29 10:28:20,211 Recieved 1 values from measurement ([8]). Returning average.
+2022-11-29 10:28:20,313 Recieved 1 values from measurement ([9]). Returning average.
+2022-11-29 10:28:20,414 Recieved 1 values from measurement ([10]). Returning average.
+2022-11-29 10:28:20,515 Recieved 1 values from measurement ([11]). Returning average.
+2022-11-29 10:28:20,623 Recieved 1 values from measurement ([12]). Returning average.
+2022-11-29 10:28:20,724 Recieved 1 values from measurement ([13]). Returning average.
+2022-11-29 10:28:20,827 Recieved 1 values from measurement ([14]). Returning average.
+2022-11-29 10:28:20,928 Recieved 1 values from measurement ([15]). Returning average.
+2022-11-29 10:28:21,030 Recieved 1 values from measurement ([16]). Returning average.
+2022-11-29 10:28:21,136 Recieved 1 values from measurement ([17]). Returning average.
+2022-11-29 10:28:21,239 Recieved 1 values from measurement ([18]). Returning average.
+2022-11-29 10:28:21,341 Recieved 1 values from measurement ([19]). Returning average.
+2022-11-29 10:28:21,442 Recieved 1 values from measurement ([20]). Returning average.
+2022-11-29 10:28:21,545 Recieved 1 values from measurement ([21]). Returning average.
+2022-11-29 10:28:21,646 Recieved 1 values from measurement ([22]). Returning average.
+2022-11-29 10:28:21,751 Recieved 1 values from measurement ([23]). Returning average.
+2022-11-29 10:28:21,853 Recieved 1 values from measurement ([24]). Returning average.
+2022-11-29 10:28:21,955 Recieved 1 values from measurement ([25]). Returning average.
+2022-11-29 10:28:22,062 Recieved 1 values from measurement ([26]). Returning average.
+2022-11-29 10:28:22,168 Recieved 1 values from measurement ([27]). Returning average.
+2022-11-29 10:28:22,273 Recieved 1 values from measurement ([28]). Returning average.
+2022-11-29 10:28:22,375 Recieved 1 values from measurement ([30]). Returning average.
+2022-11-29 10:28:22,480 Recieved 1 values from measurement ([31]). Returning average.
+2022-11-29 10:28:22,582 Recieved 1 values from measurement ([32]). Returning average.
+2022-11-29 10:28:22,683 Recieved 1 values from measurement ([33]). Returning average.
+2022-11-29 10:28:22,786 Recieved 1 values from measurement ([34]). Returning average.
+2022-11-29 10:28:22,891 Recieved 1 values from measurement ([35]). Returning average.
+2022-11-29 10:28:22,992 Recieved 1 values from measurement ([36]). Returning average.
+2022-11-29 10:28:23,096 Recieved 1 values from measurement ([37]). Returning average.
+2022-11-29 10:28:23,198 Recieved 1 values from measurement ([38]). Returning average.
+2022-11-29 10:28:23,299 Recieved 1 values from measurement ([39]). Returning average.
+2022-11-29 10:28:23,404 Recieved 1 values from measurement ([40]). Returning average.
+2022-11-29 10:28:23,505 Recieved 1 values from measurement ([41]). Returning average.
+2022-11-29 10:28:23,608 Recieved 1 values from measurement ([42]). Returning average.
+2022-11-29 10:28:23,715 Recieved 1 values from measurement ([43]). Returning average.
+2022-11-29 10:28:23,816 Recieved 1 values from measurement ([44]). Returning average.
+2022-11-29 10:28:23,918 Recieved 1 values from measurement ([45]). Returning average.
+2022-11-29 10:28:24,023 Recieved 1 values from measurement ([46]). Returning average.
+2022-11-29 10:28:24,126 Recieved 1 values from measurement ([47]). Returning average.
+2022-11-29 10:28:24,229 Recieved 1 values from measurement ([48]). Returning average.
+2022-11-29 10:28:24,331 Recieved 1 values from measurement ([49]). Returning average.
+2022-11-29 10:28:24,431 Recieved 1 values from measurement ([0]). Returning average.
+2022-11-29 10:28:24,537 Recieved 1 values from measurement ([1]). Returning average.
+2022-11-29 10:28:24,640 Recieved 1 values from measurement ([2]). Returning average.
+2022-11-29 10:28:24,743 Recieved 1 values from measurement ([3]). Returning average.
+2022-11-29 10:28:24,845 Recieved 1 values from measurement ([4]). Returning average.
+2022-11-29 10:28:24,957 Recieved 1 values from measurement ([5]). Returning average.
+2022-11-29 10:28:25,062 Recieved 1 values from measurement ([6]). Returning average.
+2022-11-29 10:28:25,167 Recieved 1 values from measurement ([7]). Returning average.
+2022-11-29 10:28:25,270 Recieved 1 values from measurement ([8]). Returning average.
+2022-11-29 10:28:25,371 Recieved 1 values from measurement ([9]). Returning average.
+2022-11-29 10:28:25,475 Recieved 1 values from measurement ([10]). Returning average.
+2022-11-29 10:28:25,577 Recieved 1 values from measurement ([12]). Returning average.
+2022-11-29 10:28:25,687 Recieved 1 values from measurement ([13]). Returning average.
+2022-11-29 10:28:25,791 Recieved 1 values from measurement ([14]). Returning average.
+2022-11-29 10:28:25,896 Recieved 1 values from measurement ([15]). Returning average.
+2022-11-29 10:28:26,001 Recieved 1 values from measurement ([16]). Returning average.
+2022-11-29 10:28:26,101 Recieved 1 values from measurement ([17]). Returning average.
+2022-11-29 10:28:26,208 Recieved 1 values from measurement ([18]). Returning average.
+2022-11-29 10:28:26,309 Recieved 1 values from measurement ([19]). Returning average.
+2022-11-29 10:28:26,412 Recieved 1 values from measurement ([20]). Returning average.
+2022-11-29 10:28:26,514 Recieved 1 values from measurement ([21]). Returning average.
+2022-11-29 10:28:26,615 Recieved 1 values from measurement ([22]). Returning average.
+2022-11-29 10:28:26,717 Recieved 1 values from measurement ([23]). Returning average.
+2022-11-29 10:28:26,822 Recieved 1 values from measurement ([24]). Returning average.
+2022-11-29 10:28:26,923 Recieved 1 values from measurement ([25]). Returning average.
+2022-11-29 10:28:27,025 Recieved 1 values from measurement ([26]). Returning average.
+2022-11-29 10:28:27,133 Recieved 1 values from measurement ([27]). Returning average.
+2022-11-29 10:28:27,238 Recieved 1 values from measurement ([28]). Returning average.
+2022-11-29 10:28:27,343 Recieved 1 values from measurement ([29]). Returning average.
+2022-11-29 10:28:27,447 Recieved 1 values from measurement ([30]). Returning average.
+2022-11-29 10:28:27,550 Recieved 1 values from measurement ([31]). Returning average.
+2022-11-29 10:28:27,653 Recieved 1 values from measurement ([32]). Returning average.
+2022-11-29 10:28:27,757 Recieved 1 values from measurement ([33]). Returning average.
+2022-11-29 10:28:27,861 Recieved 1 values from measurement ([34]). Returning average.
+2022-11-29 10:28:27,963 Recieved 1 values from measurement ([35]). Returning average.
+2022-11-29 10:28:28,070 Recieved 1 values from measurement ([36]). Returning average.
+2022-11-29 10:28:28,172 Recieved 1 values from measurement ([37]). Returning average.
+2022-11-29 10:28:28,274 Recieved 1 values from measurement ([38]). Returning average.
+2022-11-29 10:28:28,381 Recieved 1 values from measurement ([40]). Returning average.
+2022-11-29 10:28:28,494 Recieved 1 values from measurement ([41]). Returning average.
+2022-11-29 10:28:28,597 Recieved 1 values from measurement ([42]). Returning average.
+2022-11-29 10:28:28,703 Recieved 1 values from measurement ([43]). Returning average.
+2022-11-29 10:28:28,805 Recieved 1 values from measurement ([44]). Returning average.
+2022-11-29 10:28:28,908 Recieved 1 values from measurement ([45]). Returning average.
+2022-11-29 10:28:29,013 Recieved 1 values from measurement ([46]). Returning average.
+2022-11-29 10:28:29,115 Recieved 1 values from measurement ([47]). Returning average.
+2022-11-29 10:28:29,216 Recieved 1 values from measurement ([48]). Returning average.
+2022-11-29 10:28:29,320 Recieved 1 values from measurement ([49]). Returning average.
+2022-11-29 10:28:29,432 Recieved 1 values from measurement ([0]). Returning average.
+2022-11-29 10:28:58,475 STARTING NEW SESSION
+2022-11-29 10:29:01,050 Recieved 5 values from measurement ([20, 21, 22, 23, 24]). Returning average.
+2022-11-29 10:29:01,653 Recieved 5 values from measurement ([26, 27, 28, 29, 30]). Returning average.
+2022-11-29 10:29:02,255 Recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average.
+2022-11-29 10:29:02,861 Recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average.
+2022-11-29 10:29:03,464 Recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average.
+2022-11-29 10:29:04,072 Recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average.
+2022-11-29 10:29:04,676 Recieved 6 values from measurement ([6, 7, 8, 9, 10, 11]). Returning average.
+2022-11-29 10:29:05,278 Recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average.
+2022-11-29 10:29:05,888 Recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average.
+2022-11-29 10:29:06,489 Recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average.
+2022-11-29 10:29:07,093 Recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average.
+2022-11-29 10:29:07,696 Recieved 5 values from measurement ([37, 38, 39, 40, 41]). Returning average.
+2022-11-29 10:29:08,299 Recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average.
+2022-11-29 10:29:08,901 Recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average.
+2022-11-29 10:29:09,507 Recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average.
+2022-11-29 10:29:10,110 Recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average.
+2022-11-29 10:29:10,726 Recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average.
+2022-11-29 10:29:11,328 Recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average.
+2022-11-29 10:29:11,936 Recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average.
+2022-11-29 10:29:12,560 Recieved 5 values from measurement ([35, 36, 37, 38, 39]). Returning average.
+2022-11-29 10:29:13,166 Recieved 5 values from measurement ([41, 42, 43, 44, 45]). Returning average.
+2022-11-29 10:29:13,779 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 10:29:14,389 Recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average.
+2022-11-29 10:29:14,991 Recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average.
+2022-11-29 10:29:15,593 Recieved 5 values from measurement ([16, 17, 18, 19, 20]). Returning average.
+2022-11-29 10:29:16,196 Recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average.
+2022-11-29 10:29:16,799 Recieved 5 values from measurement ([28, 29, 30, 31, 32]). Returning average.
+2022-11-29 10:29:17,409 Recieved 5 values from measurement ([34, 35, 36, 37, 38]). Returning average.
+2022-11-29 10:29:18,012 Recieved 5 values from measurement ([40, 41, 42, 43, 44]). Returning average.
+2022-11-29 10:29:18,613 Recieved 5 values from measurement ([46, 47, 48, 49, 0]). Returning average.
+2022-11-29 10:29:19,220 Recieved 5 values from measurement ([2, 3, 4, 5, 6]). Returning average.
+2022-11-29 10:29:19,825 Recieved 5 values from measurement ([8, 9, 10, 11, 12]). Returning average.
+2022-11-29 10:29:20,427 Recieved 5 values from measurement ([14, 15, 16, 17, 18]). Returning average.
+2022-11-29 10:29:21,030 Recieved 5 values from measurement ([20, 21, 22, 23, 24]). Returning average.
+2022-11-29 10:29:21,635 Recieved 5 values from measurement ([26, 27, 28, 29, 30]). Returning average.
+2022-11-29 10:29:22,241 Recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average.
+2022-11-29 10:29:22,843 Recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average.
+2022-11-29 10:29:23,447 Recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average.
+2022-11-29 10:29:24,050 Recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average.
+2022-11-29 10:29:24,652 Recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average.
+2022-11-29 10:29:25,255 Recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average.
+2022-11-29 10:29:25,856 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 10:29:26,458 Recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average.
+2022-11-29 10:29:27,060 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 10:29:27,662 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 10:29:28,264 Recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average.
+2022-11-29 10:29:28,872 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 10:29:29,475 Recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average.
+2022-11-29 10:29:30,078 Recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average.
+2022-11-29 10:29:30,695 Recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average.
+2022-11-29 10:29:31,303 Recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average.
+2022-11-29 10:29:31,906 Recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average.
+2022-11-29 10:29:32,511 Recieved 5 values from measurement ([35, 36, 37, 38, 39]). Returning average.
+2022-11-29 10:29:33,114 Recieved 5 values from measurement ([41, 42, 43, 44, 45]). Returning average.
+2022-11-29 10:29:33,724 Recieved 5 values from measurement ([47, 48, 49, 0, 1]). Returning average.
+2022-11-29 10:29:34,326 Recieved 5 values from measurement ([3, 4, 5, 6, 7]). Returning average.
+2022-11-29 10:29:34,928 Recieved 5 values from measurement ([9, 10, 11, 12, 13]). Returning average.
+2022-11-29 10:29:35,530 Recieved 5 values from measurement ([15, 16, 17, 18, 19]). Returning average.
+2022-11-29 10:29:36,139 Recieved 5 values from measurement ([21, 22, 23, 24, 25]). Returning average.
+2022-11-29 10:29:36,756 Recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average.
+2022-11-29 10:29:37,364 Recieved 5 values from measurement ([33, 34, 35, 36, 37]). Returning average.
+2022-11-29 10:29:37,969 Recieved 5 values from measurement ([39, 40, 41, 42, 43]). Returning average.
+2022-11-29 10:29:38,581 Recieved 5 values from measurement ([46, 47, 48, 49, 0]). Returning average.
+2022-11-29 10:29:39,187 Recieved 5 values from measurement ([2, 3, 4, 5, 6]). Returning average.
+2022-11-29 10:29:39,803 Recieved 5 values from measurement ([8, 9, 10, 11, 12]). Returning average.
+2022-11-29 10:29:40,408 Recieved 5 values from measurement ([14, 15, 16, 17, 18]). Returning average.
+2022-11-29 10:29:41,014 Recieved 5 values from measurement ([20, 21, 22, 23, 24]). Returning average.
+2022-11-29 10:29:41,621 Recieved 5 values from measurement ([26, 27, 28, 29, 30]). Returning average.
+2022-11-29 10:29:42,224 Recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average.
+2022-11-29 10:29:42,828 Recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average.
+2022-11-29 10:29:43,431 Recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average.
+2022-11-29 10:29:44,036 Recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average.
+2022-11-29 10:29:44,650 Recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average.
+2022-11-29 10:29:45,267 Recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average.
+2022-11-29 10:29:45,875 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 10:29:46,481 Recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average.
+2022-11-29 10:29:47,098 Recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average.
+2022-11-29 10:29:47,702 Recieved 5 values from measurement ([37, 38, 39, 40, 41]). Returning average.
+2022-11-29 10:29:48,304 Recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average.
+2022-11-29 10:29:48,914 Recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average.
+2022-11-29 10:29:49,518 Recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average.
+2022-11-29 10:29:50,121 Recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average.
+2022-11-29 10:29:50,729 Recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average.
+2022-11-29 10:29:51,340 Recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average.
+2022-11-29 10:29:51,953 Recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average.
+2022-11-29 10:29:52,558 Recieved 5 values from measurement ([35, 36, 37, 38, 39]). Returning average.
+2022-11-29 10:29:53,165 Recieved 5 values from measurement ([41, 42, 43, 44, 45]). Returning average.
+2022-11-29 10:29:53,784 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 10:29:54,387 Recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average.
+2022-11-29 10:29:54,991 Recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average.
+2022-11-29 10:29:55,597 Recieved 5 values from measurement ([16, 17, 18, 19, 20]). Returning average.
+2022-11-29 10:29:56,209 Recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average.
+2022-11-29 10:29:56,816 Recieved 5 values from measurement ([28, 29, 30, 31, 32]). Returning average.
+2022-11-29 10:29:57,427 Recieved 5 values from measurement ([34, 35, 36, 37, 38]). Returning average.
+2022-11-29 10:29:58,032 Recieved 5 values from measurement ([40, 41, 42, 43, 44]). Returning average.
+2022-11-29 10:29:58,639 Recieved 5 values from measurement ([46, 47, 48, 49, 0]). Returning average.
+2022-11-29 10:29:59,249 Recieved 5 values from measurement ([2, 3, 4, 5, 6]). Returning average.
+2022-11-29 10:29:59,862 Recieved 5 values from measurement ([8, 9, 10, 11, 12]). Returning average.
+2022-11-29 10:30:00,473 Recieved 5 values from measurement ([14, 15, 16, 17, 18]). Returning average.
+2022-11-29 10:30:01,092 Recieved 5 values from measurement ([21, 22, 23, 24, 25]). Returning average.
+2022-11-29 10:30:01,706 Recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average.
+2022-11-29 10:30:02,332 Recieved 5 values from measurement ([33, 34, 35, 36, 37]). Returning average.
+2022-11-29 10:30:02,946 Recieved 5 values from measurement ([39, 40, 41, 42, 43]). Returning average.
+2022-11-29 10:30:03,552 Recieved 5 values from measurement ([45, 46, 47, 48, 49]). Returning average.
+2022-11-29 10:30:04,160 Recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average.
+2022-11-29 10:30:04,765 Recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average.
+2022-11-29 10:30:05,372 Recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average.
+2022-11-29 10:30:05,973 Recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average.
+2022-11-29 10:30:06,575 Recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average.
+2022-11-29 10:30:07,188 Recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average.
+2022-11-29 10:30:07,791 Recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average.
+2022-11-29 10:30:08,394 Recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average.
+2022-11-29 10:30:08,998 Recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average.
+2022-11-29 10:30:09,608 Recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average.
+2022-11-29 10:30:10,215 Recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average.
+2022-11-29 10:30:10,819 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 10:30:11,422 Recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average.
+2022-11-29 10:30:12,026 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 10:30:12,630 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 10:30:13,245 Recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average.
+2022-11-29 10:30:13,848 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 10:32:12,034 STARTING NEW SESSION
+2022-11-29 10:32:14,590 Recieved 5 values from measurement ([20, 21, 22, 23, 24]). Returning average.
+2022-11-29 10:32:15,194 Recieved 5 values from measurement ([26, 27, 28, 29, 30]). Returning average.
+2022-11-29 10:32:15,796 Recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average.
+2022-11-29 10:32:16,399 Recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average.
+2022-11-29 10:32:17,001 Recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average.
+2022-11-29 10:32:17,604 Recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average.
+2022-11-29 10:32:18,211 Recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average.
+2022-11-29 10:32:18,814 Recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average.
+2022-11-29 10:32:19,418 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 10:32:20,022 Recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average.
+2022-11-29 10:32:20,624 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 10:32:21,225 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 10:32:21,827 Recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average.
+2022-11-29 10:32:22,435 Recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average.
+2022-11-29 10:32:23,037 Recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average.
+2022-11-29 10:32:23,640 Recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average.
+2022-11-29 10:32:24,248 Recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average.
+2022-11-29 10:32:24,851 Recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average.
+2022-11-29 10:32:25,456 Recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average.
+2022-11-29 10:32:26,060 Recieved 5 values from measurement ([35, 36, 37, 38, 39]). Returning average.
+2022-11-29 10:32:26,663 Recieved 5 values from measurement ([41, 42, 43, 44, 45]). Returning average.
+2022-11-29 10:32:27,266 Recieved 5 values from measurement ([47, 48, 49, 0, 1]). Returning average.
+2022-11-29 10:32:27,875 Recieved 5 values from measurement ([3, 4, 5, 6, 7]). Returning average.
+2022-11-29 10:32:28,480 Recieved 5 values from measurement ([9, 10, 11, 12, 13]). Returning average.
+2022-11-29 10:32:29,086 Recieved 5 values from measurement ([15, 16, 17, 18, 19]). Returning average.
+2022-11-29 10:32:29,692 Recieved 5 values from measurement ([21, 22, 23, 24, 25]). Returning average.
+2022-11-29 10:32:30,306 Recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average.
+2022-11-29 10:32:30,908 Recieved 5 values from measurement ([33, 34, 35, 36, 37]). Returning average.
+2022-11-29 10:32:31,514 Recieved 5 values from measurement ([39, 40, 41, 42, 43]). Returning average.
+2022-11-29 10:32:32,119 Recieved 5 values from measurement ([45, 46, 47, 48, 49]). Returning average.
+2022-11-29 10:32:32,726 Recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average.
+2022-11-29 10:32:33,330 Recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average.
+2022-11-29 10:32:33,934 Recieved 6 values from measurement ([13, 14, 15, 16, 17, 18]). Returning average.
+2022-11-29 10:32:34,537 Recieved 5 values from measurement ([20, 21, 22, 23, 24]). Returning average.
+2022-11-29 10:32:35,141 Recieved 5 values from measurement ([26, 27, 28, 29, 30]). Returning average.
+2022-11-29 10:32:35,743 Recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average.
+2022-11-29 10:32:36,346 Recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average.
+2022-11-29 10:32:36,954 Recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average.
+2022-11-29 10:32:37,560 Recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average.
+2022-11-29 10:32:38,169 Recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average.
+2022-11-29 10:32:38,777 Recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average.
+2022-11-29 10:32:39,379 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 10:32:39,981 Recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average.
+2022-11-29 10:32:40,584 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 10:32:41,188 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 10:32:41,790 Recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average.
+2022-11-29 10:32:42,392 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 10:32:43,008 Recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average.
+2022-11-29 10:32:43,616 Recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average.
+2022-11-29 10:32:44,226 Recieved 5 values from measurement ([16, 17, 18, 19, 20]). Returning average.
+2022-11-29 10:32:44,828 Recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average.
+2022-11-29 10:32:45,431 Recieved 5 values from measurement ([28, 29, 30, 31, 32]). Returning average.
+2022-11-29 10:32:46,046 Recieved 5 values from measurement ([35, 36, 37, 38, 39]). Returning average.
+2022-11-29 10:32:46,657 Recieved 5 values from measurement ([41, 42, 43, 44, 45]). Returning average.
+2022-11-29 10:32:47,274 Recieved 5 values from measurement ([47, 48, 49, 0, 1]). Returning average.
+2022-11-29 10:32:47,888 Recieved 5 values from measurement ([3, 4, 5, 6, 7]). Returning average.
+2022-11-29 10:32:48,511 Recieved 5 values from measurement ([9, 10, 11, 12, 13]). Returning average.
+2022-11-29 10:32:49,114 Recieved 5 values from measurement ([15, 16, 17, 18, 19]). Returning average.
+2022-11-29 10:32:49,717 Recieved 5 values from measurement ([21, 22, 23, 24, 25]). Returning average.
+2022-11-29 10:32:50,324 Recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average.
+2022-11-29 10:32:50,938 Recieved 6 values from measurement ([33, 34, 35, 36, 37, 38]). Returning average.
+2022-11-29 10:32:51,550 Recieved 5 values from measurement ([40, 41, 42, 43, 44]). Returning average.
+2022-11-29 10:32:52,183 Recieved 5 values from measurement ([46, 47, 48, 49, 0]). Returning average.
+2022-11-29 10:32:52,817 Recieved 5 values from measurement ([2, 3, 4, 5, 6]). Returning average.
+2022-11-29 10:32:53,437 Recieved 5 values from measurement ([9, 10, 11, 12, 13]). Returning average.
+2022-11-29 10:32:54,053 Recieved 5 values from measurement ([15, 16, 17, 18, 19]). Returning average.
+2022-11-29 10:32:54,660 Recieved 5 values from measurement ([21, 22, 23, 24, 25]). Returning average.
+2022-11-29 10:32:55,267 Recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average.
+2022-11-29 10:32:55,870 Recieved 5 values from measurement ([33, 34, 35, 36, 37]). Returning average.
+2022-11-29 10:32:56,476 Recieved 5 values from measurement ([39, 40, 41, 42, 43]). Returning average.
+2022-11-29 10:32:57,091 Recieved 5 values from measurement ([45, 46, 47, 48, 49]). Returning average.
+2022-11-29 10:32:57,693 Recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average.
+2022-11-29 10:32:58,307 Recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average.
+2022-11-29 10:32:58,917 Recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average.
+2022-11-29 10:32:59,531 Recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average.
+2022-11-29 10:33:00,138 Recieved 5 values from measurement ([26, 27, 28, 29, 30]). Returning average.
+2022-11-29 10:33:00,750 Recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average.
+2022-11-29 10:33:01,354 Recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average.
+2022-11-29 10:33:01,972 Recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average.
+2022-11-29 10:33:02,588 Recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average.
+2022-11-29 10:33:03,195 Recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average.
+2022-11-29 10:33:03,798 Recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average.
+2022-11-29 10:33:04,407 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 10:33:05,027 Recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average.
+2022-11-29 10:33:05,631 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 10:33:06,247 Recieved 5 values from measurement ([37, 38, 39, 40, 41]). Returning average.
+2022-11-29 10:33:06,858 Recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average.
+2022-11-29 10:33:07,462 Recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average.
+2022-11-29 10:33:08,064 Recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average.
+2022-11-29 10:33:08,723 Recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average.
+2022-11-29 10:33:09,358 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 10:33:09,971 Recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average.
+2022-11-29 10:33:10,575 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 10:33:11,178 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 10:33:11,789 Recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average.
+2022-11-29 10:33:12,398 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 10:33:13,000 Recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average.
+2022-11-29 10:33:13,620 Recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average.
+2022-11-29 10:33:14,256 Recieved 6 values from measurement ([16, 17, 18, 19, 20, 21]). Returning average.
+2022-11-29 10:33:14,862 Recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average.
+2022-11-29 10:33:15,464 Recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average.
+2022-11-29 10:33:16,071 Recieved 5 values from measurement ([35, 36, 37, 38, 39]). Returning average.
+2022-11-29 10:33:16,680 Recieved 5 values from measurement ([41, 42, 43, 44, 45]). Returning average.
+2022-11-29 10:33:17,293 Recieved 5 values from measurement ([47, 48, 49, 0, 1]). Returning average.
+2022-11-29 10:33:17,919 Recieved 5 values from measurement ([3, 4, 5, 6, 7]). Returning average.
+2022-11-29 10:33:18,538 Recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average.
+2022-11-29 10:33:19,141 Recieved 5 values from measurement ([16, 17, 18, 19, 20]). Returning average.
+2022-11-29 10:33:19,755 Recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average.
+2022-11-29 10:33:20,365 Recieved 5 values from measurement ([28, 29, 30, 31, 32]). Returning average.
+2022-11-29 10:33:21,012 Recieved 5 values from measurement ([34, 35, 36, 37, 38]). Returning average.
+2022-11-29 10:33:21,615 Recieved 5 values from measurement ([40, 41, 42, 43, 44]). Returning average.
+2022-11-29 10:33:22,221 Recieved 5 values from measurement ([46, 47, 48, 49, 0]). Returning average.
+2022-11-29 10:33:22,827 Recieved 5 values from measurement ([2, 3, 4, 5, 6]). Returning average.
+2022-11-29 10:33:23,466 Recieved 5 values from measurement ([9, 10, 11, 12, 13]). Returning average.
+2022-11-29 10:33:24,092 Recieved 5 values from measurement ([15, 16, 17, 18, 19]). Returning average.
+2022-11-29 10:33:24,759 Recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average.
+2022-11-29 10:33:25,368 Recieved 5 values from measurement ([28, 29, 30, 31, 32]). Returning average.
+2022-11-29 10:33:25,975 Recieved 5 values from measurement ([34, 35, 36, 37, 38]). Returning average.
+2022-11-29 10:33:26,588 Recieved 5 values from measurement ([40, 41, 42, 43, 44]). Returning average.
+2022-11-29 10:33:27,203 Recieved 5 values from measurement ([46, 47, 48, 49, 0]). Returning average.
+2022-11-29 10:33:27,811 Recieved 5 values from measurement ([2, 3, 4, 5, 6]). Returning average.
+2022-11-29 10:51:59,871 STARTING NEW SESSION
+2022-11-29 10:52:42,553 STARTING NEW SESSION
+2022-11-29 10:52:48,362 Recieved 5 values from measurement ([3, 4, 5, 6, 7]). Returning average.
+2022-11-29 10:52:48,972 Recieved 5 values from measurement ([9, 10, 11, 12, 13]). Returning average.
+2022-11-29 10:52:49,577 Recieved 5 values from measurement ([15, 16, 17, 18, 19]). Returning average.
+2022-11-29 10:52:50,188 Recieved 5 values from measurement ([21, 22, 23, 24, 25]). Returning average.
+2022-11-29 10:52:50,796 Recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average.
+2022-11-29 10:52:51,402 Recieved 5 values from measurement ([33, 34, 35, 36, 37]). Returning average.
+2022-11-29 10:52:52,009 Recieved 5 values from measurement ([39, 40, 41, 42, 43]). Returning average.
+2022-11-29 10:52:52,615 Recieved 5 values from measurement ([45, 46, 47, 48, 49]). Returning average.
+2022-11-29 10:52:53,217 Recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average.
+2022-11-29 10:52:53,819 Recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average.
+2022-11-29 10:52:54,421 Recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average.
+2022-11-29 10:52:55,023 Recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average.
+2022-11-29 10:52:55,634 Recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average.
+2022-11-29 10:52:56,237 Recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average.
+2022-11-29 10:52:56,839 Recieved 5 values from measurement ([37, 38, 39, 40, 41]). Returning average.
+2022-11-29 10:52:57,446 Recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average.
+2022-11-29 10:52:58,049 Recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average.
+2022-11-29 10:52:58,661 Recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average.
+2022-11-29 10:52:59,266 Recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average.
+2022-11-29 10:52:59,868 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 10:53:00,469 Recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average.
+2022-11-29 10:53:01,076 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 10:53:01,681 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 10:53:02,291 Recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average.
+2022-11-29 10:53:02,895 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 10:53:03,502 Recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average.
+2022-11-29 10:53:04,105 Recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average.
+2022-11-29 10:53:04,707 Recieved 5 values from measurement ([16, 17, 18, 19, 20]). Returning average.
+2022-11-29 10:53:05,311 Recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average.
+2022-11-29 10:53:05,913 Recieved 5 values from measurement ([28, 29, 30, 31, 32]). Returning average.
+2022-11-29 10:53:06,517 Recieved 5 values from measurement ([34, 35, 36, 37, 38]). Returning average.
+2022-11-29 10:53:07,119 Recieved 5 values from measurement ([40, 41, 42, 43, 44]). Returning average.
+2022-11-29 10:53:07,721 Recieved 5 values from measurement ([46, 47, 48, 49, 0]). Returning average.
+2022-11-29 10:53:08,323 Recieved 5 values from measurement ([2, 3, 4, 5, 6]). Returning average.
+2022-11-29 10:53:08,925 Recieved 5 values from measurement ([8, 9, 10, 11, 12]). Returning average.
+2022-11-29 10:53:09,528 Recieved 5 values from measurement ([14, 15, 16, 17, 18]). Returning average.
+2022-11-29 10:53:10,131 Recieved 5 values from measurement ([20, 21, 22, 23, 24]). Returning average.
+2022-11-29 10:53:10,735 Recieved 5 values from measurement ([26, 27, 28, 29, 30]). Returning average.
+2022-11-29 10:53:11,336 Recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average.
+2022-11-29 10:53:11,940 Recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average.
+2022-11-29 10:53:12,543 Recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average.
+2022-11-29 10:53:13,146 Recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average.
+2022-11-29 10:53:13,760 Recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average.
+2022-11-29 10:53:14,362 Recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average.
+2022-11-29 10:53:14,965 Recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average.
+2022-11-29 10:53:15,616 Recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average.
+2022-11-29 10:53:16,220 Recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average.
+2022-11-29 10:53:16,822 Recieved 5 values from measurement ([37, 38, 39, 40, 41]). Returning average.
+2022-11-29 10:53:17,434 Recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average.
+2022-11-29 10:53:18,039 Recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average.
+2022-11-29 10:53:18,641 Recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average.
+2022-11-29 10:53:19,243 Recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average.
+2022-11-29 10:53:19,847 Recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average.
+2022-11-29 10:53:20,457 Recieved 6 values from measurement ([23, 24, 25, 26, 27, 28]). Returning average.
+2022-11-29 10:53:21,086 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 10:53:21,721 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 10:53:22,326 Recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average.
+2022-11-29 10:53:22,929 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 10:53:23,531 Recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average.
+2022-11-29 10:53:24,137 Recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average.
+2022-11-29 10:53:24,745 Recieved 5 values from measurement ([16, 17, 18, 19, 20]). Returning average.
+2022-11-29 10:53:25,350 Recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average.
+2022-11-29 10:53:25,959 Recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average.
+2022-11-29 10:53:26,562 Recieved 5 values from measurement ([35, 36, 37, 38, 39]). Returning average.
+2022-11-29 10:53:27,166 Recieved 5 values from measurement ([41, 42, 43, 44, 45]). Returning average.
+2022-11-29 10:53:27,769 Recieved 5 values from measurement ([47, 48, 49, 0, 1]). Returning average.
+2022-11-29 10:53:28,370 Recieved 5 values from measurement ([3, 4, 5, 6, 7]). Returning average.
+2022-11-29 10:53:28,990 Recieved 5 values from measurement ([9, 10, 11, 12, 13]). Returning average.
+2022-11-29 10:53:29,594 Recieved 5 values from measurement ([15, 16, 17, 18, 19]). Returning average.
+2022-11-29 10:53:30,200 Recieved 5 values from measurement ([21, 22, 23, 24, 25]). Returning average.
+2022-11-29 10:53:30,818 Recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average.
+2022-11-29 10:53:31,421 Recieved 5 values from measurement ([33, 34, 35, 36, 37]). Returning average.
+2022-11-29 10:53:32,029 Recieved 5 values from measurement ([39, 40, 41, 42, 43]). Returning average.
+2022-11-29 10:53:32,639 Recieved 5 values from measurement ([45, 46, 47, 48, 49]). Returning average.
+2022-11-29 10:53:33,253 Recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average.
+2022-11-29 10:53:33,856 Recieved 5 values from measurement ([8, 9, 10, 11, 12]). Returning average.
+2022-11-29 10:53:34,463 Recieved 5 values from measurement ([14, 15, 16, 17, 18]). Returning average.
+2022-11-29 10:53:35,065 Recieved 5 values from measurement ([20, 21, 22, 23, 24]). Returning average.
+2022-11-29 10:53:35,671 Recieved 5 values from measurement ([26, 27, 28, 29, 30]). Returning average.
+2022-11-29 10:53:36,273 Recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average.
+2022-11-29 10:53:36,886 Recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average.
+2022-11-29 10:53:37,511 Recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average.
+2022-11-29 10:53:38,115 Recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average.
+2022-11-29 10:53:38,725 Recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average.
+2022-11-29 10:53:39,330 Recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average.
+2022-11-29 10:53:39,935 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 10:53:40,539 Recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average.
+2022-11-29 10:53:41,141 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 10:53:41,750 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 10:53:42,355 Recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average.
+2022-11-29 10:53:42,962 Recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average.
+2022-11-29 10:53:43,563 Recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average.
+2022-11-29 10:53:44,166 Recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average.
+2022-11-29 10:53:44,769 Recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average.
+2022-11-29 10:53:45,378 Recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average.
+2022-11-29 10:53:45,989 Recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average.
+2022-11-29 10:53:46,592 Recieved 5 values from measurement ([35, 36, 37, 38, 39]). Returning average.
+2022-11-29 10:53:47,200 Recieved 5 values from measurement ([41, 42, 43, 44, 45]). Returning average.
+2022-11-29 10:53:47,806 Recieved 5 values from measurement ([47, 48, 49, 0, 1]). Returning average.
+2022-11-29 10:53:48,410 Recieved 5 values from measurement ([3, 4, 5, 6, 7]). Returning average.
+2022-11-29 10:53:49,011 Recieved 5 values from measurement ([9, 10, 11, 12, 13]). Returning average.
+2022-11-29 10:53:49,614 Recieved 5 values from measurement ([15, 16, 17, 18, 19]). Returning average.
+2022-11-29 10:53:50,220 Recieved 5 values from measurement ([21, 22, 23, 24, 25]). Returning average.
+2022-11-29 10:53:50,823 Recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average.
+2022-11-29 10:53:51,425 Recieved 5 values from measurement ([33, 34, 35, 36, 37]). Returning average.
+2022-11-29 10:53:52,028 Recieved 5 values from measurement ([39, 40, 41, 42, 43]). Returning average.
+2022-11-29 10:53:52,631 Recieved 5 values from measurement ([45, 46, 47, 48, 49]). Returning average.
+2022-11-29 10:53:53,237 Recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average.
+2022-11-29 10:53:53,842 Recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average.
+2022-11-29 10:53:54,454 Recieved 6 values from measurement ([13, 14, 15, 16, 17, 18]). Returning average.
+2022-11-29 10:53:55,065 Recieved 5 values from measurement ([20, 21, 22, 23, 24]). Returning average.
+2022-11-29 10:53:55,675 Recieved 5 values from measurement ([26, 27, 28, 29, 30]). Returning average.
+2022-11-29 10:53:56,278 Recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average.
+2022-11-29 10:53:56,881 Recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average.
+2022-11-29 10:53:57,486 Recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average.
+2022-11-29 10:53:58,094 Recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average.
+2022-11-29 10:53:58,701 Recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average.
+2022-11-29 10:53:59,310 Recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average.
+2022-11-29 10:53:59,913 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 10:54:00,591 Recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average.
+2022-11-29 10:54:01,206 Recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average.
+2022-11-29 15:00:49,110 STARTING NEW SESSION
+2022-11-29 15:00:59,341 Recieved 5 values from measurement ([47, 48, 49, 0, 1]). Returning average.
+2022-11-29 15:00:59,977 Recieved 5 values from measurement ([3, 4, 5, 6, 7]). Returning average.
+2022-11-29 15:01:00,582 Recieved 5 values from measurement ([9, 10, 11, 12, 13]). Returning average.
+2022-11-29 15:01:01,199 Recieved 5 values from measurement ([15, 16, 17, 18, 19]). Returning average.
+2022-11-29 15:01:01,800 Recieved 5 values from measurement ([21, 22, 23, 24, 25]). Returning average.
+2022-11-29 15:01:02,404 Recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average.
+2022-11-29 15:01:03,012 Recieved 6 values from measurement ([33, 34, 35, 36, 37, 38]). Returning average.
+2022-11-29 15:01:03,620 Recieved 5 values from measurement ([40, 41, 42, 43, 44]). Returning average.
+2022-11-29 15:01:04,229 Recieved 5 values from measurement ([46, 47, 48, 49, 0]). Returning average.
+2022-11-29 15:01:04,838 Recieved 5 values from measurement ([2, 3, 4, 5, 6]). Returning average.
+2022-11-29 15:01:05,444 Recieved 5 values from measurement ([8, 9, 10, 11, 12]). Returning average.
+2022-11-29 15:01:06,063 Recieved 5 values from measurement ([14, 15, 16, 17, 18]). Returning average.
+2022-11-29 15:01:06,668 Recieved 5 values from measurement ([20, 21, 22, 23, 24]). Returning average.
+2022-11-29 15:01:07,283 Recieved 5 values from measurement ([26, 27, 28, 29, 30]). Returning average.
+2022-11-29 15:01:07,891 Recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average.
+2022-11-29 15:01:08,501 Recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average.
+2022-11-29 15:01:09,138 Recieved 5 values from measurement ([45, 46, 47, 48, 49]). Returning average.
+2022-11-29 15:01:09,756 Recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average.
+2022-11-29 15:01:10,369 Recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average.
+2022-11-29 15:01:10,977 Recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average.
+2022-11-29 15:01:11,592 Recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average.
+2022-11-29 15:01:12,196 Recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average.
+2022-11-29 15:01:12,805 Recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average.
+2022-11-29 15:01:13,412 Recieved 6 values from measurement ([37, 38, 39, 40, 41, 42]). Returning average.
+2022-11-29 15:01:14,031 Recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average.
+2022-11-29 15:01:14,637 Recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average.
+2022-11-29 15:01:15,247 Recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average.
+2022-11-29 15:01:15,851 Recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average.
+2022-11-29 15:01:16,453 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 15:01:17,060 Recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average.
+2022-11-29 15:01:17,664 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 15:01:18,271 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 15:01:18,892 Recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average.
+2022-11-29 15:01:19,495 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 15:01:20,112 Recieved 6 values from measurement ([4, 5, 6, 7, 8, 9]). Returning average.
+2022-11-29 15:01:20,715 Recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average.
+2022-11-29 15:01:21,325 Recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average.
+2022-11-29 15:01:21,937 Recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average.
+2022-11-29 15:01:22,544 Recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average.
+2022-11-29 15:01:23,156 Recieved 5 values from measurement ([35, 36, 37, 38, 39]). Returning average.
+2022-11-29 15:01:23,777 Recieved 5 values from measurement ([41, 42, 43, 44, 45]). Returning average.
+2022-11-29 15:01:24,392 Recieved 5 values from measurement ([47, 48, 49, 0, 1]). Returning average.
+2022-11-29 15:01:24,994 Recieved 5 values from measurement ([3, 4, 5, 6, 7]). Returning average.
+2022-11-29 15:23:19,269 STARTING NEW SESSION
+2022-11-29 15:23:24,897 Recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average.
+2022-11-29 15:23:25,512 Recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average.
+2022-11-29 15:23:26,140 Recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average.
+2022-11-29 15:23:26,745 Recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average.
+2022-11-29 15:23:27,348 Recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average.
+2022-11-29 15:23:27,953 Recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average.
+2022-11-29 15:23:28,557 Recieved 5 values from measurement ([37, 38, 39, 40, 41]). Returning average.
+2022-11-29 15:23:29,161 Recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average.
+2022-11-29 15:23:29,762 Recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average.
+2022-11-29 15:23:30,366 Recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average.
+2022-11-29 15:23:30,972 Recieved 6 values from measurement ([11, 12, 13, 14, 15, 16]). Returning average.
+2022-11-29 15:23:31,578 Recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average.
+2022-11-29 15:23:32,187 Recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average.
+2022-11-29 15:23:32,790 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 15:23:33,394 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 15:23:33,999 Recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average.
+2022-11-29 15:23:34,604 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 15:23:35,215 Recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average.
+2022-11-29 15:23:35,817 Recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average.
+2022-11-29 15:23:36,426 Recieved 5 values from measurement ([16, 17, 18, 19, 20]). Returning average.
+2022-11-29 15:23:37,052 Recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average.
+2022-11-29 15:23:37,655 Recieved 5 values from measurement ([28, 29, 30, 31, 32]). Returning average.
+2022-11-29 15:23:38,259 Recieved 5 values from measurement ([34, 35, 36, 37, 38]). Returning average.
+2022-11-29 15:23:38,888 Recieved 5 values from measurement ([41, 42, 43, 44, 45]). Returning average.
+2022-11-29 15:23:46,540 Recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average.
+2022-11-29 15:23:47,146 Recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average.
+2022-11-29 15:23:47,756 Recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average.
+2022-11-29 15:23:48,374 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 15:23:48,986 Recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average.
+2022-11-29 15:23:49,594 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 15:23:50,198 Recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average.
+2022-11-29 15:23:50,804 Recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average.
+2022-11-29 15:23:51,411 Recieved 5 values from measurement ([16, 17, 18, 19, 20]). Returning average.
+2022-11-29 15:23:52,021 Recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average.
+2022-11-29 15:23:57,147 Recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average.
+2022-11-29 15:23:57,779 Recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average.
+2022-11-29 15:23:58,384 Recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average.
+2022-11-29 15:23:58,994 Recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average.
+2022-11-29 15:23:59,600 Recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average.
+2022-11-29 15:24:00,205 Recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average.
+2022-11-29 15:24:00,823 Recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average.
+2022-11-29 15:24:01,426 Recieved 5 values from measurement ([16, 17, 18, 19, 20]). Returning average.
+2022-11-29 15:24:02,034 Recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average.
+2022-11-29 15:24:02,642 Recieved 5 values from measurement ([28, 29, 30, 31, 32]). Returning average.
+2022-11-29 15:24:03,258 Recieved 5 values from measurement ([34, 35, 36, 37, 38]). Returning average.
+2022-11-29 15:35:11,713 STARTING NEW SESSION
+2022-11-29 15:35:18,530 GridSearch:     recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average: 15.0.
+2022-11-29 15:35:19,143 GridSearch:     recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average: 21.0.
+2022-11-29 15:35:19,769 GridSearch:     recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average: 27.0.
+2022-11-29 15:35:20,372 GridSearch:     recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average: 33.0.
+2022-11-29 15:35:20,981 GridSearch:     recieved 5 values from measurement ([37, 38, 39, 40, 41]). Returning average: 39.0.
+2022-11-29 15:35:21,610 GridSearch:     recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average: 45.0.
+2022-11-29 15:35:22,224 GridSearch:     recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average: 2.0.
+2022-11-29 15:35:22,831 GridSearch:     recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average: 8.0.
+2022-11-29 15:35:23,438 GridSearch:     recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average: 14.0.
+2022-11-29 15:35:24,049 GridSearch:     recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average: 20.0.
+2022-11-29 15:35:24,654 GridSearch:     recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average: 26.0.
+2022-11-29 15:35:25,263 GridSearch:     recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average: 32.0.
+2022-11-29 15:35:25,869 GridSearch:     recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average: 38.0.
+2022-11-29 15:35:26,481 GridSearch:     recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average: 44.0.
+2022-11-29 15:35:27,096 GridSearch:     recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average: 20.0.
+2022-11-29 15:35:27,727 GridSearch:     recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average: 7.0.
+2022-11-29 15:35:28,330 GridSearch:     recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average: 13.0.
+2022-11-29 15:35:28,782 GridSearch:     Finished writing to file!
+2022-11-29 15:44:05,827 STARTING NEW SESSION
+2022-11-29 15:44:10,984 GridSearch:     recieved 5 values from measurement ([46, 47, 48, 49, 0]). Returning average: 38.0.
+2022-11-29 15:44:11,595 GridSearch:     recieved 5 values from measurement ([2, 3, 4, 5, 6]). Returning average: 4.0.
+2022-11-29 15:44:12,197 GridSearch:     recieved 5 values from measurement ([8, 9, 10, 11, 12]). Returning average: 10.0.
+2022-11-29 15:44:12,806 GridSearch:     recieved 5 values from measurement ([14, 15, 16, 17, 18]). Returning average: 16.0.
+2022-11-29 15:44:13,436 GridSearch:     recieved 5 values from measurement ([21, 22, 23, 24, 25]). Returning average: 23.0.
+2022-11-29 15:44:14,044 GridSearch:     recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average: 29.0.
+2022-11-29 15:44:14,648 GridSearch:     recieved 5 values from measurement ([33, 34, 35, 36, 37]). Returning average: 35.0.
+2022-11-29 15:44:15,253 GridSearch:     recieved 5 values from measurement ([39, 40, 41, 42, 43]). Returning average: 41.0.
+2022-11-29 15:44:15,858 GridSearch:     recieved 5 values from measurement ([45, 46, 47, 48, 49]). Returning average: 47.0.
+2022-11-29 15:44:16,461 GridSearch:     recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average: 3.0.
+2022-11-29 15:44:17,079 GridSearch:     recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average: 9.0.
+2022-11-29 15:44:17,686 GridSearch:     recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average: 15.0.
+2022-11-29 15:44:18,293 GridSearch:     recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average: 21.0.
+2022-11-29 15:44:18,915 GridSearch:     recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average: 27.0.
+2022-11-29 15:44:19,527 GridSearch:     recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average: 33.0.
+2022-11-29 15:44:20,142 GridSearch:     recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average: 40.0.
+2022-11-29 15:44:20,748 GridSearch:     recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average: 46.0.
+2022-11-29 15:44:21,349 GridSearch:     recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average: 2.0.
+2022-11-29 15:44:21,959 GridSearch:     recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average: 8.0.
+2022-11-29 15:44:22,561 GridSearch:     recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average: 14.0.
+2022-11-29 15:44:23,216 GridSearch:     recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average: 20.0.
+2022-11-29 15:44:23,821 GridSearch:     recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average: 26.0.
+2022-11-29 15:44:24,199 GridSearch:     Finished writing to file!
+2022-11-29 15:46:41,747 STARTING NEW SESSION
+2022-11-30 09:57:07,441 STARTING NEW SESSION
+2022-11-30 09:57:46,792 STARTING NEW SESSION
+2022-11-30 09:57:50,282 Output:         Attempting to set value of Velocity filter [V] to 0.
+2022-11-30 09:57:50,285 Output:         Attempting to set value of Magnet [mA] to 0.
+2022-11-30 09:57:50,642 GridSearch:     recieved 5 values from measurement ([33, 34, 35, 36, 37]). Returning average: 35.0.
+2022-11-30 09:57:50,933 Output:         Attempting to set value of Magnet [mA] to 100.
+2022-11-30 09:57:51,246 GridSearch:     recieved 5 values from measurement ([39, 40, 41, 42, 43]). Returning average: 41.0.
+2022-11-30 09:57:51,538 Output:         Attempting to set value of Magnet [mA] to 200.
+2022-11-30 09:57:51,850 GridSearch:     recieved 5 values from measurement ([45, 46, 47, 48, 49]). Returning average: 47.0.
+2022-11-30 09:57:52,200 Output:         Attempting to set value of Magnet [mA] to 300.
+2022-11-30 09:57:52,464 GridSearch:     recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average: 3.0.
+2022-11-30 09:57:53,069 GridSearch:     recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average: 9.0.
+2022-11-30 09:57:53,230 Output:         Attempting to set value of Magnet [mA] to 400.
+2022-11-30 09:57:53,543 Output:         Attempting to set value of Magnet [mA] to 500.
+2022-11-30 09:57:53,671 GridSearch:     recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average: 15.0.
+2022-11-30 09:57:53,886 Output:         Attempting to set value of Magnet [mA] to 600.
+2022-11-30 09:57:54,275 GridSearch:     recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average: 21.0.
+2022-11-30 09:57:54,389 Output:         Attempting to set value of Magnet [mA] to 700.
+2022-11-30 09:57:54,879 GridSearch:     recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average: 27.0.
+2022-11-30 09:57:55,255 Output:         Attempting to set value of Magnet [mA] to 800.
+2022-11-30 09:57:55,482 GridSearch:     recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average: 33.0.
+2022-11-30 09:57:56,089 GridSearch:     recieved 5 values from measurement ([37, 38, 39, 40, 41]). Returning average: 39.0.
+2022-11-30 09:57:56,170 Output:         Attempting to set value of Magnet [mA] to 900.
+2022-11-30 09:57:56,536 Output:         Attempting to set value of Magnet [mA] to 1000.
+2022-11-30 09:57:56,701 GridSearch:     recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average: 46.0.
+2022-11-30 09:57:57,253 Output:         Attempting to set value of Velocity filter [V] to 30.
+2022-11-30 09:57:57,308 GridSearch:     recieved 5 values from measurement ([0, 1, 2, 3, 4]). Returning average: 2.0.
+2022-11-30 09:57:57,858 Output:         Attempting to set value of Magnet [mA] to 900.
+2022-11-30 09:57:57,911 GridSearch:     recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average: 8.0.
+2022-11-30 09:57:58,395 Output:         Attempting to set value of Magnet [mA] to 800.
+2022-11-30 09:57:58,536 GridSearch:     recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average: 14.0.
+2022-11-30 09:57:59,066 Output:         Attempting to set value of Magnet [mA] to 700.
+2022-11-30 09:57:59,157 GridSearch:     recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average: 20.0.
+2022-11-30 09:57:59,682 Output:         Attempting to set value of Magnet [mA] to 600.
+2022-11-30 09:57:59,769 GridSearch:     recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average: 26.0.
+2022-11-30 09:58:00,076 Output:         Attempting to set value of Magnet [mA] to 500.
+2022-11-30 09:58:00,386 GridSearch:     recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average: 32.0.
+2022-11-30 09:58:00,634 Output:         Attempting to set value of Magnet [mA] to 400.
+2022-11-30 09:58:01,004 GridSearch:     recieved 5 values from measurement ([37, 38, 39, 40, 41]). Returning average: 39.0.
+2022-11-30 09:58:01,293 Output:         Attempting to set value of Magnet [mA] to 300.
+2022-11-30 09:58:01,614 GridSearch:     recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average: 45.0.
+2022-11-30 09:58:02,035 Output:         Attempting to set value of Magnet [mA] to 200.
+2022-11-30 09:58:02,231 GridSearch:     recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average: 11.0.
+2022-11-30 09:58:02,528 Output:         Attempting to set value of Magnet [mA] to 100.
+2022-11-30 09:58:02,833 GridSearch:     recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average: 7.0.
+2022-11-30 09:58:02,974 Output:         Attempting to set value of Magnet [mA] to 0.
+2022-11-30 09:58:03,442 GridSearch:     recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average: 13.0.
+2022-11-30 09:58:03,718 Output:         Attempting to set value of Velocity filter [V] to 60.
+2022-11-30 09:58:04,049 GridSearch:     recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average: 19.0.
+2022-11-30 09:58:04,419 Output:         Attempting to set value of Magnet [mA] to 100.
+2022-11-30 09:58:04,673 GridSearch:     recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average: 25.0.
+2022-11-30 09:58:05,164 Output:         Attempting to set value of Magnet [mA] to 200.
+2022-11-30 09:58:05,293 GridSearch:     recieved 6 values from measurement ([29, 30, 31, 32, 33, 34]). Returning average: 31.5.
+2022-11-30 09:58:05,760 Output:         Attempting to set value of Magnet [mA] to 300.
+2022-11-30 09:58:05,906 GridSearch:     recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average: 38.0.
+2022-11-30 09:58:06,164 Output:         Attempting to set value of Magnet [mA] to 400.
+2022-11-30 09:58:06,519 GridSearch:     recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average: 44.0.
+2022-11-30 09:58:06,800 Output:         Attempting to set value of Magnet [mA] to 500.
+2022-11-30 09:58:07,122 GridSearch:     recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average: 20.0.
+2022-11-30 09:58:07,511 Output:         Attempting to set value of Magnet [mA] to 600.
+2022-11-30 09:58:07,733 GridSearch:     recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average: 6.0.
+2022-11-30 09:58:08,146 Output:         Attempting to set value of Magnet [mA] to 700.
+2022-11-30 09:58:08,342 GridSearch:     recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average: 12.0.
+2022-11-30 09:58:08,691 Output:         Attempting to set value of Magnet [mA] to 800.
+2022-11-30 09:58:08,952 GridSearch:     recieved 5 values from measurement ([16, 17, 18, 19, 20]). Returning average: 18.0.
+2022-11-30 09:58:09,305 Output:         Attempting to set value of Magnet [mA] to 900.
+2022-11-30 09:58:09,557 GridSearch:     recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average: 24.0.
+2022-11-30 09:58:09,977 Output:         Attempting to set value of Magnet [mA] to 1000.
+2022-11-30 09:58:10,170 GridSearch:     recieved 5 values from measurement ([28, 29, 30, 31, 32]). Returning average: 30.0.
+2022-11-30 09:58:10,565 Output:         Attempting to set value of Velocity filter [V] to 90.
+2022-11-30 09:58:10,775 GridSearch:     recieved 5 values from measurement ([34, 35, 36, 37, 38]). Returning average: 36.0.
+2022-11-30 09:58:11,038 Output:         Attempting to set value of Magnet [mA] to 900.
+2022-11-30 09:58:11,386 GridSearch:     recieved 5 values from measurement ([40, 41, 42, 43, 44]). Returning average: 42.0.
+2022-11-30 09:58:11,612 Output:         Attempting to set value of Magnet [mA] to 800.
+2022-11-30 09:58:12,013 GridSearch:     recieved 5 values from measurement ([47, 48, 49, 0, 1]). Returning average: 29.0.
+2022-11-30 09:58:12,278 Output:         Attempting to set value of Magnet [mA] to 700.
+2022-11-30 09:58:12,616 GridSearch:     recieved 5 values from measurement ([3, 4, 5, 6, 7]). Returning average: 5.0.
+2022-11-30 09:58:13,001 Output:         Attempting to set value of Magnet [mA] to 600.
+2022-11-30 09:58:13,228 GridSearch:     recieved 5 values from measurement ([9, 10, 11, 12, 13]). Returning average: 11.0.
+2022-11-30 09:58:13,864 GridSearch:     recieved 5 values from measurement ([15, 16, 17, 18, 19]). Returning average: 17.0.
+2022-11-30 09:58:13,870 Output:         Attempting to set value of Magnet [mA] to 500.
+2022-11-30 09:58:14,230 Output:         Attempting to set value of Magnet [mA] to 400.
+2022-11-30 09:58:14,467 GridSearch:     recieved 5 values from measurement ([21, 22, 23, 24, 25]). Returning average: 23.0.
+2022-11-30 09:58:15,074 GridSearch:     recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average: 29.0.
+2022-11-30 09:58:15,225 Output:         Attempting to set value of Magnet [mA] to 300.
+2022-11-30 09:58:15,700 GridSearch:     recieved 5 values from measurement ([34, 35, 36, 37, 38]). Returning average: 36.0.
+2022-11-30 09:58:15,999 Output:         Attempting to set value of Magnet [mA] to 200.
+2022-11-30 09:58:16,319 GridSearch:     recieved 5 values from measurement ([40, 41, 42, 43, 44]). Returning average: 42.0.
+2022-11-30 09:58:16,799 Output:         Attempting to set value of Magnet [mA] to 100.
+2022-11-30 09:58:16,940 GridSearch:     recieved 5 values from measurement ([46, 47, 48, 49, 0]). Returning average: 38.0.
+2022-11-30 09:58:17,176 Output:         Attempting to set value of Magnet [mA] to 0.
+2022-11-30 09:58:17,545 GridSearch:     recieved 5 values from measurement ([2, 3, 4, 5, 6]). Returning average: 4.0.
+2022-11-30 09:58:17,783 Output:         Attempting to set value of Velocity filter [V] to 120.
+2022-11-30 09:58:18,167 GridSearch:     recieved 5 values from measurement ([8, 9, 10, 11, 12]). Returning average: 10.0.
+2022-11-30 09:58:18,351 Output:         Attempting to set value of Magnet [mA] to 100.
+2022-11-30 09:58:18,785 GridSearch:     recieved 5 values from measurement ([14, 15, 16, 17, 18]). Returning average: 16.0.
+2022-11-30 09:58:18,933 Output:         Attempting to set value of Magnet [mA] to 200.
+2022-11-30 09:58:19,397 GridSearch:     recieved 6 values from measurement ([20, 21, 22, 23, 24, 25]). Returning average: 22.5.
+2022-11-30 09:58:19,648 Output:         Attempting to set value of Magnet [mA] to 300.
+2022-11-30 09:58:20,005 GridSearch:     recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average: 29.0.
+2022-11-30 09:58:20,569 Output:         Attempting to set value of Magnet [mA] to 400.
+2022-11-30 09:58:20,607 GridSearch:     recieved 5 values from measurement ([33, 34, 35, 36, 37]). Returning average: 35.0.
+2022-11-30 09:58:21,216 GridSearch:     recieved 5 values from measurement ([39, 40, 41, 42, 43]). Returning average: 41.0.
+2022-11-30 09:58:21,280 Output:         Attempting to set value of Magnet [mA] to 500.
+2022-11-30 09:58:21,840 GridSearch:     recieved 5 values from measurement ([45, 46, 47, 48, 49]). Returning average: 47.0.
+2022-11-30 09:58:21,888 Output:         Attempting to set value of Magnet [mA] to 600.
+2022-11-30 09:58:22,257 Output:         Attempting to set value of Magnet [mA] to 700.
+2022-11-30 09:58:22,443 GridSearch:     recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average: 3.0.
+2022-11-30 09:58:23,044 Output:         Attempting to set value of Magnet [mA] to 800.
+2022-11-30 09:58:23,061 GridSearch:     recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average: 9.0.
+2022-11-30 09:58:23,690 GridSearch:     recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average: 15.0.
+2022-11-30 09:58:23,794 Output:         Attempting to set value of Magnet [mA] to 900.
+2022-11-30 09:58:24,293 GridSearch:     recieved 6 values from measurement ([19, 20, 21, 22, 23, 24]). Returning average: 21.5.
+2022-11-30 09:58:24,513 Output:         Attempting to set value of Magnet [mA] to 1000.
+2022-11-30 09:58:24,895 GridSearch:     recieved 5 values from measurement ([26, 27, 28, 29, 30]). Returning average: 28.0.
+2022-11-30 09:58:25,191 Output:         Attempting to set value of Velocity filter [V] to 150.
+2022-11-30 09:58:25,529 GridSearch:     recieved 5 values from measurement ([32, 33, 34, 35, 36]). Returning average: 34.0.
+2022-11-30 09:58:26,118 Output:         Attempting to set value of Magnet [mA] to 900.
+2022-11-30 09:58:26,170 GridSearch:     recieved 5 values from measurement ([38, 39, 40, 41, 42]). Returning average: 40.0.
+2022-11-30 09:58:26,789 GridSearch:     recieved 5 values from measurement ([44, 45, 46, 47, 48]). Returning average: 46.0.
+2022-11-30 09:58:26,799 Output:         Attempting to set value of Magnet [mA] to 800.
+2022-11-30 09:58:27,286 Output:         Attempting to set value of Magnet [mA] to 700.
+2022-11-30 09:58:27,405 GridSearch:     recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average: 3.0.
+2022-11-30 09:58:27,912 Output:         Attempting to set value of Magnet [mA] to 600.
+2022-11-30 09:58:28,016 GridSearch:     recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average: 9.0.
+2022-11-30 09:58:28,332 Output:         Attempting to set value of Magnet [mA] to 500.
+2022-11-30 09:58:28,634 GridSearch:     recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average: 15.0.
+2022-11-30 09:58:29,152 Output:         Attempting to set value of Magnet [mA] to 400.
+2022-11-30 09:58:29,238 GridSearch:     recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average: 21.0.
+2022-11-30 09:58:29,857 GridSearch:     recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average: 27.0.
+2022-11-30 09:58:30,170 Output:         Attempting to set value of Magnet [mA] to 300.
+2022-11-30 09:58:30,479 GridSearch:     recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average: 33.0.
+2022-11-30 09:58:30,702 Output:         Attempting to set value of Magnet [mA] to 200.
+2022-11-30 09:58:31,086 GridSearch:     recieved 5 values from measurement ([37, 38, 39, 40, 41]). Returning average: 39.0.
+2022-11-30 09:58:31,691 GridSearch:     recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average: 45.0.
+2022-11-30 09:58:31,711 Output:         Attempting to set value of Magnet [mA] to 100.
+2022-11-30 09:58:32,188 Output:         Attempting to set value of Magnet [mA] to 0.
+2022-11-30 09:58:32,294 GridSearch:     recieved 6 values from measurement ([49, 0, 1, 2, 3, 4]). Returning average: 9.833333333333334.
+2022-11-30 09:58:32,898 GridSearch:     recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average: 8.0.
+2022-11-30 09:58:32,906 Output:         Attempting to set value of Velocity filter [V] to 180.
+2022-11-30 09:58:33,352 Output:         Attempting to set value of Magnet [mA] to 100.
+2022-11-30 09:58:33,501 GridSearch:     recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average: 14.0.
+2022-11-30 09:58:33,918 Output:         Attempting to set value of Magnet [mA] to 200.
+2022-11-30 09:58:34,124 GridSearch:     recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average: 20.0.
+2022-11-30 09:58:34,758 GridSearch:     recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average: 26.0.
+2022-11-30 09:58:35,007 Output:         Attempting to set value of Magnet [mA] to 300.
+2022-11-30 09:58:35,362 GridSearch:     recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average: 32.0.
+2022-11-30 09:58:35,976 GridSearch:     recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average: 38.0.
+2022-11-30 09:58:36,034 Output:         Attempting to set value of Magnet [mA] to 400.
+2022-11-30 09:58:36,605 GridSearch:     recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average: 45.0.
+2022-11-30 09:58:37,237 GridSearch:     recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average: 11.0.
+2022-11-30 09:58:37,840 GridSearch:     recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average: 7.0.
+2022-11-30 09:58:38,443 GridSearch:     recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average: 13.0.
+2022-11-30 09:58:39,059 GridSearch:     recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average: 19.0.
+2022-11-30 09:58:39,186 Output:         Attempting to set value of Magnet [mA] to 500.
+2022-11-30 09:58:39,663 GridSearch:     recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average: 25.0.
+2022-11-30 09:58:40,271 GridSearch:     recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average: 31.0.
+2022-11-30 09:58:40,591 Output:         Attempting to set value of Magnet [mA] to 600.
+2022-11-30 09:58:40,929 GridSearch:     recieved 6 values from measurement ([35, 36, 37, 38, 39, 40]). Returning average: 37.5.
+2022-11-30 09:58:41,590 GridSearch:     recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average: 44.0.
+2022-11-30 09:58:42,172 Output:         Attempting to set value of Magnet [mA] to 700.
+2022-11-30 09:58:42,213 GridSearch:     recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average: 11.0.
+2022-11-30 09:58:42,825 GridSearch:     recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average: 7.0.
+2022-11-30 09:58:43,437 GridSearch:     recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average: 13.0.
+2022-11-30 09:58:44,055 GridSearch:     recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average: 19.0.
+2022-11-30 09:58:44,657 GridSearch:     recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average: 25.0.
+2022-11-30 09:58:45,018 Output:         Attempting to set value of Magnet [mA] to 800.
+2022-11-30 09:58:45,276 GridSearch:     recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average: 31.0.
+2022-11-30 09:58:45,935 GridSearch:     recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average: 38.0.
+2022-11-30 09:58:46,547 GridSearch:     recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average: 44.0.
+2022-11-30 09:58:46,732 Output:         Attempting to set value of Magnet [mA] to 900.
+2022-11-30 09:58:47,174 GridSearch:     recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average: 20.0.
+2022-11-30 09:58:47,782 GridSearch:     recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average: 6.0.
+2022-11-30 09:58:48,384 Output:         Attempting to set value of Magnet [mA] to 1000.
+2022-11-30 09:58:48,407 GridSearch:     recieved 6 values from measurement ([10, 11, 12, 13, 14, 15]). Returning average: 12.5.
+2022-11-30 09:58:49,146 GridSearch:     recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average: 20.0.
+2022-11-30 09:58:49,750 GridSearch:     recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average: 26.0.
+2022-11-30 09:58:49,940 Output:         Attempting to set value of Velocity filter [V] to 210.
+2022-11-30 09:58:50,369 GridSearch:     recieved 5 values from measurement ([30, 31, 32, 33, 34]). Returning average: 32.0.
+2022-11-30 09:58:51,012 GridSearch:     recieved 6 values from measurement ([36, 37, 38, 39, 40, 41]). Returning average: 38.5.
+2022-11-30 09:58:51,624 GridSearch:     recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average: 45.0.
+2022-11-30 09:58:51,915 Output:         Attempting to set value of Magnet [mA] to 900.
+2022-11-30 09:58:52,240 GridSearch:     recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average: 11.0.
+2022-11-30 09:58:52,848 GridSearch:     recieved 5 values from measurement ([5, 6, 7, 8, 9]). Returning average: 7.0.
+2022-11-30 09:58:52,899 Output:         Attempting to set value of Magnet [mA] to 800.
+2022-11-30 09:58:53,458 GridSearch:     recieved 5 values from measurement ([11, 12, 13, 14, 15]). Returning average: 13.0.
+2022-11-30 09:58:53,817 Output:         Attempting to set value of Magnet [mA] to 700.
+2022-11-30 09:58:54,063 GridSearch:     recieved 5 values from measurement ([17, 18, 19, 20, 21]). Returning average: 19.0.
+2022-11-30 09:58:54,672 GridSearch:     recieved 5 values from measurement ([23, 24, 25, 26, 27]). Returning average: 25.0.
+2022-11-30 09:58:55,185 Output:         Attempting to set value of Magnet [mA] to 600.
+2022-11-30 09:58:55,287 GridSearch:     recieved 5 values from measurement ([29, 30, 31, 32, 33]). Returning average: 31.0.
+2022-11-30 09:58:55,858 Output:         Attempting to set value of Magnet [mA] to 500.
+2022-11-30 09:58:55,928 GridSearch:     recieved 5 values from measurement ([36, 37, 38, 39, 40]). Returning average: 38.0.
+2022-11-30 09:58:56,538 GridSearch:     recieved 5 values from measurement ([42, 43, 44, 45, 46]). Returning average: 44.0.
+2022-11-30 09:58:56,637 Output:         Attempting to set value of Magnet [mA] to 400.
+2022-11-30 09:58:57,163 GridSearch:     recieved 5 values from measurement ([48, 49, 0, 1, 2]). Returning average: 20.0.
+2022-11-30 09:58:57,425 Output:         Attempting to set value of Magnet [mA] to 300.
+2022-11-30 09:58:57,771 GridSearch:     recieved 5 values from measurement ([4, 5, 6, 7, 8]). Returning average: 6.0.
+2022-11-30 09:58:58,368 Output:         Attempting to set value of Magnet [mA] to 200.
+2022-11-30 09:58:58,380 GridSearch:     recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average: 12.0.
+2022-11-30 09:58:59,152 GridSearch:     recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average: 20.0.
+2022-11-30 09:58:59,727 Output:         Attempting to set value of Magnet [mA] to 100.
+2022-11-30 09:58:59,770 GridSearch:     recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average: 26.0.
+2022-11-30 09:59:00,441 GridSearch:     recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average: 33.0.
+2022-11-30 09:59:01,054 GridSearch:     recieved 5 values from measurement ([37, 38, 39, 40, 41]). Returning average: 39.0.
+2022-11-30 09:59:01,675 GridSearch:     recieved 5 values from measurement ([43, 44, 45, 46, 47]). Returning average: 45.0.
+2022-11-30 09:59:01,928 Output:         Attempting to set value of Magnet [mA] to 0.
+2022-11-30 09:59:02,287 GridSearch:     recieved 5 values from measurement ([49, 0, 1, 2, 3]). Returning average: 11.0.
+2022-11-30 09:59:02,910 GridSearch:     recieved 5 values from measurement ([6, 7, 8, 9, 10]). Returning average: 8.0.
+2022-11-30 09:59:03,526 GridSearch:     recieved 5 values from measurement ([12, 13, 14, 15, 16]). Returning average: 14.0.
+2022-11-30 09:59:04,135 GridSearch:     recieved 5 values from measurement ([18, 19, 20, 21, 22]). Returning average: 20.0.
+2022-11-30 09:59:04,317 Output:         Attempting to set value of Velocity filter [V] to 240.
+2022-11-30 09:59:04,742 GridSearch:     recieved 5 values from measurement ([24, 25, 26, 27, 28]). Returning average: 26.0.
+2022-11-30 09:59:06,889 Output:         Attempting to set value of Magnet [mA] to 100.
+2022-11-30 09:59:10,522 Output:         Attempting to set value of Magnet [mA] to 200.
+2022-11-30 09:59:12,203 Output:         Attempting to set value of Magnet [mA] to 300.
+2022-11-30 09:59:13,882 Output:         Attempting to set value of Magnet [mA] to 400.
+2022-11-30 09:59:16,169 Output:         Attempting to set value of Magnet [mA] to 500.
+2022-11-30 09:59:18,720 Output:         Attempting to set value of Magnet [mA] to 600.
+2022-11-30 09:59:20,914 Output:         Attempting to set value of Magnet [mA] to 700.
+2022-11-30 09:59:23,537 Output:         Attempting to set value of Magnet [mA] to 800.
+2022-11-30 09:59:26,221 Output:         Attempting to set value of Magnet [mA] to 900.
+2022-11-30 09:59:29,738 Output:         Attempting to set value of Magnet [mA] to 1000.
+2022-11-30 09:59:37,505 Output:         Attempting to set value of Velocity filter [V] to 270.
+2022-11-30 09:59:41,807 Output:         Attempting to set value of Magnet [mA] to 900.
+2022-11-30 09:59:48,958 Output:         Attempting to set value of Magnet [mA] to 800.
+2022-11-30 09:59:53,321 Output:         Attempting to set value of Magnet [mA] to 700.
+2022-11-30 09:59:57,207 Output:         Attempting to set value of Magnet [mA] to 600.
+2022-11-30 10:00:01,637 Output:         Attempting to set value of Magnet [mA] to 500.
+2022-11-30 10:00:06,836 Output:         Attempting to set value of Magnet [mA] to 400.
+2022-11-30 10:00:12,620 Output:         Attempting to set value of Magnet [mA] to 300.
+2022-11-30 10:00:14,687 Output:         Attempting to set value of Magnet [mA] to 200.
+2022-11-30 10:00:16,638 Output:         Attempting to set value of Magnet [mA] to 100.
+2022-11-30 10:00:18,910 Output:         Attempting to set value of Magnet [mA] to 0.
+2022-11-30 10:00:21,610 Output:         Attempting to set value of Velocity filter [V] to 300.
+2022-11-30 10:00:23,513 Output:         Attempting to set value of Magnet [mA] to 100.
+2022-11-30 10:00:25,171 Output:         Attempting to set value of Magnet [mA] to 200.
+2022-11-30 10:00:27,114 Output:         Attempting to set value of Magnet [mA] to 300.
+2022-11-30 10:00:29,471 Output:         Attempting to set value of Magnet [mA] to 400.
+2022-11-30 10:00:32,304 Output:         Attempting to set value of Magnet [mA] to 500.
+2022-11-30 10:02:05,036 STARTING NEW SESSION
+2022-11-30 10:02:11,220 Output:         Setting Velocity filter [V] to 0.
+2022-11-30 10:02:11,221 Output:         Setting Magnet [mA] to 0.
+2022-11-30 10:02:11,569 GridSearch:     recieved 5 values from measurement ([10, 11, 12, 13, 14]). Returning average: 12.0.
+2022-11-30 10:02:11,684 Output:         Setting Magnet [mA] to 100.
+2022-11-30 10:02:12,175 GridSearch:     recieved 5 values from measurement ([16, 17, 18, 19, 20]). Returning average: 18.0.
+2022-11-30 10:02:12,333 Output:         Setting Magnet [mA] to 200.
+2022-11-30 10:02:12,780 GridSearch:     recieved 5 values from measurement ([22, 23, 24, 25, 26]). Returning average: 24.0.
+2022-11-30 10:02:12,948 Output:         Setting Magnet [mA] to 300.
+2022-11-30 10:02:13,392 GridSearch:     recieved 5 values from measurement ([28, 29, 30, 31, 32]). Returning average: 30.0.
+2022-11-30 10:02:13,578 Output:         Setting Magnet [mA] to 400.
+2022-11-30 10:02:13,996 GridSearch:     recieved 5 values from measurement ([34, 35, 36, 37, 38]). Returning average: 36.0.
+2022-11-30 10:02:14,337 Output:         Setting Magnet [mA] to 500.
+2022-11-30 10:02:14,600 GridSearch:     recieved 5 values from measurement ([40, 41, 42, 43, 44]). Returning average: 42.0.
+2022-11-30 10:02:14,781 Output:         Setting Magnet [mA] to 600.
+2022-11-30 10:02:15,203 GridSearch:     recieved 5 values from measurement ([46, 47, 48, 49, 0]). Returning average: 38.0.
+2022-11-30 10:02:15,485 Output:         Setting Magnet [mA] to 700.
+2022-11-30 10:02:15,805 GridSearch:     recieved 5 values from measurement ([2, 3, 4, 5, 6]). Returning average: 4.0.
+2022-11-30 10:02:16,115 Output:         Setting Magnet [mA] to 800.
+2022-11-30 10:02:16,425 GridSearch:     recieved 5 values from measurement ([8, 9, 10, 11, 12]). Returning average: 10.0.
+2022-11-30 10:02:16,624 Output:         Setting Magnet [mA] to 900.
+2022-11-30 10:02:17,034 GridSearch:     recieved 5 values from measurement ([14, 15, 16, 17, 18]). Returning average: 16.0.
+2022-11-30 10:02:17,223 Output:         Setting Magnet [mA] to 1000.
+2022-11-30 10:02:17,637 GridSearch:     recieved 5 values from measurement ([20, 21, 22, 23, 24]). Returning average: 22.0.
+2022-11-30 10:02:17,855 Output:         Setting Velocity filter [V] to 30.
+2022-11-30 10:02:18,238 GridSearch:     recieved 5 values from measurement ([27, 28, 29, 30, 31]). Returning average: 29.0.
+2022-11-30 10:02:18,436 Output:         Setting Magnet [mA] to 900.
+2022-11-30 10:02:18,840 GridSearch:     recieved 5 values from measurement ([33, 34, 35, 36, 37]). Returning average: 35.0.
+2022-11-30 10:02:18,977 Output:         Setting Magnet [mA] to 800.
+2022-11-30 10:02:19,449 GridSearch:     recieved 5 values from measurement ([39, 40, 41, 42, 43]). Returning average: 41.0.
+2022-11-30 10:02:19,586 Output:         Setting Magnet [mA] to 700.
+2022-11-30 10:02:20,053 GridSearch:     recieved 5 values from measurement ([45, 46, 47, 48, 49]). Returning average: 47.0.
+2022-11-30 10:02:20,292 Output:         Setting Magnet [mA] to 600.
+2022-11-30 10:02:20,682 GridSearch:     recieved 5 values from measurement ([1, 2, 3, 4, 5]). Returning average: 3.0.
+2022-11-30 10:02:20,841 Output:         Setting Magnet [mA] to 500.
+2022-11-30 10:02:21,287 GridSearch:     recieved 5 values from measurement ([7, 8, 9, 10, 11]). Returning average: 9.0.
+2022-11-30 10:02:21,450 Output:         Setting Magnet [mA] to 400.
+2022-11-30 10:02:21,890 GridSearch:     recieved 5 values from measurement ([13, 14, 15, 16, 17]). Returning average: 15.0.
+2022-11-30 10:02:22,062 Output:         Setting Magnet [mA] to 300.
+2022-11-30 10:02:22,492 GridSearch:     recieved 5 values from measurement ([19, 20, 21, 22, 23]). Returning average: 21.0.
+2022-11-30 10:02:22,711 Output:         Setting Magnet [mA] to 200.
+2022-11-30 10:02:23,101 GridSearch:     recieved 5 values from measurement ([25, 26, 27, 28, 29]). Returning average: 27.0.
+2022-11-30 10:02:23,333 Output:         Setting Magnet [mA] to 100.
+2022-11-30 10:02:23,708 GridSearch:     recieved 5 values from measurement ([31, 32, 33, 34, 35]). Returning average: 33.0.
+2022-11-30 10:02:23,916 GridSearch:     Finished writing to file!
+2022-11-30 10:04:29,504 
+STARTING NEW SESSION
+2022-11-30 10:04:34,760 Output:         Setting Velocity filter [V] to 0.
+2022-11-30 10:04:34,760 Output:         Setting Magnet [mA] to 0.
+2022-11-30 10:04:35,013 GridSearch:     measured ([0, 1, 2, 3, 4]), average 2.0.
+2022-11-30 10:04:35,134 Output:         Setting Magnet [mA] to 100.
+2022-11-30 10:04:35,614 GridSearch:     measured ([6, 7, 8, 9, 10]), average 8.0.
+2022-11-30 10:04:35,748 Output:         Setting Magnet [mA] to 200.
+2022-11-30 10:04:36,216 GridSearch:     measured ([12, 13, 14, 15, 16]), average 14.0.
+2022-11-30 10:04:36,380 Output:         Setting Magnet [mA] to 300.
+2022-11-30 10:04:36,821 GridSearch:     measured ([18, 19, 20, 21, 22]), average 20.0.
+2022-11-30 10:04:36,944 Output:         Setting Magnet [mA] to 400.
+2022-11-30 10:04:37,423 GridSearch:     measured ([24, 25, 26, 27, 28]), average 26.0.
+2022-11-30 10:04:37,528 Output:         Setting Magnet [mA] to 500.
+2022-11-30 10:04:38,025 GridSearch:     measured ([30, 31, 32, 33, 34]), average 32.0.
+2022-11-30 10:04:38,160 GridSearch:     Finished writing to file!
+2022-11-30 10:07:39,426 ----------------STARTING NEW SESSION----------------
+2022-11-30 10:10:30,926 Output:         Setting Velocity filter [V] to 0.
+2022-11-30 10:10:30,928 Output:         Setting Magnet [mA] to 0.
+2022-11-30 10:10:31,311 GridSearch:     measured ([13, 14, 15, 16, 17]), average 15.0.
+2022-11-30 10:10:31,446 Output:         Setting Magnet [mA] to 100.
+2022-11-30 10:10:31,918 GridSearch:     measured ([19, 20, 21, 22, 23]), average 21.0.
+2022-11-30 10:10:32,135 Output:         Setting Magnet [mA] to 200.
+2022-11-30 10:10:32,520 GridSearch:     measured ([25, 26, 27, 28, 29]), average 27.0.
+2022-11-30 10:10:32,832 Output:         Setting Magnet [mA] to 300.
+2022-11-30 10:10:33,124 GridSearch:     measured ([31, 32, 33, 34, 35]), average 33.0.
+2022-11-30 10:10:33,340 Output:         Setting Magnet [mA] to 400.
+2022-11-30 10:10:33,745 GridSearch:     measured ([38, 39, 40, 41, 42]), average 40.0.
+2022-11-30 10:10:33,983 Output:         Setting Magnet [mA] to 500.
+2022-11-30 10:10:34,370 GridSearch:     measured ([44, 45, 46, 47, 48]), average 46.0.
+2022-11-30 10:10:34,495 Output:         Setting Magnet [mA] to 600.
+2022-11-30 10:10:34,973 GridSearch:     measured ([0, 1, 2, 3, 4]), average 2.0.
+2022-11-30 10:10:35,198 Output:         Setting Magnet [mA] to 700.
+2022-11-30 10:10:35,578 GridSearch:     measured ([6, 7, 8, 9, 10]), average 8.0.
+2022-11-30 10:10:35,787 Output:         Setting Magnet [mA] to 800.
+2022-11-30 10:10:36,187 GridSearch:     measured ([12, 13, 14, 15, 16]), average 14.0.
+2022-11-30 10:10:36,312 Output:         Setting Magnet [mA] to 900.
+2022-11-30 10:10:36,790 GridSearch:     measured ([18, 19, 20, 21, 22]), average 20.0.
+2022-11-30 10:10:36,993 Output:         Setting Magnet [mA] to 1000.
+2022-11-30 10:10:37,394 GridSearch:     measured ([24, 25, 26, 27, 28]), average 26.0.
+2022-11-30 10:10:37,530 Output:         Setting Velocity filter [V] to 30.
+2022-11-30 10:10:38,004 GridSearch:     measured ([30, 31, 32, 33, 34]), average 32.0.
+2022-11-30 10:10:38,208 Output:         Setting Magnet [mA] to 900.
+2022-11-30 10:10:38,605 GridSearch:     measured ([36, 37, 38, 39, 40]), average 38.0.
+2022-11-30 10:10:38,793 GridSearch:     Finished writing to file!
+2022-11-30 10:11:26,907                 STARTING NEW SESSION
+2022-11-30 10:11:30,517 Output:         Setting Velocity filter [V] to 0.
+2022-11-30 10:11:30,517 Output:         Setting Magnet [mA] to 0.
+2022-11-30 10:11:30,925 GridSearch:     measured ([35, 36, 37, 38, 39]), average 37.0.
+2022-11-30 10:11:31,233 Output:         Setting Magnet [mA] to 100.
+2022-11-30 10:11:31,568 GridSearch:     measured ([41, 42, 43, 44, 45]), average 43.0.
+2022-11-30 10:11:32,059 Output:         Setting Magnet [mA] to 200.
+2022-11-30 10:11:32,183 GridSearch:     measured ([47, 48, 49, 0, 1]), average 29.0.
+2022-11-30 10:11:32,482 Output:         Setting Magnet [mA] to 300.
+2022-11-30 10:11:32,787 GridSearch:     measured ([3, 4, 5, 6, 7]), average 5.0.
+2022-11-30 10:11:33,065 GridSearch:     Finished writing to file!
+2022-11-30 11:40:05,760                 STARTING NEW SESSION
+2022-11-30 11:41:24,410                 STARTING NEW SESSION
+2022-11-30 11:41:34,741                 STARTING NEW SESSION
+2022-11-30 11:45:09,668                 STARTING NEW SESSION
+2022-11-30 11:45:32,181                 STARTING NEW SESSION
+2022-11-30 11:49:39,164                 STARTING NEW SESSION
+2022-11-30 11:59:54,430                 STARTING NEW SESSION
+2022-11-30 11:59:56,970 Output:         Setting Magnet [mA] to 405.
+2022-11-30 11:59:58,168 Output:         Setting Velocity filter [V] to 0.
+2022-11-30 11:59:58,168 Output:         Setting Magnet [mA] to 0.
+2022-11-30 11:59:58,684 GridSearch:     measured ([37, 38, 39, 40, 41]), average 39.0.
+2022-11-30 11:59:58,733 Output:         Setting Magnet [mA] to 100.
+2022-11-30 11:59:59,285 GridSearch:     measured ([43, 44, 45, 46, 47]), average 45.0.
+2022-11-30 11:59:59,361 Output:         Setting Magnet [mA] to 200.
+2022-11-30 11:59:59,889 GridSearch:     measured ([49, 0, 1, 2, 3]), average 11.0.
+2022-11-30 11:59:59,949 Output:         Setting Magnet [mA] to 300.
+2022-11-30 12:00:00,491 GridSearch:     measured ([5, 6, 7, 8, 9]), average 7.0.
+2022-11-30 12:00:00,592 Output:         Setting Magnet [mA] to 400.
+2022-11-30 12:00:01,093 GridSearch:     measured ([11, 12, 13, 14, 15]), average 13.0.
+2022-11-30 12:00:01,159 Output:         Setting Magnet [mA] to 500.
+2022-11-30 12:00:01,696 GridSearch:     measured ([17, 18, 19, 20, 21]), average 19.0.
+2022-11-30 12:00:01,808 Output:         Setting Magnet [mA] to 600.
+2022-11-30 12:00:02,298 GridSearch:     measured ([23, 24, 25, 26, 27]), average 25.0.
+2022-11-30 12:00:02,372 Output:         Setting Magnet [mA] to 700.
+2022-11-30 12:00:02,900 GridSearch:     measured ([29, 30, 31, 32, 33]), average 31.0.
+2022-11-30 12:00:02,964 Output:         Setting Magnet [mA] to 800.
+2022-11-30 12:00:03,505 GridSearch:     measured ([35, 36, 37, 38, 39]), average 37.0.
+2022-11-30 12:00:03,575 Output:         Setting Magnet [mA] to 900.
+2022-11-30 12:00:04,107 GridSearch:     measured ([41, 42, 43, 44, 45]), average 43.0.
+2022-11-30 12:00:04,179 Output:         Setting Magnet [mA] to 1000.
+2022-11-30 12:00:04,710 GridSearch:     measured ([47, 48, 49, 0, 1]), average 29.0.
+2022-11-30 12:00:04,784 Output:         Setting Velocity filter [V] to 30.
+2022-11-30 12:00:05,312 GridSearch:     measured ([3, 4, 5, 6, 7]), average 5.0.
+2022-11-30 12:00:05,405 Output:         Setting Magnet [mA] to 900.
+2022-11-30 12:00:05,915 GridSearch:     measured ([9, 10, 11, 12, 13]), average 11.0.
+2022-11-30 12:00:05,994 Output:         Setting Magnet [mA] to 800.
+2022-11-30 12:00:06,525 GridSearch:     measured ([15, 16, 17, 18, 19]), average 17.0.
+2022-11-30 12:00:06,614 Output:         Setting Magnet [mA] to 700.
+2022-11-30 12:00:07,131 GridSearch:     measured ([21, 22, 23, 24, 25, 26]), average 23.5.
+2022-11-30 12:00:07,213 Output:         Setting Magnet [mA] to 600.
+2022-11-30 12:00:07,740 GridSearch:     measured ([28, 29, 30, 31, 32]), average 30.0.
+2022-11-30 12:00:07,834 Output:         Setting Magnet [mA] to 500.
+2022-11-30 12:00:08,344 GridSearch:     measured ([34, 35, 36, 37, 38]), average 36.0.
+2022-11-30 12:00:08,429 Output:         Setting Magnet [mA] to 400.
+2022-11-30 12:00:08,945 GridSearch:     measured ([40, 41, 42, 43, 44]), average 42.0.
+2022-11-30 12:00:09,044 Output:         Setting Magnet [mA] to 300.
+2022-11-30 12:00:09,548 GridSearch:     measured ([46, 47, 48, 49, 0]), average 38.0.
+2022-11-30 12:00:09,652 Output:         Setting Magnet [mA] to 200.
+2022-11-30 12:00:10,151 GridSearch:     measured ([2, 3, 4, 5, 6]), average 4.0.
+2022-11-30 12:00:10,254 Output:         Setting Magnet [mA] to 100.
+2022-11-30 12:00:10,753 GridSearch:     measured ([8, 9, 10, 11, 12]), average 10.0.
+2022-11-30 12:00:10,850 Output:         Setting Magnet [mA] to 0.
+2022-11-30 12:00:11,355 GridSearch:     measured ([14, 15, 16, 17, 18]), average 16.0.
+2022-11-30 12:00:11,455 Output:         Setting Velocity filter [V] to 60.
+2022-11-30 12:00:11,956 GridSearch:     measured ([20, 21, 22, 23, 24]), average 22.0.
+2022-11-30 12:00:12,064 Output:         Setting Magnet [mA] to 100.
+2022-11-30 12:00:12,558 GridSearch:     measured ([26, 27, 28, 29, 30]), average 28.0.
+2022-11-30 12:00:12,663 Output:         Setting Magnet [mA] to 200.
+2022-11-30 12:00:13,159 GridSearch:     measured ([32, 33, 34, 35, 36]), average 34.0.
+2022-11-30 12:00:13,266 Output:         Setting Magnet [mA] to 300.
+2022-11-30 12:00:13,761 GridSearch:     measured ([38, 39, 40, 41, 42]), average 40.0.
+2022-11-30 12:00:13,877 Output:         Setting Magnet [mA] to 400.
+2022-11-30 12:00:14,363 GridSearch:     measured ([44, 45, 46, 47, 48]), average 46.0.
+2022-11-30 12:00:14,463 Output:         Setting Magnet [mA] to 500.
+2022-11-30 12:00:14,965 GridSearch:     measured ([0, 1, 2, 3, 4]), average 2.0.
+2022-11-30 12:00:15,074 Output:         Setting Magnet [mA] to 600.
+2022-11-30 12:00:15,568 GridSearch:     measured ([6, 7, 8, 9, 10]), average 8.0.
+2022-11-30 12:00:15,686 Output:         Setting Magnet [mA] to 700.
+2022-11-30 12:00:16,198 GridSearch:     measured ([12, 13, 14, 15, 16]), average 14.0.
+2022-11-30 12:00:16,320 Output:         Setting Magnet [mA] to 800.
+2022-11-30 12:00:16,799 GridSearch:     measured ([18, 19, 20, 21, 22]), average 20.0.
+2022-11-30 12:00:16,930 Output:         Setting Magnet [mA] to 900.
+2022-11-30 12:00:17,403 GridSearch:     measured ([24, 25, 26, 27, 28]), average 26.0.
+2022-11-30 12:00:17,513 Output:         Setting Magnet [mA] to 1000.
+2022-11-30 12:00:18,007 GridSearch:     measured ([30, 31, 32, 33, 34]), average 32.0.
+2022-11-30 12:00:18,139 Output:         Setting Velocity filter [V] to 90.
+2022-11-30 12:00:18,611 GridSearch:     measured ([36, 37, 38, 39, 40]), average 38.0.
+2022-11-30 12:00:18,753 Output:         Setting Magnet [mA] to 900.
+2022-11-30 12:00:19,213 GridSearch:     measured ([42, 43, 44, 45, 46]), average 44.0.
+2022-11-30 12:00:19,330 Output:         Setting Magnet [mA] to 800.
+2022-11-30 12:00:19,817 GridSearch:     measured ([48, 49, 0, 1, 2]), average 20.0.
+2022-11-30 12:00:19,944 Output:         Setting Magnet [mA] to 700.
+2022-11-30 12:00:20,423 GridSearch:     measured ([4, 5, 6, 7, 8]), average 6.0.
+2022-11-30 12:00:20,554 Output:         Setting Magnet [mA] to 600.
+2022-11-30 12:00:21,025 GridSearch:     measured ([10, 11, 12, 13, 14]), average 12.0.
+2022-11-30 12:00:21,145 Output:         Setting Magnet [mA] to 500.
+2022-11-30 12:00:21,632 GridSearch:     measured ([16, 17, 18, 19, 20, 21]), average 18.5.
+2022-11-30 12:00:21,775 Output:         Setting Magnet [mA] to 400.
+2022-11-30 12:00:22,234 GridSearch:     measured ([23, 24, 25, 26, 27]), average 25.0.
+2022-11-30 12:00:22,358 Output:         Setting Magnet [mA] to 300.
+2022-11-30 12:00:22,835 GridSearch:     measured ([29, 30, 31, 32, 33]), average 31.0.
+2022-11-30 12:00:22,970 Output:         Setting Magnet [mA] to 200.
+2022-11-30 12:00:23,438 GridSearch:     measured ([35, 36, 37, 38, 39]), average 37.0.
+2022-11-30 12:00:23,585 Output:         Setting Magnet [mA] to 100.
+2022-11-30 12:00:24,041 GridSearch:     measured ([41, 42, 43, 44, 45]), average 43.0.
+2022-11-30 12:00:24,191 Output:         Setting Magnet [mA] to 0.
+2022-11-30 12:00:24,644 GridSearch:     measured ([47, 48, 49, 0, 1]), average 29.0.
+2022-11-30 12:00:24,778 Output:         Setting Velocity filter [V] to 120.
+2022-11-30 12:00:25,246 GridSearch:     measured ([3, 4, 5, 6, 7]), average 5.0.
+2022-11-30 12:00:25,401 Output:         Setting Magnet [mA] to 100.
+2022-11-30 12:00:25,856 GridSearch:     measured ([9, 10, 11, 12, 13]), average 11.0.
+2022-11-30 12:00:26,020 Output:         Setting Magnet [mA] to 200.
+2022-11-30 12:00:26,462 GridSearch:     measured ([15, 16, 17, 18, 19]), average 17.0.
+2022-11-30 12:00:26,602 Output:         Setting Magnet [mA] to 300.
+2022-11-30 12:00:27,066 GridSearch:     measured ([21, 22, 23, 24, 25]), average 23.0.
+2022-11-30 12:00:27,219 Output:         Setting Magnet [mA] to 400.
+2022-11-30 12:00:27,668 GridSearch:     measured ([27, 28, 29, 30, 31]), average 29.0.
+2022-11-30 12:00:27,809 Output:         Setting Magnet [mA] to 500.
+2022-11-30 12:00:28,270 GridSearch:     measured ([33, 34, 35, 36, 37]), average 35.0.
+2022-11-30 12:00:28,426 Output:         Setting Magnet [mA] to 600.
+2022-11-30 12:00:28,873 GridSearch:     measured ([39, 40, 41, 42, 43]), average 41.0.
+2022-11-30 12:00:29,049 Output:         Setting Magnet [mA] to 700.
+2022-11-30 12:00:29,476 GridSearch:     measured ([45, 46, 47, 48, 49]), average 47.0.
+2022-11-30 12:00:29,624 Output:         Setting Magnet [mA] to 800.
+2022-11-30 12:00:30,077 GridSearch:     measured ([1, 2, 3, 4, 5]), average 3.0.
+2022-11-30 12:00:30,255 Output:         Setting Magnet [mA] to 900.
+2022-11-30 12:00:30,686 GridSearch:     measured ([7, 8, 9, 10, 11]), average 9.0.
+2022-11-30 12:00:30,866 Output:         Setting Magnet [mA] to 1000.
+2022-11-30 12:00:31,289 GridSearch:     measured ([13, 14, 15, 16, 17]), average 15.0.
+2022-11-30 12:00:31,444 Output:         Setting Velocity filter [V] to 150.
+2022-11-30 12:00:31,892 GridSearch:     measured ([19, 20, 21, 22, 23]), average 21.0.
+2022-11-30 12:00:32,052 Output:         Setting Magnet [mA] to 900.
+2022-11-30 12:00:32,494 GridSearch:     measured ([25, 26, 27, 28, 29]), average 27.0.
+2022-11-30 12:00:32,677 Output:         Setting Magnet [mA] to 800.
+2022-11-30 12:00:33,107 GridSearch:     measured ([31, 32, 33, 34, 35]), average 33.0.
+2022-11-30 12:00:33,271 Output:         Setting Magnet [mA] to 700.
+2022-11-30 12:00:33,716 GridSearch:     measured ([37, 38, 39, 40, 41]), average 39.0.
+2022-11-30 12:00:33,909 Output:         Setting Magnet [mA] to 600.
+2022-11-30 12:00:34,324 GridSearch:     measured ([43, 44, 45, 46, 47]), average 45.0.
+2022-11-30 12:00:34,482 Output:         Setting Magnet [mA] to 500.
+2022-11-30 12:00:34,925 GridSearch:     measured ([49, 0, 1, 2, 3]), average 11.0.
+2022-11-30 12:00:35,135 Output:         Setting Magnet [mA] to 400.
+2022-11-30 12:00:35,541 GridSearch:     measured ([6, 7, 8, 9, 10]), average 8.0.
+2022-11-30 12:00:35,714 Output:         Setting Magnet [mA] to 300.
+2022-11-30 12:00:36,143 GridSearch:     measured ([12, 13, 14, 15, 16]), average 14.0.
+2022-11-30 12:00:36,336 Output:         Setting Magnet [mA] to 200.
+2022-11-30 12:00:36,755 GridSearch:     measured ([18, 19, 20, 21, 22]), average 20.0.
+2022-11-30 12:00:36,936 Output:         Setting Magnet [mA] to 100.
+2022-11-30 12:00:37,358 GridSearch:     measured ([24, 25, 26, 27, 28]), average 26.0.
+2022-11-30 12:00:37,559 Output:         Setting Magnet [mA] to 0.
+2022-11-30 12:00:37,968 GridSearch:     measured ([30, 31, 32, 33, 34]), average 32.0.
+2022-11-30 12:00:38,167 Output:         Setting Velocity filter [V] to 180.
+2022-11-30 12:00:38,575 GridSearch:     measured ([36, 37, 38, 39, 40]), average 38.0.
+2022-11-30 12:00:38,777 Output:         Setting Magnet [mA] to 100.
+2022-11-30 12:00:39,189 GridSearch:     measured ([42, 43, 44, 45, 46]), average 44.0.
+2022-11-30 12:00:39,369 Output:         Setting Magnet [mA] to 200.
+2022-11-30 12:00:39,799 GridSearch:     measured ([48, 49, 0, 1, 2]), average 20.0.
+2022-11-30 12:00:40,001 Output:         Setting Magnet [mA] to 300.
+2022-11-30 12:00:40,407 GridSearch:     measured ([4, 5, 6, 7, 8]), average 6.0.
+2022-11-30 12:00:40,608 Output:         Setting Magnet [mA] to 400.
+2022-11-30 12:00:41,014 GridSearch:     measured ([10, 11, 12, 13, 14]), average 12.0.
+2022-11-30 12:00:41,219 Output:         Setting Magnet [mA] to 500.
+2022-11-30 12:00:41,619 GridSearch:     measured ([16, 17, 18, 19, 20]), average 18.0.
+2022-11-30 12:00:41,839 Output:         Setting Magnet [mA] to 600.
+2022-11-30 12:00:42,231 GridSearch:     measured ([23, 24, 25, 26, 27]), average 25.0.
+2022-11-30 12:00:42,441 Output:         Setting Magnet [mA] to 700.
+2022-11-30 12:00:42,834 GridSearch:     measured ([29, 30, 31, 32, 33]), average 31.0.
+2022-11-30 12:00:43,056 Output:         Setting Magnet [mA] to 800.
+2022-11-30 12:00:43,435 GridSearch:     measured ([35, 36, 37, 38, 39]), average 37.0.
+2022-11-30 12:00:43,668 Output:         Setting Magnet [mA] to 900.
+2022-11-30 12:00:44,045 GridSearch:     measured ([41, 42, 43, 44, 45]), average 43.0.
+2022-11-30 12:00:44,266 Output:         Setting Magnet [mA] to 1000.
+2022-11-30 12:00:44,656 GridSearch:     measured ([47, 48, 49, 0, 1]), average 29.0.
+2022-11-30 12:00:44,873 GridSearch:     Finished writing to file!

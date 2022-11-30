@@ -1,7 +1,6 @@
 from __future__ import annotations
 from enum import Enum
 from typing import Self
-import time
 
 from pythion._connections.output import OutputInterface
 from pythion._connections.usb import USBConnection

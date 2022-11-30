@@ -1,14 +1,17 @@
 from __future__ import annotations
+import time
+
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import pyqtSlot, pyqtSignal
 from pythion._layout.ui_output import Ui_Output
-from pythion.connections import OutputInterface, USBConnection
-from typing import Any, Self
+from pythion._connections.output import OutputInterface
+from pythion._gui.connect_button import ConnectButton
+import logging
+logger = logging.getLogger('pythion')
 
 
-class Output(QWidget, Ui_Output):
+class Output(QWidget, Ui_Output, ConnectButton):
     valueChanged: pyqtSignal = pyqtSignal(float)
-    connectStatusChanged: pyqtSignal = pyqtSignal(bool)
     namestr: str
 
     def __init__(
@@ -22,13 +25,13 @@ class Output(QWidget, Ui_Output):
         # Boilerplate initialization
         super().__init__(parent)
         self.setupUi(self)  # type: ignore
+        # ConnectButton initialization
+        super(Ui_Output, self).__init__()
         # Custom initialization
         self.interface = interface
         self.max_value = max_value
         self.name = name
         self.unit = unit
-        self._connected = False
-        self._in_context_manager = False
         self._value_set = False
         namestr = name if name else 'Output'
         self.namestr = namestr + (f' [{unit}]' if unit else '')
@@ -47,43 +50,31 @@ class Output(QWidget, Ui_Output):
         self.outputDial.valueChanged.connect(self.outputSpinbox.setValue)  # type: ignore
         self.outputSpinbox.valueChanged.connect(self.outputDial.setValue)  # type: ignore
         self.setBtn.clicked.connect(self._on_setvalue_pressed)  # type: ignore
-        self.connectBtn.clicked.connect(self._on_connect_pressed)  # type: ignore
 
     def _on_setvalue_pressed(self) -> None:
         self._set_value(self.outputDial.value())
 
-    def _on_connect_pressed(self) -> None:
-        if not self._connected:
-            # Connect button pressed, Let's try to conncet!
-            if isinstance(self.interface, USBConnection):
-                assert self._in_context_manager
-                if self.interface.port is None:
-                    self._select_port_and_retry()
-            self.interface.__enter__()
-            self._connected = True
-            if self.zeroOnConnectBox.isChecked():
-                self.set_value(0, True)
-            self._activate()
-        else:
-            if self.zeroOnDisconnectBox.isChecked():
-                self.set_value(0, True)
-            self.interface.__exit__(None, None, None)
-            self._connected = False
-            self._value_set = False
-            self._deactivate()
-
     def _activate(self) -> None:
+        """
+        Called just after output connection has been established
+        """
+        if self.zeroOnConnectBox.isChecked():
+            time.sleep(0.1)
+            self.set_value(0, True)
         self.outputDial.setEnabled(True)
         self.outputSpinbox.setEnabled(True)
         self.setBtn.setEnabled(True)
-        self.connectBtn.setText('Disconnect')
 
     def _deactivate(self) -> None:
+        """
+        Called just before output connection is destroyed
+        """
+        if self.zeroOnDisconnectBox.isChecked():
+            self.set_value(0, True)
         self.lastValueLCD.setStyleSheet('color: #aaaaaa;')
         self.outputDial.setDisabled(True)
         self.outputSpinbox.setEnabled(True)
         self.setBtn.setDisabled(True)
-        self.connectBtn.setText('Connect')
 
     def _select_port_and_retry(self) -> None:
         assert self._in_context_manager
@@ -111,8 +102,8 @@ class Output(QWidget, Ui_Output):
         corresponding output value.
         """
         if not self._connected:
+            logger.warning('Output:         Attempted to set value without connection')
             return
-
         if move_knobs:
             # Change value just like the user would:
             self.outputDial.setValue(val)  # TODO: support float values for output
@@ -120,13 +111,3 @@ class Output(QWidget, Ui_Output):
         else:
             # Change value "silently"
             self._set_value(val)
-
-    def __enter__(self) -> Self:
-        self._in_context_manager = True
-        return self
-
-    def __exit__(self, *args: Any):
-        self._in_context_manager = False
-        if self.zeroOnDisconnectBox.checkState():
-            self.set_value(0, True)
-        self.interface.__exit__()

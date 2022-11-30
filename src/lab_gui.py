@@ -1,8 +1,7 @@
-# Hardware interface classes
-from pythion.connections import PortSelector, RBDInput, RS3000Output, PicoOutput, LinearCalibration
 import numpy as np
-# GUI Classes
-from pythion import Output, Input, MainWindow, PlotStream, GridSearch
+
+from pythion.gui import Output, Input, MainWindow, GridSearch
+from pythion.connections import PortSelector, RBDInput, RS3000Output, PicoOutput, LinearCalibration
 
 # Magnet output
 port_magnet = PortSelector.get_port_of('rs')
