@@ -20,7 +20,7 @@ class OutputInterface(ABC):
     _calibration: Calibration
     _on_invalid_output: list[Callable[[], None]]
 
-    def __init__(self, *, calibration: Calibration | None = None, target_limit: float | None = None, control_limit: float | None):
+    def __init__(self, *, calibration: Calibration | None = None, target_limit: float | None = None, control_limit: float | None = None):
         self._last_set_target = None
         self._last_set_control = None
         self._calibration = Calibration.standard() if calibration is None else calibration
