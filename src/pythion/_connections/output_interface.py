@@ -20,11 +20,12 @@ class OutputInterface(ABC):
     _calibration: Calibration
     _on_invalid_output: list[Callable[[], None]]
 
-    def __init__(self, *, calibration: Calibration | None = None, target_limit: float | None = None):
+    def __init__(self, *, calibration: Calibration | None = None, target_limit: float | None = None, control_limit: float | None):
         self._last_set_target = None
         self._last_set_control = None
         self._calibration = Calibration.standard() if calibration is None else calibration
         self.target_limit = target_limit
+        self.control_limit = control_limit
         self._on_invalid_output = []
 
     # __enter__ and __exit__ are defined since most Outputs require IO handling, and it's
@@ -99,6 +100,7 @@ class OutputInterface(ABC):
         elif self.target_limit is not None and target_signal > self.target_limit:
             changed = True
             target_signal = self.target_limit
+        #  TODO: implement control signal validation!!!
         if changed:
             control_signal = self._calibration.to_control(target_signal)
         return not changed, target_signal, control_signal

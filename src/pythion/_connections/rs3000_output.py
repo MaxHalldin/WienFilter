@@ -48,7 +48,7 @@ class RS3000Output(OutputInterface, USBConnection):
         self._mode = mode
         self._voltage_limit = voltage_limit
         self._current_limit = current_limit
-        target_limit = voltage_limit if mode == self.PowerOptions.VOLTAGE else current_limit
+        control_limit = voltage_limit if mode == self.PowerOptions.VOLTAGE else current_limit
 
         BAUD_RATE = 9600
         USBConnection.__init__(
@@ -59,7 +59,7 @@ class RS3000Output(OutputInterface, USBConnection):
         OutputInterface.__init__(
             self,
             calibration=calibration,
-            target_limit=target_limit
+            control_limit=control_limit
         )
 
     def __enter__(self) -> Self:
