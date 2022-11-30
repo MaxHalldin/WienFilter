@@ -1,11 +1,11 @@
 from __future__ import annotations
+import logging
+
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import pyqtSlot, pyqtSignal
 from pythion._layout.ui_output import Ui_Output
-from pythion.connections import OutputInterface
+from pythion._connections.output_interface import OutputInterface
 
-
-import logging
 logger = logging.getLogger('pythion')
 
 

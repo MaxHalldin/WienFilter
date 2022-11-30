@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QWidget, QSizePolicy
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg  # type: ignore
 from matplotlib.figure import Figure  # type: ignore
 from matplotlib.lines import Line2D  # type: ignore
-from pythion.connections import InputInterface
+from pythion._connections.input_interface import InputInterface
 
 matplotlib.use('Qt5Agg')
 

@@ -1,7 +1,8 @@
 from PyQt5.QtCore import pyqtSlot
-from pythion import Output, GUIUpdater, Action
+from pythion._gui.output import Output
+from pythion._gui.action import GUIUpdater, Action
 from dataclasses import dataclass
-from pythion.connections import BufferInput
+from pythion._connections.buffer_input import BufferInput
 from time import sleep
 import numpy.typing as npt
 import numpy as np

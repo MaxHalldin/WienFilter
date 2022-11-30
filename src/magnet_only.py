@@ -2,7 +2,7 @@
 from pythion.connections import RS3000Output, PortSelector
 
 # GUI Classes
-from pythion import Output, MainWindow
+from pythion.gui import Output, MainWindow
 
 # Magnet output
 port = PortSelector.get_port_of('rs')

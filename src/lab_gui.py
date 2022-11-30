@@ -2,7 +2,7 @@
 from pythion.connections import PortSelector, RBDInput, RS3000Output, PicoOutput, LinearCalibration
 import numpy as np
 # GUI Classes
-from pythion import Output, Input, MainWindow, PlotStream, GridSearch
+from pythion.gui import Output, Input, MainWindow, PlotStream, GridSearch
 
 
 PORT_RBD = 'COM0'

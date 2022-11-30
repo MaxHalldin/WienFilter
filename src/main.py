@@ -2,9 +2,7 @@ import numpy as np
 # Hardware interface classes
 from pythion.connections import MockOutput, MockBufferInput
 # GUI Classes
-from pythion import MainWindow, Output, PlotStream
-
-from pythion.grid_search import GridSearch
+from pythion.gui import MainWindow, Output, PlotStream, GridSearch
 
 op1 = MockOutput()
 op2 = MockOutput()
