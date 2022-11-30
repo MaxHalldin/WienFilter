@@ -31,7 +31,7 @@ class Ui_Input(object):
         self.nameLabel.setObjectName("nameLabel")
         self.verticalLayout.addWidget(self.nameLabel)
         self.inputLCD = QtWidgets.QLCDNumber(self.verticalLayoutWidget)
-        self.inputLCD.setStyleSheet("color: rgb(255, 0, 0);")
+        self.inputLCD.setStyleSheet("color: #aaaaaa;")
         self.inputLCD.setSegmentStyle(QtWidgets.QLCDNumber.Flat)
         self.inputLCD.setProperty("value", 0.0)
         self.inputLCD.setProperty("intValue", 0)

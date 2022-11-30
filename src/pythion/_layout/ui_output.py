@@ -79,6 +79,7 @@ class Ui_Output(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.zeroOnDisconnectBox.sizePolicy().hasHeightForWidth())
         self.zeroOnDisconnectBox.setSizePolicy(sizePolicy)
+        self.zeroOnDisconnectBox.setChecked(True)
         self.zeroOnDisconnectBox.setObjectName("zeroOnDisconnectBox")
         self.verticalLayout.addWidget(self.zeroOnDisconnectBox)
 

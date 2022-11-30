@@ -48,7 +48,7 @@
      <item>
       <widget class="QLCDNumber" name="inputLCD">
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 0, 0);</string>
+        <string notr="true">color: #aaaaaa;</string>
        </property>
        <property name="segmentStyle">
         <enum>QLCDNumber::Flat</enum>

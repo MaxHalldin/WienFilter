@@ -16,13 +16,13 @@ com1 = Output(max_value=300,
               name="Velocity filter",
               unit="V")
 com2 = Output(max_value=1000, interface=op2, parent=win.main_widget(), name="Magnet", unit="mA")
-gs = GridSearch(input=inp, measuring_time=0.1, parent=win.main_widget(), move_knobs=True, plot_every=1, measurement_str=None)
+gs = GridSearch(input=inp, measuring_time=0.1, parent=win.main_widget(), move_knobs=True, plot_every=10, measurement_str=None)
 volt_values = [round(x) for x in np.arange(0, 301, 30)]
 mamp_values = [round(x) for x in np.arange(0, 1001, 100)]
 gs.add_device(com1, volt_values, 0.5)
 gs.add_device(com2, mamp_values, 0.5)
 
-input_component = Input(interface=inp, rate=10, name='Beam current', unit='nA', parent=win.main_widget())
+input_component = Input(interface=inp, rate=5, name='Beam current', unit='nA', parent=win.main_widget())
 plt = PlotStream(parent=win.main_widget(), input=inp, timespan=30, fix_scale=False)
 win.add_children(com1, com2, gs, plt, input_component)
 

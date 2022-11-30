@@ -156,6 +156,9 @@ on connect</string>
         <string>Set value to zero 
 on disconnect</string>
        </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
     </layout>

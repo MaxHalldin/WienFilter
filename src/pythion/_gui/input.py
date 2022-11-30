@@ -25,8 +25,7 @@ class Input(QWidget, Ui_Input, ConnectButton):
         self.name = name
         self.unit = unit
         self.rate = rate
-        self._connected = False
-        self._in_context_manager = False
+        self._value_set = False
         self.configure()
 
     def configure(self) -> None:
@@ -34,10 +33,18 @@ class Input(QWidget, Ui_Input, ConnectButton):
         namestr = self.name if self.name else 'Output'
         namestr = namestr + (f' [{self.unit}]' if self.unit else '')
         self.nameLabel.setText(namestr)
-        self.interface.add_input_handler(self.inputLCD.display)
+        self.interface.add_input_handler(self._on_new_value)
 
     def _activate(self):
         self.interface.start_sampling(self.rate)
 
     def _deactivate(self):
+        self._value_set = False
         self.interface.stop_sampling()
+        self.inputLCD.setStyleSheet('color: #aaaaaa;')
+
+    def _on_new_value(self, value: float) -> None:
+        if not self._value_set:
+            self._value_set = True
+            self.inputLCD.setStyleSheet('color: #ff0000;')
+        self.inputLCD.display(value)

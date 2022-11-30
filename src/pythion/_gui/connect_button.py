@@ -19,7 +19,6 @@ class ConnectButton():
         self.connectBtn.clicked.connect(self._on_connect_pressed)  # type: ignore
 
     def _on_connect_pressed(self) -> None:
-        print('onclicked')
         if not self._connected:
             # Connect button pressed, Let's try to conncet!
             if not self._in_context_manager:
@@ -31,7 +30,6 @@ class ConnectButton():
             self.interface.__enter__()
             self._connected = True
             self._activate()
-            print('connected')
             logger.debug('ConnectButton:  Connected.')
             self.connectBtn.setText('Disconnect')
         else:
