@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 from typing import Callable, Self, Any
 from threading import Timer
+import logging
+
+logger = logging.getLogger('pythion')
 
 
 class InputInterface(ABC):
@@ -66,13 +69,21 @@ class TimerInput(InputInterface):
     """
     _timer: Timer | None
     _wait_time: float
+    _in_context_manager: bool
 
     def __init__(self) -> None:
         self._timer = None
+        self._in_context_manager = False
         super().__init__()
+
+    def __enter__(self) -> Self:
+        super().__enter__()
+        self._in_context_manager = True
+        return self
 
     def __exit__(self, *args: Any) -> None:
         self.stop_sampling()
+        self._in_context_manager = False
         super().__exit__()
 
     @abstractmethod
@@ -83,8 +94,11 @@ class TimerInput(InputInterface):
         return self._read()
 
     def start_sampling(self, sample_rate: int) -> None:
-        self._wait_time = 1 / sample_rate
-        self._start_sampling()
+        if not self._in_context_manager:
+            logger.warning('TimerInput:     Attempted to start a timer without context manager!')
+        else:
+            self._wait_time = 1 / sample_rate
+            self._start_sampling()
 
     def _start_sampling(self) -> None:
         self._timer = Timer(self._wait_time, self._callback)

@@ -21,7 +21,22 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setAutoFillBackground(False)
-        MainWindow.setStyleSheet("background-color: #ffffff;")
+        MainWindow.setStyleSheet("QWidget {\n"
+"    background-color: #ffffff;\n"
+"}\n"
+"\n"
+"QPushButton { \n"
+"    border: 1px solid #444444; \n"
+"    background-color: #eeeeee;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"    background-color: #dddddd;\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"    background-color: #aaaaaa;\n"
+"}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)

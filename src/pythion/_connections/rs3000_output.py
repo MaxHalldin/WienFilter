@@ -26,7 +26,7 @@ class RS3000Output(OutputInterface, USBConnection):
 
     def __init__(self,
                  *,
-                 port: str,
+                 port: str | None,
                  voltage_limit: float | None = None,
                  current_limit: float | None = None,
                  calibration: Calibration | None = None,

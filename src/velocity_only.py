@@ -1,8 +1,5 @@
-# Hardware interface classes
-from pythion.connections import PicoOutput, LinearCalibration, PortSelector
-
-# GUI Classes
 from pythion.gui import Output, MainWindow
+from pythion.connections import PicoOutput, LinearCalibration, PortSelector
 
 # Magnet output
 port = PortSelector.get_port_of('pico')
@@ -17,7 +14,7 @@ output_device = PicoOutput(
 
 # Setup GUI
 with output_device:
-    win = MainWindow(high_resolution=False)
+    win = MainWindow(high_resolution=True)
     output_component = Output(
         max_value=100,
         interface=output_device,

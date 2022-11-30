@@ -16,7 +16,7 @@ class PicoOutput(OutputInterface, USBConnection):
     Setting a value that's out of bounds for the DAC will result in a maximum/minimum
     signal being sent (provided that the target voltage is safe)
     """
-    def __init__(self, *, port: str, calibration: Calibration, voltage_limit: float | None = None, bits: int = 12):
+    def __init__(self, *, port: str | None, calibration: Calibration, voltage_limit: float | None = None, bits: int = 12):
         self.bits = bits
         BAUD_RATE = 115200
         # Initialize USB Connection
