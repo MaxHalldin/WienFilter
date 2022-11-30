@@ -60,12 +60,11 @@ class RBDInput(BufferInput, USBConnection):
 
     def parse_response_string(self, message: str) -> float | None:
         try:
-            o_message = message
-            message = message.strip()
-            start = message.index('&')
-            message = message[start:]
-            assert message[0] == '&' and message[-1] == 'A'
-            _, _, value_str, unit_str = message.split(',')
+            original_message = message.strip()
+            start = original_message.index('&')
+            s = original_message[start:]
+            assert s[0] == '&' and s[-1] == 'A'
+            _, _, value_str, unit_str = s.split(',')
             num = float(value_str)
             exp = self.exp
             prefix = unit_str[0]
@@ -77,11 +76,11 @@ class RBDInput(BufferInput, USBConnection):
             else:
                 exp = exp-6
             res: float = num * 10 ** exp
-            logger.debug(f'Interpreted {o_message} as {res}')
+            logger.debug(f'RBDInput:       Interpreted {original_message.strip()} as {res}')
             return res
 
         except (ValueError, AssertionError):
-            logging.warning(f'The line {message} is garbage!')
+            logging.warning(f'RBDInput:       The line {message.strip()} is garbage!')
             return None
 
 

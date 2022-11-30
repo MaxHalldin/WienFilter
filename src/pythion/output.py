@@ -5,6 +5,10 @@ from pythion._layout.ui_output import Ui_Output
 from pythion.connections import OutputInterface
 
 
+import logging
+logger = logging.getLogger('pythion')
+
+
 class Output(QWidget, Ui_Output):
     valueChanged: pyqtSignal = pyqtSignal(float)
     namestr: str
@@ -31,7 +35,7 @@ class Output(QWidget, Ui_Output):
 
     def configure(self) -> None:
         if self.interface.has_feedback:
-            raise NotImplementedError('Outputs with live feedback have not been implemented!')
+            logger.warning('Output:         Live feedback has not been implemented!')
 
         # Set name label
         self.nameLabel.setText(self.namestr)
@@ -47,6 +51,7 @@ class Output(QWidget, Ui_Output):
         self._set_value(self.outputDial.value())
 
     def _set_value(self, val: float) -> None:
+        logger.debug(f'Output:         Setting {self.namestr} to {val}.')
         self.interface.target = val  # Try to set value on the underlying interface
         val = self.interface.target  # Outgoing value might have changed due to illegal output, so get back the set value
         changed = False

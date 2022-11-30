@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Tuple
 from pythion._connections.calibration import Calibration
-from pythion._connections.output import OutputInterface
+from pythion._connections.output_interface import OutputInterface
 from pythion._connections.usb import USBConnection
 
 

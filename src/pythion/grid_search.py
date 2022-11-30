@@ -86,7 +86,7 @@ class GridSearchResults:
                 indices, values = zip(*config)
                 measurement = self.value_at(tuple(indices))
                 file.write(f"\n{ ','.join([str(x) for x in values]) },{measurement}")
-        print('Finished writing to file!')
+        logger.info('GridSearch:     Finished writing to file!')
 
     @classmethod
     def from_file(cls, filepath: str) -> Self:
@@ -236,8 +236,9 @@ class AsyncWorker:
             vals = self.input.clear_buffer()
             if vals:
                 break
-        logger.debug(f'Recieved {len(vals)} values from measurement ({vals}). Returning average.')
-        GUIUpdater.update(self.parent, "measure", self.indices, float(mean(vals)))
+        average = float(mean(vals))
+        logger.debug(f'GridSearch:     measured ({vals}), average {average}.')
+        GUIUpdater.update(self.parent, "measure", self.indices, average)
 
     def initialize_outputs(self) -> None:
         max_wait = 0.

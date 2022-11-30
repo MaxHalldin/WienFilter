@@ -126,7 +126,7 @@ class USBConnection:
             super().__enter__()  # type: ignore
         except AttributeError:
             pass
-        logger.info(f'Successfully opened USB connection on port {self.port}')
+        logger.info(f'USBConnection:  Successfully opened USB connection on port {self.port}')
         return self
 
     def __exit__(self, *args: Any) -> None:
@@ -136,7 +136,7 @@ class USBConnection:
             super().__exit__(*args)  # type: ignore
         except AttributeError:
             pass
-        logger.info(f'Successfully closed connection on port {self.port}')
+        logger.info(f'USBConnection:  Successfully closed connection on port {self.port}')
 
     def write(self, message: str) -> None:
         self._check_port_open()
@@ -146,7 +146,7 @@ class USBConnection:
         s = str.encode(message)
         self.ser.write(s)
         print('logging')
-        logger.debug(f'Written {s!r} on port {self.port}')
+        logger.debug(f'USBConnection:  Written {s!r} on port {self.port}')
 
     def read_newlines(self, max_lines: int | None = None) -> list[str]:
         """
@@ -164,13 +164,13 @@ class USBConnection:
         self._check_port_open()
         assert self.ser is not None
         data: list[bytes] = []
-        logger.debug(f'Start reading on port {self.port}')
+        logger.debug(f'USBConnection:  Start reading on port {self.port}')
         while self.ser.in_waiting > 0:
             # Could it happen that this while loop never exit if the stream writes fast enough?
             # Only one way to find out!
             # For that reason, a max_lines argument is also passed
             line = self.ser.read_until()
-            logger.debug(f'Read line: {line!r}')
+            logger.debug(f'USBConnection:  Read line: {line!r}')
             data.append(line)
             if max_lines is not None and len(data) > max_lines:
                 break
@@ -179,7 +179,7 @@ class USBConnection:
 
     def _check_port_open(self) -> None:
         if self.ser is None:
-            raise USBConnectionException('Port is closed. Use "with" block to access this interface.')
+            logger.exception(f'USBConnection:  Port {self.port} is closed. Use "with" block to access this interface.')
 
 
 def main() -> None:

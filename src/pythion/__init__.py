@@ -15,4 +15,4 @@ logging.basicConfig(filename=LOGFILE,
                     filemode='a')
 logger = logging.getLogger('pythion')
 logger.setLevel(logging.DEBUG)
-logger.info('STARTING NEW SESSION')
+logger.info('                STARTING NEW SESSION')

@@ -52,7 +52,6 @@ class OutputInterface(ABC):
         """
         Set a target value for the signal.
         """
-
         control_value = self._calibration.to_control(target_value)
         is_valid, new_target, new_control = self._validate(target_value, control_value)
         if not is_valid:

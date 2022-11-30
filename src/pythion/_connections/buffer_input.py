@@ -1,4 +1,4 @@
-from pythion._connections.input import TimerInput
+from pythion._connections.input_interface import TimerInput
 from pythion._connections.usb import USBConnection
 from threading import Timer
 from math import floor
