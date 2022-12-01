@@ -35,7 +35,7 @@ class RS3000Output(OutputInterface, USBConnection):
                  mode: PowerOptions = PowerOptions.VOLTAGE
                  ):
 
-        unit = 'V' if mode == self.PowerOptions.VOLTAGE else 'mA'
+        unit = 'V' if mode == PowerOptions.VOLTAGE else 'mA'
 
         if calibration is None:
             calibration = LinearCalibration(1, unit, unit)
@@ -74,7 +74,7 @@ class RS3000Output(OutputInterface, USBConnection):
         return f'{(current / 1000):.3f}'
 
     def _write(self, control_value: float) -> None:
-        is_voltage = self._mode == self.PowerOptions.VOLTAGE
+        is_voltage = self._mode == PowerOptions.VOLTAGE
         if is_voltage:
             str = self._to_voltage_string(control_value)
         else:
