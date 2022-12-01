@@ -1,9 +1,32 @@
 from __future__ import annotations
-
 from abc import ABC, abstractmethod
 from typing import Any, Callable, Self, Tuple
+import logging
 
 from pythion._connections.calibration import Calibration
+
+
+logger = logging.getLogger('pythion')
+
+
+class Limits:
+    def __init__(self, min: float | None, max: float | None):
+        self.min = min
+        self.max = max
+
+    def check(self, value: float) -> bool:
+        return (self.min is None or self.min < value) and (self.max is None or self.max > value)
+
+    def correct(self, value) -> tuple[float, bool]:
+        """
+        Returns is_valid, new_value
+        if is_valid, then new_value must equal value
+        """
+        if self.min is not None and value < self.min:
+            return False, self.min
+        if self.max is not None and value > self.max:
+            return False, self.max
+        return True, value
 
 
 class OutputInterface(ABC):
@@ -20,12 +43,18 @@ class OutputInterface(ABC):
     _calibration: Calibration
     _on_invalid_output: list[Callable[[], None]]
 
-    def __init__(self, *, calibration: Calibration | None = None, target_limit: float | None = None, control_limit: float | None = None):
+    def __init__(self,
+                 *,
+                 calibration: Calibration | None = None,
+                 target_limit: float | None = None,
+                 control_limit: float | None = None,
+                 target_minimum: float | None = None,
+                 control_minimum: float | None = None):
         self._last_set_target = None
         self._last_set_control = None
         self._calibration = Calibration.standard() if calibration is None else calibration
-        self.target_limit = target_limit
-        self.control_limit = control_limit
+        self.target_limits = Limits(target_minimum, target_limit)
+        self.control_limits = Limits(control_minimum, control_limit)
         self._on_invalid_output = []
 
     # __enter__ and __exit__ are defined since most Outputs require IO handling, and it's
@@ -93,17 +122,18 @@ class OutputInterface(ABC):
         Returns (isValid, new_target, new_control)
         if isValid, then new_target and new_control must remain unchanged.
         """
-        changed = False
-        if target_signal < 0:
-            changed = True
-            target_signal = 0
-        elif self.target_limit is not None and target_signal > self.target_limit:
-            changed = True
-            target_signal = self.target_limit
-        #  TODO: implement control signal validation!!!
-        if changed:
+        target_valid, target_signal = self.target_limits.correct(target_signal)
+        if not target_valid:
+            logger.debug('OutputInterface: Invalid target set. Adjusting...')
             control_signal = self._calibration.to_control(target_signal)
-        return not changed, target_signal, control_signal
+        control_valid, control_signal = self.control_limits.correct(control_signal)
+        if not control_valid:
+            logger.debug('OutputInterface: Invalid control set. Adjusting...')
+            target_signal = self._calibration.to_target(control_signal)
+            if not self.target_limits.check(target_signal):
+                logger.error('OutputInterface: Cannot find any allowed output signal value.')
+        # After this point, both target_signal and control_signal should be within bounds.
+        return (target_valid and control_valid), target_signal, control_signal
 
 # IMPLEMENTATIONS
 
@@ -111,4 +141,4 @@ class OutputInterface(ABC):
 class MockOutput(OutputInterface):
     def _write(self, control_value: float) -> None:
         # print(f'Writing control signal value {control_value}')
-        pass
+        logger.debug(f'MockOutput:     Setting control_signal to {control_value}')

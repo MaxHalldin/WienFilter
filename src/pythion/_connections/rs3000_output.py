@@ -7,6 +7,11 @@ from pythion._connections.usb import USBConnection
 from pythion._connections.calibration import Calibration, LinearCalibration
 
 
+class PowerOptions(Enum):
+    VOLTAGE = 0
+    CURRENT = 1
+
+
 class RS3000Output(OutputInterface, USBConnection):
     """
     Specialization of the Output class for a RS3005P power supply.
@@ -20,15 +25,12 @@ class RS3000Output(OutputInterface, USBConnection):
         mode            : RS3000Output.PowerOption  - Determines whether voltage [V] or current [mA] will
                                                       be used as target signal.
     """
-    class PowerOptions(Enum):
-        VOLTAGE = 0
-        CURRENT = 1
 
     def __init__(self,
                  *,
                  port: str | None,
-                 voltage_limit: float | None = None,
-                 current_limit: float | None = None,
+                 control_signal_limit: float | None = None,
+                 target_signal_limit: float | None,
                  calibration: Calibration | None = None,
                  mode: PowerOptions = PowerOptions.VOLTAGE
                  ):
@@ -39,15 +41,12 @@ class RS3000Output(OutputInterface, USBConnection):
             calibration = LinearCalibration(1, unit, unit)
 
         # Some hard-coded limits for the RS3005P
-        if voltage_limit is None or voltage_limit > 30:
-            voltage_limit = 30
-        if current_limit is None or current_limit > 5000:
-            current_limit = 5000
+        if mode == PowerOptions.VOLTAGE and (control_signal_limit is None or control_signal_limit > 30):
+            control_signal_limit = 30
+        if mode == PowerOptions.CURRENT and (control_signal_limit is None or control_signal_limit > 5000):
+            control_signal_limit = 5000
 
         self._mode = mode
-        self._voltage_limit = voltage_limit
-        self._current_limit = current_limit
-        control_limit = voltage_limit if mode == self.PowerOptions.VOLTAGE else current_limit
 
         BAUD_RATE = 9600
         USBConnection.__init__(
@@ -58,7 +57,8 @@ class RS3000Output(OutputInterface, USBConnection):
         OutputInterface.__init__(
             self,
             calibration=calibration,
-            control_limit=control_limit
+            control_limit=control_signal_limit,
+            target_limit=target_signal_limit
         )
 
     def __enter__(self) -> Self:
