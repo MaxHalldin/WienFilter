@@ -18,7 +18,7 @@ com1 = Output(max_value=300,
               name="Velocity filter",
               unit="V")
 com2 = Output(max_value=1000, interface=op2, parent=win.main_widget(), name="Magnet", unit="mA")
-gs = GridSearch(input=inp, measuring_time=0.1, parent=win.main_widget(), move_knobs=False, plot_every=10, measurement_str=None)
+gs = GridSearch(input=inp, measuring_time=0.1, parent=win.main_widget(), move_knobs=False, plot_every=1, measurement_str=None)
 volt_values = [round(x) for x in np.arange(0, 501, 100)]
 mamp_values = [round(x) for x in np.arange(0, 1001, 100)]
 gs.add_device(com1, volt_values, 0.5)

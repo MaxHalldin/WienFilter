@@ -12,8 +12,9 @@ class GUIUpdater:
     update can be used by an asynchronous function to update GUI components!
     """
     @staticmethod
-    def update(widget: QWidget, slot: str, *args: Any) -> None:
-        QMetaObject.invokeMethod(widget, slot, Qt.QueuedConnection, *[Q_ARG(type(arg), arg) for arg in args])  # type: ignore
+    def update(widget: QWidget, slot: str, *args: Any, block: bool = False) -> None:
+        connection = Qt.BlockingQueuedConnection if block else Qt.QueuedConnection
+        QMetaObject.invokeMethod(widget, slot, connection, *[Q_ARG(type(arg), arg) for arg in args])  # type: ignore
 
 
 class CustomRunnable(QRunnable):

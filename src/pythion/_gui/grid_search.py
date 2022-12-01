@@ -47,7 +47,7 @@ class GridSearchResults:
 
     def update_results(self, indices: tuple[int, ...], value: float, suppress_plot: bool = False) -> None:
         self.results[indices] = value
-        if self.is_2d and not suppress_plot:
+        if not suppress_plot:
             self.update_plot()
 
     def prepare_plot(self, show: bool = True) -> None:
@@ -58,6 +58,8 @@ class GridSearchResults:
         self.update_plot()
 
     def update_plot(self) -> None:
+        if not self.is_2d:
+            return
         ylabel, xlabel = self.names
         yticks, xticks = self.values
         sns.heatmap(ax=self.ax, data=self.results, cmap="crest", cbar_ax=self.cbar_ax, xticklabels=xticks, yticklabels=yticks)
@@ -202,6 +204,7 @@ class GridSearch(Action):
     def complete(self) -> None:
         self.current = 0
         assert self.results is not None
+        self.results.update_plot()
         self.results.write_to_file(self.filepath, self.filename, self.add_datetime)
 
 
@@ -260,7 +263,9 @@ class AsyncWorker:
                 return False
             if not first:
                 self.indices[depth] = i
-                GUIUpdater.update(d.output, "set_value", val, self.move_knobs)
+                logger.debug('GridSearch:     setting value')
+                GUIUpdater.update(d.output, "set_value", val, self.move_knobs, block=True)
+                logger.debug('GridSearch:     value set')
                 sleep(d.wait_time)
                 self.measure()
             else:
@@ -269,7 +274,7 @@ class AsyncWorker:
                 if not self._grid_search(depth + 1):
                     return False
         return True
-        # Return True to its caller if run to completion. Return False (early) if 
+        # Return True to its caller if run to completion. Return False (early) if
         # cancel flag is set to true, or child routine discover cancel flag set to true
 
     """
