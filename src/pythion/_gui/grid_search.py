@@ -1,4 +1,5 @@
 from PyQt5.QtCore import pyqtSlot
+from matplotlib.colors import SymLogNorm
 from pythion._gui.output import Output
 from pythion._gui.action import GUIUpdater, Action
 from dataclasses import dataclass
@@ -62,8 +63,8 @@ class GridSearchResults:
             return
         ylabel, xlabel = self.names
         yticks, xticks = self.values
-        self.ax.cla()
-        sns.heatmap(ax=self.ax, data=self.results, cmap="crest", cbar_ax=self.cbar_ax, xticklabels=xticks, yticklabels=yticks)
+        # self.ax.cla()
+        sns.heatmap(ax=self.ax, data=self.results, cmap="crest", cbar_ax=self.cbar_ax, xticklabels=xticks, yticklabels=yticks, norm=SymLogNorm(linthresh=0.01))
         self.ax.set_xlabel(xlabel)
         self.ax.set_ylabel(ylabel)
         plt.draw()
@@ -111,6 +112,7 @@ class GridSearchResults:
                     dev_vals.add(int(val))
             dims, sorted_device_values = zip(*[(len(dev_vals), sorted(dev_vals)) for dev_vals in device_values])
             results = np.empty(dims)
+            results[:] = 0
             file.seek(0)  # Set read pointer at beginning again
             file.readline()
             for line in file.readlines():
@@ -120,6 +122,7 @@ class GridSearchResults:
                 results[indices] = measurement_val
             res = cls(*zip(sorted_device_values, device_names), measurement_str=measurement_name, show_plot=False)
             res.set_final_results(results)
+            print(results)
             res.update_plot()
             return res
 
@@ -319,5 +322,5 @@ class AsyncWorker:
 
 
 if __name__ == '__main__':
-    GridSearchResults.from_file('221125T1552_grid_results.csv')
+    GridSearchResults.from_file('221130T1200_grid_results.csv')
     plt.show()
