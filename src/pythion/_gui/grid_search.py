@@ -62,6 +62,7 @@ class GridSearchResults:
             return
         ylabel, xlabel = self.names
         yticks, xticks = self.values
+        self.ax.cla()
         sns.heatmap(ax=self.ax, data=self.results, cmap="crest", cbar_ax=self.cbar_ax, xticklabels=xticks, yticklabels=yticks)
         self.ax.set_xlabel(xlabel)
         self.ax.set_ylabel(ylabel)
