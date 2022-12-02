@@ -20,14 +20,22 @@ import logging
 logger = logging.getLogger('pythion')
 
 
+@dataclass
+class HeatmapSettings:
+    color_min: float
+    color_max: float
+    log_threshold: float
+
+
 class GridSearchResults:
     values: tuple[list[int], ...]
     names: tuple[str | None, ...]
     results: npt.NDArray[np.float64]
     is_2d: bool
     measurement_str: str
+    plot_settings: HeatmapSettings
 
-    def __init__(self, *devices: tuple[list[int], str | None], measurement_str: str, show_plot: bool = True):
+    def __init__(self, *devices: tuple[list[int], str | None], measurement_str: str, show_plot: bool = True, plot_settings: HeatmapSettings | None = None):
         """
         Arguments are (device_values, device_name) for all devices
         """
@@ -38,6 +46,9 @@ class GridSearchResults:
         self.is_2d = len(self.names) == 2
         if self.is_2d:
             self.prepare_plot(show_plot)
+            if plot_settings is None:
+                plot_settings = HeatmapSettings(10, 3000, 10)
+            self.plot_settings = plot_settings
 
     def value_at(self, indices: tuple[int, ...]) -> float:
         res: float = self.results[indices]
@@ -63,8 +74,10 @@ class GridSearchResults:
             return
         ylabel, xlabel = self.names
         yticks, xticks = self.values
-        # self.ax.cla()
-        sns.heatmap(ax=self.ax, data=self.results, cmap="crest", cbar_ax=self.cbar_ax, xticklabels=xticks, yticklabels=yticks, norm=SymLogNorm(linthresh=0.01))
+        self.ax.cla()
+        norm = SymLogNorm(linthresh=1, vmin=0.1, vmax=3000)
+        palette = sns.color_palette('crest', as_cmap=True)
+        sns.heatmap(ax=self.ax, data=self.results, cmap=palette, cbar_ax=self.cbar_ax, xticklabels=xticks, yticklabels=yticks, norm=norm)
         self.ax.set_xlabel(xlabel)
         self.ax.set_ylabel(ylabel)
         plt.draw()
@@ -168,7 +181,11 @@ class GridSearch(Action):
                  filepath: str = './',
                  filename: str = 'grid_results',
                  add_datetime: bool = True,
-                 measurement_str: str | None = None):
+                 measurement_str: str | None = None,
+                 heatmap_minvalue: float = 0,
+                 heatmap_maxvalue: float = 3e3,
+                 heatmap_log_threshold: float = 1
+                 ):
         self.input = input
         self.measure_time = measuring_time
         self.results = None
@@ -184,6 +201,7 @@ class GridSearch(Action):
         self.filename = filename
         self.add_datetime = add_datetime
         self.measurement_str = 'Measurement' if measurement_str is None else measurement_str
+        self.heatmap_settings = HeatmapSettings(heatmap_minvalue, heatmap_maxvalue, heatmap_log_threshold)
 
         super().__init__(action=self.run, args=[], kwargs={}, parent=parent, text='Start Grid Search')
 
@@ -192,7 +210,11 @@ class GridSearch(Action):
 
     def before_execution(self) -> None:
         # Instantiate result object
-        self.results = GridSearchResults(*[(d.values, d.output.name) for d in self.devices], measurement_str=self.measurement_str)
+        self.results = GridSearchResults(
+            *[(d.values, d.output.name) for d in self.devices],
+            measurement_str=self.measurement_str,
+            plot_settings=self.heatmap_settings
+        )
 
     def run(self) -> None:
         AsyncWorker(self)
@@ -240,6 +262,7 @@ class AsyncWorker:
         # Wait for self.measure_time as many times as needed to recieve at least one measurement
         vals = []
         while True:
+            logger.debug('GridSearch      measuring...')
             sleep(self.measure_time)
             vals = self.input.clear_buffer()
             if vals:

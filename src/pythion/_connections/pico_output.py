@@ -61,6 +61,3 @@ class PicoOutput(OutputInterface, USBConnection):
             if not control_validation:
                 raise ValueError('No valid output could be set with the current configuration')
         return parent_valid and not changed, target_value, control_value
-
-
-PicoOutput(port='COM3', calibration=Calibration.standard())
