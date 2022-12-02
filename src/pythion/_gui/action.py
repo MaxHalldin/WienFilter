@@ -1,37 +1,14 @@
 from __future__ import annotations
-from typing import Any, Callable
 
 from PyQt5.QtWidgets import QWidget
-from PyQt5.QtCore import QMetaObject, Qt, Q_ARG, pyqtSlot, QRunnable, QThreadPool
+from PyQt5.QtCore import pyqtSlot
+
 from pythion._layout.ui_action import Ui_Action
+from pythion._routines.routine_handler import RoutineHandler
+from pythion._routines.routine import Routine
 
 
-class GUIUpdater:
-    """
-    This tiny helper class defines only one method:
-    update can be used by an asynchronous function to update GUI components!
-    """
-    @staticmethod
-    def update(widget: QWidget, slot: str, *args: Any, block: bool = False) -> None:
-        connection = Qt.BlockingQueuedConnection if block else Qt.QueuedConnection
-        QMetaObject.invokeMethod(widget, slot, connection, *[Q_ARG(type(arg), arg) for arg in args])  # type: ignore
-
-
-class CustomRunnable(QRunnable):
-    def __init__(self, parent: Action, action: Callable[..., None], args: list[Any], kwargs: dict[str, Any]):
-        QRunnable.__init__(self)
-        self.action = action
-        self.args = args
-        self.kwargs = kwargs
-        self.parent = parent
-        self.setAutoDelete(False)
-
-    def run(self) -> None:
-        self.action(*self.args, **self.kwargs)
-        GUIUpdater.update(self.parent, 'reactivate')
-
-
-class Action(QWidget, Ui_Action):
+class Action(RoutineHandler, Ui_Action):
     """
     This class has two main purposes:
         - It's a gui component with a button that initiates the process.
@@ -43,20 +20,15 @@ class Action(QWidget, Ui_Action):
     def __init__(
         self,
         *,
-        action: Callable[..., None],
-        args: list[Any],
-        kwargs: dict[str, Any],
+        routine: Routine,
         parent: QWidget | None = None,
         text: str | None = None,
     ):
         # Boilerplate initialization
-        super().__init__(parent)
+        super().__init__(routine, parent)
         self.setupUi(self)  # type: ignore
         # Custom initialization
         self.text = 'Activate' if text is not None else text
-        self.runner = CustomRunnable(self, action, args, kwargs)
-        self.ready = True
-        self._cancelled = False
         self.configure()
 
     @pyqtSlot()
@@ -74,15 +46,7 @@ class Action(QWidget, Ui_Action):
     def _button_pressed(self) -> None:
         if self.ready:
             # Activate pressed
-            self.ready = False
             self.button.setText('Cancel')
-            self.before_execution()
-            QThreadPool.globalInstance().start(self.runner)
+            self.start()
         else:
-            # Cancel pressed
-            self._cancelled = True
-            if QThreadPool.globalInstance().activeThreadCount():
-                QThreadPool.globalInstance().waitForDone()
-
-    def before_execution(self) -> None:
-        pass
+            self.cancel()

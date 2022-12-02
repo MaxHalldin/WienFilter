@@ -53,7 +53,7 @@ class Output(QWidget, Ui_Output, ConnectButton):
         self.setBtn.clicked.connect(self._on_setvalue_pressed)  # type: ignore
 
     def _on_setvalue_pressed(self) -> None:
-        self._set_value(self.outputDial.value())
+        self.set_value_and_update(self.outputDial.value())
 
     def _activate(self) -> None:
         """
@@ -81,9 +81,18 @@ class Output(QWidget, Ui_Output, ConnectButton):
         assert self._in_context_manager
         raise NotImplementedError('No port selection gui has been made yet!')
 
-    def _set_value(self, val: float) -> None:
+    def set_value_without_graphics(self, val: float):
+        """
+        This method *only* sets the underlying hardware interface value.
+        It's used by other set_value methods, but it can inprinciple also
+        be used by external callers. Beware, however, that there will be no
+        visual indication that the output value has changed!
+        """
         logger.debug(f'Output:         Setting {self.namestr} to {val}.')
         self.interface.target = val  # Try to set value on the underlying interface
+
+    def set_value_and_update(self, val: float) -> None:
+        self.set_value_without_graphics(val)
         val = self.interface.target  # Outgoing value might have changed due to illegal output, so get back the set value
         if not self._value_set:
             # If this is the first value that's been set, "activate" LCD
@@ -97,19 +106,18 @@ class Output(QWidget, Ui_Output, ConnectButton):
             self.valueChanged.emit(val)
 
     @pyqtSlot(int, bool)
-    def set_value(self, val: int, move_knobs: bool) -> None:
+    def set_value(self, val: int, move_knobs: bool = True) -> None:
         """
-        External method that can be invoked to change the output value.
-        If move_knobs is true, the graphical knobs will also move to the
-        corresponding output value.
+        External method that can be invoked to change the output value and possibly move the knobs accordingly.
+        Note that even when move_knobs is False, the 'last set target signal' LCD will still change, so
+        there's no way of setting the value directly without changing the graphics by any of this component's methods.
+        If you want to achieve this, for example due to performance reasons, then adress the hardware interface (i.e.
+        the OutputInterface derivative) directly.
         """
         if not self._connected:
             logger.warning('Output:         Attempted to set value without connection')
             return
+        # Change value just like the user would:
         if move_knobs:
-            # Change value just like the user would:
             self.outputDial.setValue(val)  # TODO: support float values for output
-            self._on_setvalue_pressed()
-        else:
-            # Change value "silently"
-            self._set_value(val)
+        self.set_value_and_update(val)

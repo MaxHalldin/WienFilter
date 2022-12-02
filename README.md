@@ -42,3 +42,5 @@ However, since ports must sometimes be designated at runtime, the connections ca
 The GUI `Input`/`Output` components hold references to `InputInterface`/`OutputInterface` classes from `pythion.connections`. A port selection option should only be made available *if* the interface class is a subclass of `USBConnection`. Therefore, it's reasonable for the `Input`/`Output` class to make an `isinstance`-check to the interface, and see whether port selection should be initiated. Furthermore, the specifics of port selection should be governed by the USBConnection class itself, possibly with settings injected by the interface subclass.
 
 
+## A little on executable routines
+In order to allow the program to execute specific routines in a worker thread, that may involve interacting with other graphical components (for example, conducting a grid search), a few helper classes have been created.

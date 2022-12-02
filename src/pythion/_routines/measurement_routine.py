@@ -6,6 +6,7 @@ import logging
 from pythion._routines.routine import Routine
 from pythion._gui.output import Output
 from pythion._gui.input import Input
+from pythion._connections import BufferInput
 
 
 logger = logging.getLogger('pythion')
@@ -44,19 +45,23 @@ class MeasurementRoutine(Routine):
             return
         self.update_widget(output, "set_value", value, block=block)
 
-    def measure(self, input: Input, measuring_time: float):
+    def measure(self, input: Input, measuring_time: float) -> float:
         interface = input.interface
+        if not isinstance(interface, BufferInput):
+            logger.error('MearurementRoutine: Measuring from other InputInterfaces than BufferInput is not implemented!')
+            return 0
+
+        # Wait for measure_time seconds as many times as needed to recieve at least one measurement
         interface.restart_buffer()
-        # Wait for self.measure_time as many times as needed to recieve at least one measurement
         vals = []
         i = 1
         while True:
-            logger.debug(f'GridSearch      measuring ({i})...')
+            logger.debug(f'MeasurementRoutine: measuring ({i})...')
             i = i + 1
-            sleep(self.measure_time)
-            vals = self.input.clear_buffer()
+            sleep(measuring_time)
+            vals = interface.clear_buffer()
             if vals:
                 break
         average = float(mean(vals))
-        logger.debug(f'GridSearch:     measured ({vals}), average {average}.')
+        logger.debug(f'MeasurementRoutine: measured ({vals}), average {average}.')
         return average
