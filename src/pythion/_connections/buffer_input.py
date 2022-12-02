@@ -83,6 +83,9 @@ class BufferInput(TimerInput):
         self._buffer = None if stop_buffering or self._buffer is None else []
         return ret
 
+    def restart_buffer(self) -> None:
+        self._buffer = []
+
     def start_buffer(self) -> None:
         if self._buffer is None:
             self._buffer = []
