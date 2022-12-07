@@ -30,9 +30,10 @@ class Input(QWidget, Ui_Input, ConnectButton):
 
     def configure(self) -> None:
         # Set name label
-        namestr = self.name if self.name else 'Output'
-        namestr = namestr + (f' [{self.unit}]' if self.unit else '')
-        self.nameLabel.setText(namestr)
+        label = self.name if self.name else 'Output'
+        label = label + (f' [{self.unit}]' if self.unit else '')
+        self.label = label
+        self.nameLabel.setText(label)
         self.interface.add_input_handler(self._on_new_value)
 
     def _activate(self):

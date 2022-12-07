@@ -1,6 +1,6 @@
 from __future__ import annotations
 from matplotlib.colors import SymLogNorm
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from time import sleep
 import os
 from datetime import datetime
@@ -22,12 +22,18 @@ logger = logging.getLogger('pythion')
 
 # Let's begin with a Heatmap class that will come in handy later.
 class Heatmap:
-    def __init__(self, settings: GridSearch.HeatmapSettings, devices: tuple[GridSearch.Device, GridSearch.Device]):
+    def __init__(self, settings: GridSearch.HeatmapSettings, labels: list[str], ticks: list[int]):
         self.settings = settings
-        self.labels = [dev.output.name for dev in devices]
-        self.ticks = [dev.values for dev in devices]
+        self.labels = labels
+        self.ticks = ticks
         self.ax = None
         self.cbar_ax = None
+
+    @classmethod
+    def from_devices(cls, settings: GridSearch.HeatmapSettings, devices: tuple[GridSearch.Device, GridSearch.Device]):
+        labels = [dev.output.label for dev in devices]
+        ticks = [dev.values for dev in devices]
+        return cls(settings, labels, ticks)
 
     def plot(self, data: npt.NDArray[np.float64]):
         _, (self.ax, self.cbar_ax) = plt.subplots(1, 2, gridspec_kw={'width_ratios': (0.9, 0.05), 'wspace': 0.2}, figsize=(10, 8))
@@ -36,7 +42,7 @@ class Heatmap:
 
     def update(self, data: npt.NDArray[np.float64]):
         if self.ax is None:
-            self.plot(data, False)
+            self.plot(data)
             return  # plot calls update on its own, so we can return from here
         assert self.ax is not None, self.cbar_ax is not None
         ylabel, xlabel = self.labels
@@ -106,7 +112,7 @@ class GridSearch(MeasurementRoutine):
         self.set_output_mode = ValueUpdateSettings.MOVE_KNOBS if settings.update_graphics else ValueUpdateSettings.NO_GRAPHICS
 
         if len(self.devices) == 2 and plot_settings is not None:  # Initiate heatmap plot (don't show yet!)
-            self.heatmap = Heatmap(plot_settings, self.devices)
+            self.heatmap = Heatmap.from_devices(plot_settings, self.devices)
         else:
             self.heatmap = None
 
@@ -138,7 +144,12 @@ class GridSearch(MeasurementRoutine):
         # Configure file writing if required
         filename = self._get_filename()
         with (open(filename, mode='x') if filename is not None else nullcontext()) as file:
-            f = file if filename is not None else None
+            f = None
+            if filename is not None:
+                f = file
+                # Write header row
+                f.write(','.join([dev.output.label for dev in self.devices]) + f',{self.input.label}')
+
             # Measure the very first value manually
             self._measure(f)
             # The rest are measured by recursion
@@ -215,19 +226,14 @@ class GridSearch(MeasurementRoutine):
         return complete_path
 
 
-def read_file(filepath: str) -> Self:
+def read_file(filepath: str, plot_settings: GridSearch.HeatmapSettings | None = None) -> Self:
     # To avoid allocating all data in memory, file is read in two passes:
     # First determining the step sizes, and second, getting the values.
-    device_values: list[set[int]]
-    dims: tuple[int, ...]
-    vals: list[str]
-
-    pass
 
     with open(filepath, 'rt') as file:
         header = file.readline()
         device_names = header.split(',')
-        measurement_name = device_names.pop()
+        _ = device_names.pop()  # Todo: add title to plot
         device_values = [set() for _ in device_names]
         for line in file.readlines():
             vals = line.split(',')[0:-1]
@@ -243,12 +249,16 @@ def read_file(filepath: str) -> Self:
             measurement_val = vals.pop()
             indices = tuple(dev_vals.index(int(val)) for dev_vals, val in zip(sorted_device_values, vals))
             results[indices] = measurement_val
-        res = cls(*zip(sorted_device_values, device_names), measurement_str=measurement_name, show_plot=False)
-        res.set_final_results(results)
-        print(results)
-        res.update_plot()
-        return res
 
-#if __name__ == '__main__':
-    #GridSearchResults.from_file('221130T1200_grid_results.csv')
-    #plt.show()
+    if plot_settings is None:
+        plot_settings = GridSearch.HeatmapSettings(0, 3000, 1)
+
+    heatmap = Heatmap(plot_settings, device_names, sorted_device_values)
+    heatmap.update(results)
+    return results
+
+
+if __name__ == '__main__':
+    filename = 'gridresults/221207T1701_results.csv'
+    print(read_file(filename))
+    input('Press enter to continue')

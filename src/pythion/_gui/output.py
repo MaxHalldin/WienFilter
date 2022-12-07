@@ -13,7 +13,7 @@ logger = logging.getLogger('pythion')
 
 class Output(QWidget, Ui_Output, ConnectButton):
     valueChanged: pyqtSignal = pyqtSignal(float)
-    namestr: str
+    label: str
 
     def __init__(
         self, *,
@@ -34,8 +34,8 @@ class Output(QWidget, Ui_Output, ConnectButton):
         self.name = name
         self.unit = unit
         self._value_set = False
-        namestr = name if name else 'Output'
-        self.namestr = namestr + (f' [{unit}]' if unit else '')
+        label = name if name else 'Output'
+        self.label = label + (f' [{unit}]' if unit else '')
         self.configure()
 
     def configure(self) -> None:
@@ -43,7 +43,7 @@ class Output(QWidget, Ui_Output, ConnectButton):
             logger.warning('Output:         Live feedback has not been implemented!')
 
         # Set name label
-        self.nameLabel.setText(self.namestr)
+        self.nameLabel.setText(self.label)
 
         # Connect dial and text field to input voltage display
         self.outputDial.setRange(0, self.max_value)
@@ -88,7 +88,7 @@ class Output(QWidget, Ui_Output, ConnectButton):
         be used by external callers. Beware, however, that there will be no
         visual indication that the output value has changed!
         """
-        logger.debug(f'Output:         Setting {self.namestr} to {val}.')
+        logger.debug(f'Output:         Setting {self.label} to {val}.')
         self.interface.target = val  # Try to set value on the underlying interface
 
     def _update_graphics(self):
