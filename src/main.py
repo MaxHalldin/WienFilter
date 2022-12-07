@@ -23,9 +23,11 @@ grid_search = GridSearch(
     GridSearch.Device.from_stepsize(magnet, 0.01, 3000, 0, -1000),
     GridSearch.Device.from_stepsize(velocity_filter, 0.01, 0, 300, 10),
     input=input_component,
-    settings=GridSearch.GridSearchSettings(0.1, True, plot_every=0),
-    plot_settings=GridSearch.HeatmapSettings(0, 3000, 10)
+    settings=GridSearch.GridSearchSettings(0.1, True, plot_every=10),
+    plot_settings=GridSearch.HeatmapSettings(0, 3000, 10),
+    file_settings=GridSearch.FileSettings(filepath='./gridresults', filename='results', add_datetime=True)
 )
+
 start_button = Action(routine=grid_search, parent=win.main_widget(), text='Grid Search')
 
 plt = PlotStream(parent=win.main_widget(), input=inp, timespan=30, fix_scale=False)

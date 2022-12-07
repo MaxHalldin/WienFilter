@@ -1,13 +1,17 @@
 from __future__ import annotations
 from matplotlib.colors import SymLogNorm
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from time import sleep
+import os
+from datetime import datetime
 import numpy.typing as npt
 import numpy as np
 import seaborn as sns  # type: ignore
 import matplotlib.pyplot as plt  # type: ignore
 import logging
-from typing import Self
+from typing import Self, Generator
+from contextlib import nullcontext
+from io import TextIOWrapper
 
 from pythion._gui.output import Output
 from pythion._gui.input import Input
@@ -22,6 +26,8 @@ class Heatmap:
         self.settings = settings
         self.labels = [dev.output.name for dev in devices]
         self.ticks = [dev.values for dev in devices]
+        self.ax = None
+        self.cbar_ax = None
 
     def plot(self, data: npt.NDArray[np.float64]):
         _, (self.ax, self.cbar_ax) = plt.subplots(1, 2, gridspec_kw={'width_ratios': (0.9, 0.05), 'wspace': 0.2}, figsize=(10, 8))
@@ -29,6 +35,10 @@ class Heatmap:
         plt.show(block=False)
 
     def update(self, data: npt.NDArray[np.float64]):
+        if self.ax is None:
+            self.plot(data, False)
+            return  # plot calls update on its own, so we can return from here
+        assert self.ax is not None, self.cbar_ax is not None
         ylabel, xlabel = self.labels
         yticks, xticks = self.ticks
         self.ax.cla()
@@ -50,8 +60,8 @@ class GridSearch(MeasurementRoutine):
 
     @dataclass
     class FileSettings:
-        filepath: str = './',
-        filename: str = 'grid_results',
+        filepath: str = './'
+        filename: str = 'grid_results'
         add_datetime: bool = True
 
     @dataclass
@@ -95,9 +105,6 @@ class GridSearch(MeasurementRoutine):
         self.file_settings = file_settings
         self.set_output_mode = ValueUpdateSettings.MOVE_KNOBS if settings.update_graphics else ValueUpdateSettings.NO_GRAPHICS
 
-        shape = [len(dev.values) for dev in self.devices]
-        self.results = np.zeros(shape)
-
         if len(self.devices) == 2 and plot_settings is not None:  # Initiate heatmap plot (don't show yet!)
             self.heatmap = Heatmap(plot_settings, self.devices)
         else:
@@ -106,8 +113,13 @@ class GridSearch(MeasurementRoutine):
         self.add_task(self.execute)
 
     def execute(self) -> None:
+        # Initialize results matrix
+        shape = [len(dev.values) for dev in self.devices]
+        self.results = np.zeros(shape)
+
         # Initialize plot
         live_plot = self.heatmap and self.settings.plot_every
+
         if live_plot:
             # Show plot to prepare live update
             self.run_on_main_thread(self.heatmap.plot, self.results)
@@ -122,10 +134,15 @@ class GridSearch(MeasurementRoutine):
         # Start recursive grid search
         self._indices = [0 for _ in self.devices]
         self._counter = 1
-        # Measure the very first value manually
-        self._measure()
-        # The rest are measured by recursion
-        self._grid_search(0)
+
+        # Configure file writing if required
+        filename = self._get_filename()
+        with (open(filename, mode='x') if filename is not None else nullcontext()) as file:
+            f = file if filename is not None else None
+            # Measure the very first value manually
+            self._measure(f)
+            # The rest are measured by recursion
+            self._grid_search(0, f)
 
         # Final plot
         if self.heatmap:
@@ -134,7 +151,7 @@ class GridSearch(MeasurementRoutine):
             else:
                 self.run_on_main_thread(self.heatmap.plot, self.results)
 
-    def _grid_search(self, depth: int) -> bool:
+    def _grid_search(self, depth: int, file: TextIOWrapper | None) -> bool:
         dev = self.devices[depth]
         is_inverted = self._indices[depth] > 0
         iter_list = list(enumerate(dev.values))
@@ -147,76 +164,90 @@ class GridSearch(MeasurementRoutine):
                 logger.debug('GridSearch:     setting value')
                 self.set_output(dev.output, val, self.set_output_mode, False)
                 sleep(dev.wait_time)
-                self._measure()
+                self._measure(file)
             else:
                 first = False
             if depth+1 < len(self.devices):
-                if not self._grid_search(depth + 1):
+                if not self._grid_search(depth + 1, file):
                     return False
         return True
         # Return True to its caller if run to completion. Return False (early) if
         # cancel flag is set to true, or child routine discover cancel flag set to true
 
-    def _measure(self) -> None:
+    def _measure(self, file: TextIOWrapper | None) -> None:
         value = self.measure(self.input, self.settings.measuring_time)
         self.results[tuple(self._indices)] = value
         if self.heatmap and self.settings.plot_every:
             if self._counter % self.settings.plot_every == 0:
                 self.run_on_main_thread(self.heatmap.update, self.results)
             self._counter = self._counter + 1
-        if self.file_settings:
-            pass  # Write to file here
+        if file is not None:
+            assert isinstance(file, TextIOWrapper)
+            device_settings_string = ','.join(str(val) for val in self._get_set_values())
+            file.write(f'\n{device_settings_string},{value}')
 
-    # def write_to_file(settings: GridSearch.FileSettings, data: ) -> None:
-        # f = filepath
-        # if add_datetime:
-            # now = datetime.now()
-            # f = f + f'{now:%y%m%d}T{now:%H%M}_'
-        # f = f + filename + '.csv'
+    def _get_set_values(self) -> Generator[float, None, None]:
+        yield from (device.values[current_index] for device, current_index in zip(self.devices, self._indices))
 
-        # nonempty_names = [name if name else 'Unnamed Output' for name in self.names]
-        # header = ','.join(nonempty_names + [self.measurement_str])
-        # with open(f, 'wt') as file:
-            # file.write(header)
-            # for config in self._iterate_matrix():
-                # indices, values = zip(*config)
-                # measurement = self.value_at(tuple(indices))
-                # file.write(f"\n{ ','.join([str(x) for x in values]) },{measurement}")
-        # logger.info('GridSearch:     Finished writing to file!')
+    def _get_filename(self) -> str | None:
+        if self.file_settings is None:
+            return None
 
-    # @classmethod
-    # def from_file(cls, filepath: str) -> Self:
-        # # To avoid allocating all data in memory, file is read in two passes:
-        # # First determining the step sizes, and second, getting the values.
-        # device_values: list[set[int]]
-        # dims: tuple[int, ...]
-        # vals: list[str]
+        filename = self.file_settings.filename
+        if self.file_settings.add_datetime:
+            now = datetime.now()
+            filename = f'{now:%y%m%d}T{now:%H%M}_' + filename
 
-        # with open(filepath, 'rt') as file:
-            # header = file.readline()
-            # device_names = header.split(',')
-            # measurement_name = device_names.pop()
-            # device_values = [set() for _ in device_names]
-            # for line in file.readlines():
-                # vals = line.split(',')[0:-1]
-                # for val, dev_vals in zip(vals, device_values):
-                    # dev_vals.add(int(val))
-            # dims, sorted_device_values = zip(*[(len(dev_vals), sorted(dev_vals)) for dev_vals in device_values])
-            # results = np.empty(dims)
-            # results[:] = 0
-            # file.seek(0)  # Set read pointer at beginning again
-            # file.readline()
-            # for line in file.readlines():
-                # vals = line.split(',')
-                # measurement_val = vals.pop()
-                # indices = tuple(dev_vals.index(int(val)) for dev_vals, val in zip(sorted_device_values, vals))
-                # results[indices] = measurement_val
-            # res = cls(*zip(sorted_device_values, device_names), measurement_str=measurement_name, show_plot=False)
-            # res.set_final_results(results)
-            # print(results)
-            # res.update_plot()
-            # return res
+        path = self.file_settings.filepath
+        uniqueifier = ''
+        extension = '.csv'
+        complete_path = path + '/' + filename + uniqueifier + extension
 
+        # If directory exists, make sure file name is unique. Else, create directory(-ies)
+        if os.path.exists(path):
+            counter = 1
+            while os.path.exists(complete_path):
+                uniqueifier = f'({counter})'
+                counter = counter + 1
+                complete_path = path + '/' + filename + uniqueifier + extension
+        else:
+            os.makedirs(path)
+        return complete_path
+
+
+def read_file(filepath: str) -> Self:
+    # To avoid allocating all data in memory, file is read in two passes:
+    # First determining the step sizes, and second, getting the values.
+    device_values: list[set[int]]
+    dims: tuple[int, ...]
+    vals: list[str]
+
+    pass
+
+    with open(filepath, 'rt') as file:
+        header = file.readline()
+        device_names = header.split(',')
+        measurement_name = device_names.pop()
+        device_values = [set() for _ in device_names]
+        for line in file.readlines():
+            vals = line.split(',')[0:-1]
+            for val, dev_vals in zip(vals, device_values):
+                dev_vals.add(int(val))
+        dims, sorted_device_values = zip(*[(len(dev_vals), sorted(dev_vals)) for dev_vals in device_values])
+        results = np.empty(dims)
+        results[:] = 0
+        file.seek(0)  # Set read pointer at beginning again
+        file.readline()
+        for line in file.readlines():
+            vals = line.split(',')
+            measurement_val = vals.pop()
+            indices = tuple(dev_vals.index(int(val)) for dev_vals, val in zip(sorted_device_values, vals))
+            results[indices] = measurement_val
+        res = cls(*zip(sorted_device_values, device_names), measurement_str=measurement_name, show_plot=False)
+        res.set_final_results(results)
+        print(results)
+        res.update_plot()
+        return res
 
 #if __name__ == '__main__':
     #GridSearchResults.from_file('221130T1200_grid_results.csv')
