@@ -1,19 +1,13 @@
 from __future__ import annotations
-from PyQt5.QtCore import pyqtSlot
 from matplotlib.colors import SymLogNorm
 from dataclasses import dataclass
-from pythion._connections.buffer_input import BufferInput
 from time import sleep
 import numpy.typing as npt
 import numpy as np
-from statistics import mean
-from PyQt5.QtWidgets import QWidget
 import seaborn as sns  # type: ignore
 import matplotlib.pyplot as plt  # type: ignore
-from datetime import datetime
-from itertools import product
-from typing import Self, Generator
 import logging
+from typing import Self
 
 from pythion._gui.output import Output
 from pythion._gui.input import Input
@@ -26,7 +20,7 @@ logger = logging.getLogger('pythion')
 class Heatmap:
     def __init__(self, settings: GridSearch.HeatmapSettings, devices: tuple[GridSearch.Device, GridSearch.Device]):
         self.settings = settings
-        self.labels = [dev.name for dev in devices]
+        self.labels = [dev.output.name for dev in devices]
         self.ticks = [dev.values for dev in devices]
 
     def plot(self, data: npt.NDArray[np.float64]):
@@ -40,7 +34,7 @@ class Heatmap:
         self.ax.cla()
         norm = SymLogNorm(self.settings.log_threshold, vmin=self.settings.color_min, vmax=self.settings.color_max)
         palette = sns.color_palette('crest', as_cmap=True)
-        sns.heatmap(ax=self.ax, data=self.results, cmap=palette, cbar_ax=self.cbar_ax, xticklabels=xticks, yticklabels=yticks, norm=norm)
+        sns.heatmap(ax=self.ax, data=data, cmap=palette, cbar_ax=self.cbar_ax, xticklabels=xticks, yticklabels=yticks, norm=norm)
         self.ax.set_xlabel(xlabel)
         self.ax.set_ylabel(ylabel)
         plt.draw()
@@ -61,16 +55,21 @@ class GridSearch(MeasurementRoutine):
         add_datetime: bool = True
 
     @dataclass
+    class GridSearchSettings:
+        measuring_time: float
+        update_graphics: bool
+        plot_every: int | None = None  # Setting plot_every to 0 or None will disable live plots.
+
+    @dataclass
     class Device:
         output: Output
         values: list[int]
         wait_time: float
 
-    @dataclass
-    class GridSearchSettings:
-        measuring_time: float
-        update_graphics: bool
-        plot_every: int | None = None
+        @classmethod
+        def from_stepsize(cls, output: Output, wait_time: float, start_value: int, end_value: int, step_size: int) -> Self:
+            values = [round(i) for i in range(start_value, end_value+step_size, step_size)]
+            return cls(output, values, wait_time)
 
     devices: tuple[Device, ...]
     input: Input
@@ -84,10 +83,10 @@ class GridSearch(MeasurementRoutine):
 
     def __init__(self,
                  *devices: Device,
-                 input: BufferInput,
+                 input: Input,
                  settings: GridSearchSettings,
-                 plot_settings: HeatmapSettings | None,
-                 file_settings: FileSettings | None
+                 plot_settings: HeatmapSettings | None = None,
+                 file_settings: FileSettings | None = None
                  ):
         super().__init__()
         self.devices = devices
@@ -96,10 +95,10 @@ class GridSearch(MeasurementRoutine):
         self.file_settings = file_settings
         self.set_output_mode = ValueUpdateSettings.MOVE_KNOBS if settings.update_graphics else ValueUpdateSettings.NO_GRAPHICS
 
-        shape = [len(vals) for vals in self.values]
+        shape = [len(dev.values) for dev in self.devices]
         self.results = np.zeros(shape)
 
-        if len(self.devices) == 2 and plot_settings is not None:  # Plot a heatmap
+        if len(self.devices) == 2 and plot_settings is not None:  # Initiate heatmap plot (don't show yet!)
             self.heatmap = Heatmap(plot_settings, self.devices)
         else:
             self.heatmap = None
@@ -108,10 +107,10 @@ class GridSearch(MeasurementRoutine):
 
     def execute(self) -> None:
         # Initialize plot
-        live_plot = self.heatmap and not self.plot_every == 0
+        live_plot = self.heatmap and self.settings.plot_every
         if live_plot:
             # Show plot to prepare live update
-            self.run_on_main_thread(self.heatmap.plot, self.results, self.devices)
+            self.run_on_main_thread(self.heatmap.plot, self.results)
 
         # Initialize outputs
         max_wait = max(dev.wait_time for dev in self.devices)
@@ -127,7 +126,13 @@ class GridSearch(MeasurementRoutine):
         self._measure()
         # The rest are measured by recursion
         self._grid_search(0)
-        self.input.clear_buffer(True)
+
+        # Final plot
+        if self.heatmap:
+            if live_plot:
+                self.run_on_main_thread(self.heatmap.update, self.results)
+            else:
+                self.run_on_main_thread(self.heatmap.plot, self.results)
 
     def _grid_search(self, depth: int) -> bool:
         dev = self.devices[depth]
@@ -135,7 +140,7 @@ class GridSearch(MeasurementRoutine):
         iter_list = list(enumerate(dev.values))
         first = True
         for i, val in reversed(iter_list) if is_inverted else iter_list:
-            if self.context._cancelled:
+            if self.handler._cancelled:
                 return False
             if not first:
                 self._indices[depth] = i
@@ -155,14 +160,12 @@ class GridSearch(MeasurementRoutine):
     def _measure(self) -> None:
         value = self.measure(self.input, self.settings.measuring_time)
         self.results[tuple(self._indices)] = value
-        if self.heatmap:
-            if self._counter % self.plot_every != 0:
+        if self.heatmap and self.settings.plot_every:
+            if self._counter % self.settings.plot_every == 0:
                 self.run_on_main_thread(self.heatmap.update, self.results)
-            self.counter = self.counter + 1
+            self._counter = self._counter + 1
         if self.file_settings:
             pass  # Write to file here
-
-        self.results.update_plot()
 
     # def write_to_file(settings: GridSearch.FileSettings, data: ) -> None:
         # f = filepath

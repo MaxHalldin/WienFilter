@@ -5,6 +5,9 @@ from math import floor
 import time
 from typing import Self, Any
 from abc import abstractmethod
+import logging
+
+logger = logging.getLogger('pythion')
 
 
 class BufferInput(TimerInput):
@@ -129,7 +132,7 @@ class PicoMockBufferInput(BufferInput, USBConnection):
             return [float(str.strip()) for str in lines]
         except ValueError:
             # Bad read from device, throw away data
-            print(f'Discarding a corrupted batch of {len(lines)} points')
+            logger.warning(f'Discarding a corrupted batch of {len(lines)} points')
             return []
 
 

@@ -28,14 +28,14 @@ class Action(RoutineHandler, Ui_Action):
         super().__init__(routine, parent)
         self.setupUi(self)  # type: ignore
         # Custom initialization
-        self.text = 'Activate' if text is not None else text
+        self.text = 'Activate' if text is None else text
         self.configure()
 
-    @pyqtSlot()
-    def reactivate(self) -> None:
-        self.ready = True
-        self._cancelled = False
+    def on_reset(self) -> None:
         self.button.setText(self.text)
+
+    def on_start(self) -> None:
+        self.button.setText('Cancel')
 
     def configure(self) -> None:
         # Set name label
@@ -46,7 +46,6 @@ class Action(RoutineHandler, Ui_Action):
     def _button_pressed(self) -> None:
         if self.ready:
             # Activate pressed
-            self.button.setText('Cancel')
             self.start()
         else:
             self.cancel()

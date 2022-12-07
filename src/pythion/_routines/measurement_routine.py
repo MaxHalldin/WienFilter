@@ -6,7 +6,7 @@ import logging
 from pythion._routines.routine import Routine
 from pythion._gui.output import Output
 from pythion._gui.input import Input
-from pythion._connections import BufferInput
+from pythion._connections.buffer_input import BufferInput
 
 
 logger = logging.getLogger('pythion')
@@ -38,12 +38,15 @@ class MeasurementRoutine(Routine):
                           immediately. This might lead to an unexpected delay in setting the output
                           value if the main thread is being blocked by other things, such as plotting.
         """
-        if update_settings == ValueUpdateSettings.NO_GRAPHICS:
-            # Bypass the output component and set the value to the hardware interface directly
-            interface = output.interface
-            interface.target = value
-            return
-        self.update_widget(output, "set_value", value, block=block)
+
+        # Bypass the output component and set the value to the hardware interface directly
+        interface = output.interface
+        interface.target = value
+
+        # Then, send a request to update the graphics
+        if update_settings != ValueUpdateSettings.NO_GRAPHICS:
+            move_knobs = update_settings == ValueUpdateSettings.MOVE_KNOBS
+            self.update_widget(output, "delayed_set_value", value, move_knobs, block=block)
 
     def measure(self, input: Input, measuring_time: float) -> float:
         interface = input.interface
@@ -59,9 +62,10 @@ class MeasurementRoutine(Routine):
             logger.debug(f'MeasurementRoutine: measuring ({i})...')
             i = i + 1
             sleep(measuring_time)
-            vals = interface.clear_buffer()
+            vals = interface.get_buffer()
             if vals:
                 break
+        interface.clear_buffer(True)
         average = float(mean(vals))
         logger.debug(f'MeasurementRoutine: measured ({vals}), average {average}.')
         return average

@@ -81,7 +81,7 @@ class Output(QWidget, Ui_Output, ConnectButton):
         assert self._in_context_manager
         raise NotImplementedError('No port selection gui has been made yet!')
 
-    def set_value_without_graphics(self, val: float):
+    def _set_value_without_graphics(self, val: float):
         """
         This method *only* sets the underlying hardware interface value.
         It's used by other set_value methods, but it can inprinciple also
@@ -91,8 +91,7 @@ class Output(QWidget, Ui_Output, ConnectButton):
         logger.debug(f'Output:         Setting {self.namestr} to {val}.')
         self.interface.target = val  # Try to set value on the underlying interface
 
-    def set_value_and_update(self, val: float) -> None:
-        self.set_value_without_graphics(val)
+    def _update_graphics(self):
         val = self.interface.target  # Outgoing value might have changed due to illegal output, so get back the set value
         if not self._value_set:
             # If this is the first value that's been set, "activate" LCD
@@ -105,6 +104,10 @@ class Output(QWidget, Ui_Output, ConnectButton):
         if changed:
             self.valueChanged.emit(val)
 
+    def set_value_and_update(self, val: float) -> None:
+        self._set_value_without_graphics(val)
+        self._update_graphics()
+
     @pyqtSlot(int, bool)
     def set_value(self, val: int, move_knobs: bool = True) -> None:
         """
@@ -112,7 +115,8 @@ class Output(QWidget, Ui_Output, ConnectButton):
         Note that even when move_knobs is False, the 'last set target signal' LCD will still change, so
         there's no way of setting the value directly without changing the graphics by any of this component's methods.
         If you want to achieve this, for example due to performance reasons, then adress the hardware interface (i.e.
-        the OutputInterface derivative) directly.
+        the OutputInterface derivative) directly. Afterwards, you can call the delayed_set_value method to update the graphics
+        when time is available.
         """
         if not self._connected:
             logger.warning('Output:         Attempted to set value without connection')
@@ -121,3 +125,15 @@ class Output(QWidget, Ui_Output, ConnectButton):
         if move_knobs:
             self.outputDial.setValue(val)  # TODO: support float values for output
         self.set_value_and_update(val)
+
+    @pyqtSlot(int, bool)
+    def delayed_set_value(self, val: int, move_knobs: bool = True):
+        """
+        This method can be called if the underlying device's target value has *already* been set remotely (for example,
+        to set the value instantaniously without having to wait for a slot on the main thread).
+
+        This method only updates the graphics, i.e. no value is actually set
+        """
+        if move_knobs:
+            self.outputDial.setValue(val)
+        self._update_graphics()

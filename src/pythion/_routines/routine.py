@@ -21,22 +21,25 @@ class Routine(QRunnable):
         self.handler = None
         self.tasks = []
 
+    @staticmethod
     def update_widget(widget: QWidget, slot: str, *args: Any, block: bool = False) -> None:
         connection = Qt.BlockingQueuedConnection if block else Qt.QueuedConnection
         QMetaObject.invokeMethod(widget, slot, connection, *[Q_ARG(type(arg), arg) for arg in args])  # type: ignore
 
     def run(self) -> None:
+        assert self.handler is not None
         for task, args, kwargs in self.tasks:
             task(*args, **kwargs)
+        self.update_widget(self.handler, 'reset')
 
     def add_task(self, task, *args, **kwargs):
-        self.tasks.append(task, args, kwargs)
+        self.tasks.append((task, args, kwargs))
 
     def set_handler(self, handler: RoutineHandler):
         self.handler = handler
 
     def run_on_main_thread(self, function: Callable[..., None], *args, block: bool = False, **kwargs):
-        if self.context is None:
+        if self.handler is None:
             logger.error('Routine:        Cannot execute on main thread: no RoutineHandler context available')
-        self.context.set_function(function, *args, **kwargs)
-        self.update_widget('main_thread_execute', block=block)
+        self.handler.set_function(function, *args, **kwargs)
+        self.update_widget(self.handler, 'main_thread_execute', block=block)
