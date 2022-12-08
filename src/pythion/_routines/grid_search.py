@@ -250,15 +250,18 @@ def read_file(filepath: str, plot_settings: GridSearch.HeatmapSettings | None = 
             indices = tuple(dev_vals.index(int(val)) for dev_vals, val in zip(sorted_device_values, vals))
             results[indices] = measurement_val
 
-    if plot_settings is None:
-        plot_settings = GridSearch.HeatmapSettings(0, 3000, 1)
-
-    heatmap = Heatmap(plot_settings, device_names, sorted_device_values)
-    heatmap.update(results)
+    if len(dims) == 2:
+        if plot_settings is None:
+            plot_settings = GridSearch.HeatmapSettings(0, 3000, 1)
+        # Flip y axis so that 0 is in bottom left corner
+        sorted_device_values[0].reverse()
+        results = np.flipud(results)
+        heatmap = Heatmap(plot_settings, device_names, sorted_device_values)
+        heatmap.update(results)
     return results
 
 
 if __name__ == '__main__':
-    filename = 'gridresults/221207T1701_results.csv'
+    filename = 'gridresults/221208T1425_results.csv'
     print(read_file(filename))
     input('Press enter to continue')
