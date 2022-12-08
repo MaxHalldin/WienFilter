@@ -1,5 +1,6 @@
 from __future__ import annotations
 import time
+import re
 import logging
 from pythion._connections.buffer_input import BufferInput
 from pythion._connections.usb import USBConnection
@@ -61,26 +62,35 @@ class RBDInput(BufferInput, USBConnection):
     def parse_response_string(self, message: str) -> float | None:
         try:
             original_message = message.strip()
-            start = original_message.index('&')
-            s = original_message[start:]
-            assert s[0] == '&' and s[-1] == 'A'
-            _, _, value_str, unit_str = s.split(',')
+            if not re.match(r'^&S[=<>*],Range=\d{3}[num]A,[+-][\d.]{6},[mun]A$', original_message).bool():
+                logging.warning(f"RBDInput:       Cannot interpret the line '{original_message}' as it doesn't fit pattern.")
+            if original_message[2] == '*':
+                return None
+            match original_message[2]:
+                case '*':
+                    logging.warning('RBDInput:       Recieved unstable measurement, discarding...')
+                    return None
+                case '>' | '<':
+                    logging.warning('RBDInput:       Measurement outside of range, discarding...')
+                    return None
+
+            _, _, value_str, unit_str = original_message.split(',')
             num = float(value_str)
             exp = self.exp
-            prefix = unit_str[0]
 
-            if prefix == "n":
-                exp = exp-9
-            elif prefix == "m":
-                exp = exp-3
-            else:
-                exp = exp-6
+            match unit_str[0]:
+                case 'n':
+                    exp = exp-9
+                case 'u':
+                    exp = exp-6
+                case 'm':
+                    exp = exp-3
             res: float = num * 10 ** exp
-            logger.debug(f'RBDInput:       Interpreted {original_message.strip()} as {res}')
+            logger.debug(f'RBDInput:       Interpreted {original_message} as {res}')
             return res
 
         except (ValueError, AssertionError):
-            logging.warning(f'RBDInput:       The line {message.strip()} is garbage!')
+            logging.warning(f"RBDInput:       Unexpected error when the line '{message.strip()}' was parsed.")
             return None
 
 
