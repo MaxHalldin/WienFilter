@@ -30,7 +30,7 @@ class TimeSeries(MeasurementRoutine):
             measurements.extend(self.buffer_input.get_buffer())
         self.run_on_main_thread(self._plot_res, measurements, start_indices)
 
-        with open(generate_filename(FileSettings('timeseries', extension='txt')), 'x') as file:
+        with open(generate_filename(FileSettings('timeseries', path='./timeseries', extension='txt')), 'x') as file:
             file.write(str(measurements) + '\n')
             file.write(str(start_indices))
         print(measurements)
@@ -40,9 +40,10 @@ class TimeSeries(MeasurementRoutine):
     def _plot_res(measurements, start_indices):
         ymin = min(measurements)
         ymax = max(measurements)
-        plt.plot(list(range(len(measurements))), measurements, 'x-')
-        plt.vlines(start_indices, ymin, ymax, colors=['k'], linestyles='dashed')
-        plt.show()
+        _, ax = plt.subplots()
+        ax.plot(list(range(len(measurements))), measurements, 'x-')
+        ax.vlines(start_indices, ymin, ymax, colors=['k'], linestyles='dashed')
+        plt.show(block=False)
 
     def _set_value(self, values):
         for val, dev in zip(values, self.devices):
