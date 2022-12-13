@@ -2,8 +2,6 @@ from __future__ import annotations
 from matplotlib.colors import SymLogNorm
 from dataclasses import dataclass
 from time import sleep
-import os
-from datetime import datetime
 import numpy.typing as npt
 import numpy as np
 import seaborn as sns  # type: ignore
@@ -16,6 +14,7 @@ from io import TextIOWrapper
 from pythion._gui.output import Output
 from pythion._gui.input import Input
 from pythion._routines.measurement_routine import MeasurementRoutine, ValueUpdateSettings
+from pythion._routines.file_handling import generate_filename, FileSettings
 
 logger = logging.getLogger('pythion')
 
@@ -63,12 +62,6 @@ class GridSearch(MeasurementRoutine):
         color_min: float
         color_max: float
         log_threshold: float
-
-    @dataclass
-    class FileSettings:
-        filepath: str = './'
-        filename: str = 'grid_results'
-        add_datetime: bool = True
 
     @dataclass
     class GridSearchSettings:
@@ -142,7 +135,7 @@ class GridSearch(MeasurementRoutine):
         self._counter = 1
 
         # Configure file writing if required
-        filename = self._get_filename()
+        filename = generate_filename(self.file_settings) if self.file_settings is not None else None
         with (open(filename, mode='x') if filename is not None else nullcontext()) as file:
             f = None
             if filename is not None:
@@ -199,31 +192,6 @@ class GridSearch(MeasurementRoutine):
 
     def _get_set_values(self) -> Generator[float, None, None]:
         yield from (device.values[current_index] for device, current_index in zip(self.devices, self._indices))
-
-    def _get_filename(self) -> str | None:
-        if self.file_settings is None:
-            return None
-
-        filename = self.file_settings.filename
-        if self.file_settings.add_datetime:
-            now = datetime.now()
-            filename = f'{now:%y%m%d}T{now:%H%M}_' + filename
-
-        path = self.file_settings.filepath
-        uniqueifier = ''
-        extension = '.csv'
-        complete_path = path + '/' + filename + uniqueifier + extension
-
-        # If directory exists, make sure file name is unique. Else, create directory(-ies)
-        if os.path.exists(path):
-            counter = 1
-            while os.path.exists(complete_path):
-                uniqueifier = f'({counter})'
-                counter = counter + 1
-                complete_path = path + '/' + filename + uniqueifier + extension
-        else:
-            os.makedirs(path)
-        return complete_path
 
 
 def read_file(filepath: str, plot_settings: GridSearch.HeatmapSettings | None = None) -> Self:

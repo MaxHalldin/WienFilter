@@ -19,9 +19,9 @@ class RBDInput(BufferInput, USBConnection):
 
     exp: int
 
-    def __init__(self, *, port: str, rbd_sample_rate: int, pull_rate: int, unit: RBDInput.CurrentUnit):
+    def __init__(self, *, port: str, rbd_sample_rate: int, pull_rate: int, unit: RBDInput.CurrentUnit, discard_unstable: bool = True):
         self.rbd_sample_rate = rbd_sample_rate
-
+        self.discard_unstable = discard_unstable
         self.exp = 3  # In case of milliamps; change below if needed
         if unit == self.CurrentUnit.NANO:
             self.exp = 9
@@ -64,15 +64,16 @@ class RBDInput(BufferInput, USBConnection):
             original_message = message.strip()
             if not re.match(r'^&S[=<>*],Range=\d{3}[num]A,[+-][\d.]{6},[mun]A$', original_message).bool():
                 logging.warning(f"RBDInput:       Cannot interpret the line '{original_message}' as it doesn't fit pattern.")
-            if original_message[2] == '*':
-                return None
-            match original_message[2]:
-                case '*':
-                    logging.warning('RBDInput:       Recieved unstable measurement, discarding...')
+            if self.discard_unstable:
+                if original_message[2] == '*':
                     return None
-                case '>' | '<':
-                    logging.warning('RBDInput:       Measurement outside of range, discarding...')
-                    return None
+                match original_message[2]:
+                    case '*':
+                        logging.warning('RBDInput:       Recieved unstable measurement, discarding...')
+                        return None
+                    case '>' | '<':
+                        logging.warning('RBDInput:       Measurement outside of range, discarding...')
+                        return None
 
             _, _, value_str, unit_str = original_message.split(',')
             num = float(value_str)
