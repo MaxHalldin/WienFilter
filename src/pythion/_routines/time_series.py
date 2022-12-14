@@ -1,8 +1,12 @@
 from time import sleep
 import matplotlib.pyplot as plt
+import logging
+
 from pythion._routines.measurement_routine import MeasurementRoutine
 from pythion._connections.buffer_input import BufferInput
 from pythion._routines.file_handling import FileSettings, generate_filename
+
+logger = logging.getLogger('pythion')
 
 VALUES = [
     (0, 0),
@@ -22,6 +26,7 @@ class TimeSeries(MeasurementRoutine):
         assert isinstance(self.buffer_input, BufferInput)
         measurements = []
         start_indices = []
+        logger.debug('TimeSeries:     starting time series measurement')
         for value in VALUES:
             start_indices.append(len(measurements))
             self._set_value(value)
@@ -30,6 +35,7 @@ class TimeSeries(MeasurementRoutine):
             measurements.extend(self.buffer_input.get_buffer())
         self.run_on_main_thread(self._plot_res, measurements, start_indices)
 
+        logger.debug('TimeSeries:     finished time series measurement')
         with open(generate_filename(FileSettings('timeseries', path='./timeseries', extension='txt')), 'x') as file:
             file.write(str(measurements) + '\n')
             file.write(str(start_indices))

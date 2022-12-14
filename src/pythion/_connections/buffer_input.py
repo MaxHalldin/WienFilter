@@ -87,6 +87,7 @@ class BufferInput(TimerInput):
         return ret
 
     def restart_buffer(self) -> None:
+        self.get_buffer()
         self._buffer = []
 
     def start_buffer(self) -> None:
@@ -104,15 +105,15 @@ class MockBufferInput(BufferInput):
 
     def __init__(self, *, buffer: bool = False, pull_rate: int | None = None, pull_on_buffer_read: bool = True, rate: float = 1, mod: int = 50):
         self._init_time = time.time()
-        self._next_index = 0
+        self._next_int = 0
         self.rate = rate
         self.mod = mod
         super().__init__(buffer=buffer, pull_rate=pull_rate, pull_on_buffer_read=pull_on_buffer_read)
 
     def _read_from_device(self) -> list[float]:
-        start_index = self._next_index
-        self._next_index = floor((time.time() - self._init_time) * self.rate)
-        return [x % self.mod for x in range(start_index, self._next_index)]
+        start_int = self._next_int
+        self._next_int = floor((time.time() - self._init_time) * self.rate)
+        return [x % self.mod for x in range(start_int, self._next_int)]
 
 
 class PicoMockBufferInput(BufferInput, USBConnection):
