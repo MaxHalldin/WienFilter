@@ -48,7 +48,7 @@ class MeasurementRoutine(Routine):
             move_knobs = update_settings == ValueUpdateSettings.MOVE_KNOBS
             self.update_widget(output, "delayed_set_value", value, move_knobs, block=block)
 
-    def measure(self, input: Input, measuring_time: float) -> float:
+    def measure(self, input: Input, n_samples: int, check_time: float) -> float:
         interface = input.interface
         if not isinstance(interface, BufferInput):
             logger.error('MearurementRoutine: Measuring from other InputInterfaces than BufferInput is not implemented!')
@@ -61,11 +61,11 @@ class MeasurementRoutine(Routine):
         while True:
             logger.debug(f'MeasurementRoutine: measuring ({i})...')
             i = i + 1
-            sleep(measuring_time)
+            sleep(check_time)
             vals = interface.get_buffer()
-            if vals:
+            if len(vals) >= n_samples:
                 break
-        interface.clear_buffer(True)
+        interface.stop_buffer()
         average = float(mean(vals))
         logger.debug(f'MeasurementRoutine: measured ({vals}), average {average}.')
         return average

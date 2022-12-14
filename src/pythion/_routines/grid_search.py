@@ -65,7 +65,8 @@ class GridSearch(MeasurementRoutine):
 
     @dataclass
     class GridSearchSettings:
-        measuring_time: float
+        measure_samples: int
+        measure_checktime: float
         update_graphics: bool
         plot_every: int | None = None  # Setting plot_every to 0 or None will disable live plots.
 
@@ -179,7 +180,7 @@ class GridSearch(MeasurementRoutine):
         # cancel flag is set to true, or child routine discover cancel flag set to true
 
     def _measure(self, file: TextIOWrapper | None) -> None:
-        value = self.measure(self.input, self.settings.measuring_time)
+        value = self.measure(self.input, self.settings.measure_samples, self.settings.measure_checktime)
         self.results[tuple(self._indices)] = value
         if self.heatmap and self.settings.plot_every:
             if self._counter % self.settings.plot_every == 0:

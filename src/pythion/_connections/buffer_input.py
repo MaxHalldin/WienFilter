@@ -94,6 +94,9 @@ class BufferInput(TimerInput):
         if self._buffer is None:
             self._buffer = []
 
+    def stop_buffer(self) -> None:
+        self._buffer = None
+
     @abstractmethod
     def _read_from_device(self) -> list[float]:
         pass
