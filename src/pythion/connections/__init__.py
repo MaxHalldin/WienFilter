@@ -15,6 +15,7 @@ __all__ = [
     'MockOutput',
     'PicoOutput',
     'RS3000Output',
+    'PowerOptions',
     'InputInterface',
     'MockInput',
     'RBDInput',
@@ -25,7 +26,7 @@ from .._connections.calibration import Calibration, LinearCalibration, InterpolC
 from .._connections.usb import USBConnection, USBDevice, PortSelector, ConnectionSettings
 from .._connections.output_interface import OutputInterface, MockOutput
 from .._connections.pico_output import PicoOutput
-from .._connections.rs3000_output import RS3000Output
+from .._connections.rs3000_output import RS3000Output, PowerOptions
 from .._connections.input_interface import InputInterface, MockInput
 from .._connections.buffer_input import BufferInput, MockBufferInput
 from .._connections.rbd_input import RBDInput

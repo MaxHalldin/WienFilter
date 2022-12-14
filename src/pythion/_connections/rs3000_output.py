@@ -29,8 +29,8 @@ class RS3000Output(OutputInterface, USBConnection):
     def __init__(self,
                  *,
                  port: str | None,
-                 control_signal_limit: float | None = None,
-                 target_signal_limit: float | None,
+                 control_limit: float | None = None,
+                 target_limit: float | None,
                  calibration: Calibration | None = None,
                  mode: PowerOptions = PowerOptions.VOLTAGE
                  ):
@@ -41,10 +41,10 @@ class RS3000Output(OutputInterface, USBConnection):
             calibration = LinearCalibration(1, unit, unit)
 
         # Some hard-coded limits for the RS3005P
-        if mode == PowerOptions.VOLTAGE and (control_signal_limit is None or control_signal_limit > 30):
-            control_signal_limit = 30
-        if mode == PowerOptions.CURRENT and (control_signal_limit is None or control_signal_limit > 5000):
-            control_signal_limit = 5000
+        if mode == PowerOptions.VOLTAGE and (control_limit is None or control_limit > 30):
+            control_limit = 30
+        if mode == PowerOptions.CURRENT and (control_limit is None or control_limit > 5000):
+            control_limit = 5000
 
         self._mode = mode
 
@@ -57,8 +57,8 @@ class RS3000Output(OutputInterface, USBConnection):
         OutputInterface.__init__(
             self,
             calibration=calibration,
-            control_limit=control_signal_limit,
-            target_limit=target_signal_limit
+            control_limit=control_limit,
+            target_limit=target_limit
         )
 
     def __enter__(self) -> Self:
