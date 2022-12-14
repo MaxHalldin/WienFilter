@@ -91,7 +91,7 @@ class RBDInput(BufferInput, USBConnection):
             logger.debug(f'RBDInput:       Interpreted {original_message} as {res}')
             return res
 
-        except (ValueError, AssertionError):
+        except (ValueError, AssertionError, IndexError):
             logging.warning(f"RBDInput:       Unexpected error when the line '{message.strip()}' was parsed.")
             return None
 
