@@ -64,6 +64,7 @@ class RBDInput(BufferInput, USBConnection):
             original_message = message.strip()
             if not bool(re.match(r'^&S[=<>*],Range=\d{3}[num]A,[+-][\d.]{6},[mun]A$', original_message)):
                 logging.warning(f"RBDInput:       Cannot interpret the line '{original_message}' as it doesn't fit pattern.")
+                return None
             if self.discard_unstable:
                 if original_message[2] == '*':
                     return None
