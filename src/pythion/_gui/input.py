@@ -49,3 +49,6 @@ class Input(QWidget, Ui_Input, ConnectButton):
             self._value_set = True
             self.inputLCD.setStyleSheet('color: #ff0000;')
         self.inputLCD.display(value)
+
+    def __str__(self):
+        return self.label

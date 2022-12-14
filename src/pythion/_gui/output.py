@@ -108,6 +108,9 @@ class Output(QWidget, Ui_Output, ConnectButton):
         self._set_value_without_graphics(val)
         self._update_graphics()
 
+    def __str__(self):
+        return self.label
+
     @pyqtSlot(int, bool)
     def set_value(self, val: int, move_knobs: bool = True) -> None:
         """

@@ -5,7 +5,8 @@
 .mypy_cache
 .pytest_cache
 .VSCodeCounter
-gridresults
+gridresults/
+timeseries/
 log.txt
 
 # My virtual environments 
