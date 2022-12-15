@@ -14,20 +14,40 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(987, 599)
+        MainWindow.resize(1515, 599)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setAutoFillBackground(False)
-        MainWindow.setStyleSheet("background-color: #ffffff;")
+        MainWindow.setStyleSheet("QWidget {\n"
+"    background-color: #ffffff;\n"
+"}\n"
+"\n"
+"QPushButton { \n"
+"    border: 1px solid #444444; \n"
+"    background-color: #eeeeee;\n"
+"}\n"
+"\n"
+"QPushButton::hover {\n"
+"    background-color: #dddddd;\n"
+"}\n"
+"\n"
+"QPushButton::pressed {\n"
+"    background-color: #aaaaaa;\n"
+"}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(9, 9, 971, 551))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(9, 9, 1491, 551))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.mainLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.mainLayout.setContentsMargins(0, 0, 0, 0)
         self.mainLayout.setObjectName("mainLayout")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 987, 18))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1515, 18))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)

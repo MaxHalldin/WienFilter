@@ -14,14 +14,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Input(object):
     def setupUi(self, Input):
         Input.setObjectName("Input")
-        Input.resize(172, 95)
+        Input.resize(172, 129)
         self.frame = QtWidgets.QFrame(Input)
-        self.frame.setGeometry(QtCore.QRect(10, 10, 151, 71))
+        self.frame.setGeometry(QtCore.QRect(10, 10, 151, 111))
         self.frame.setFrameShape(QtWidgets.QFrame.Box)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.frame)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 131, 51))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 131, 91))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -31,12 +31,15 @@ class Ui_Input(object):
         self.nameLabel.setObjectName("nameLabel")
         self.verticalLayout.addWidget(self.nameLabel)
         self.inputLCD = QtWidgets.QLCDNumber(self.verticalLayoutWidget)
-        self.inputLCD.setStyleSheet("color: rgb(255, 0, 0);")
+        self.inputLCD.setStyleSheet("color: #aaaaaa;")
         self.inputLCD.setSegmentStyle(QtWidgets.QLCDNumber.Flat)
         self.inputLCD.setProperty("value", 0.0)
         self.inputLCD.setProperty("intValue", 0)
         self.inputLCD.setObjectName("inputLCD")
         self.verticalLayout.addWidget(self.inputLCD)
+        self.connectBtn = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.connectBtn.setObjectName("connectBtn")
+        self.verticalLayout.addWidget(self.connectBtn)
 
         self.retranslateUi(Input)
         QtCore.QMetaObject.connectSlotsByName(Input)
@@ -44,3 +47,4 @@ class Ui_Input(object):
     def retranslateUi(self, Input):
         _translate = QtCore.QCoreApplication.translate
         Input.setWindowTitle(_translate("Input", "Input Device"))
+        self.connectBtn.setText(_translate("Input", "Connect"))

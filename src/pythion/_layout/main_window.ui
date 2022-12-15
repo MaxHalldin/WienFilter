@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>987</width>
+    <width>1515</width>
     <height>599</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -17,7 +23,22 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #ffffff;</string>
+   <string notr="true">QWidget {
+	background-color: #ffffff;
+}
+
+QPushButton { 
+	border: 1px solid #444444; 
+	background-color: #eeeeee;
+}
+
+QPushButton::hover {
+	background-color: #dddddd;
+}
+
+QPushButton::pressed {
+	background-color: #aaaaaa;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="horizontalLayoutWidget">
@@ -25,7 +46,7 @@
      <rect>
       <x>9</x>
       <y>9</y>
-      <width>971</width>
+      <width>1491</width>
       <height>551</height>
      </rect>
     </property>
@@ -37,7 +58,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>987</width>
+     <width>1515</width>
      <height>18</height>
     </rect>
    </property>

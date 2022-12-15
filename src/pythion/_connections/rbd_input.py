@@ -1,9 +1,14 @@
 from __future__ import annotations
 import time
+import re
+import logging
 from pythion._connections.buffer_input import BufferInput
 from pythion._connections.usb import USBConnection
 from typing import Self, Any, TypeGuard
 from enum import Enum
+
+
+logger = logging.getLogger('pythion')
 
 
 class RBDInput(BufferInput, USBConnection):
@@ -14,9 +19,9 @@ class RBDInput(BufferInput, USBConnection):
 
     exp: int
 
-    def __init__(self, *, port: str, rbd_sample_rate: int, pull_rate: int, unit: RBDInput.CurrentUnit):
+    def __init__(self, *, port: str, rbd_sample_rate: int, pull_rate: int, unit: RBDInput.CurrentUnit, discard_unstable: bool = True):
         self.rbd_sample_rate = rbd_sample_rate
-
+        self.discard_unstable = discard_unstable
         self.exp = 3  # In case of milliamps; change below if needed
         if unit == self.CurrentUnit.NANO:
             self.exp = 9
@@ -56,25 +61,38 @@ class RBDInput(BufferInput, USBConnection):
 
     def parse_response_string(self, message: str) -> float | None:
         try:
-            message = message.strip()
-            start = message.index('&')
-            message = message[start:]
-            assert message[0] == '&' and message[-1] == 'A'
-            _, _, value_str, unit_str = message.split(',')
+            original_message = message.strip()
+            if not bool(re.match(r'^&S[=<>*],Range=\d{3}[num]A,[+-][\d.]{6},[mun]A$', original_message)):
+                logging.warning(f"RBDInput:       Cannot interpret the line '{original_message}' as it doesn't fit pattern.")
+                return None
+            if self.discard_unstable:
+                if original_message[2] == '*':
+                    return None
+                match original_message[2]:
+                    case '*':
+                        logging.warning('RBDInput:       Recieved unstable measurement, discarding...')
+                        return None
+                    case '>' | '<':
+                        logging.warning('RBDInput:       Measurement outside of range, discarding...')
+                        return None
+
+            _, _, value_str, unit_str = original_message.split(',')
             num = float(value_str)
             exp = self.exp
-            prefix = unit_str[0]
 
-            if prefix == "n":
-                exp = exp-9
-            elif prefix == "m":
-                exp = exp-3
-            else:
-                exp = exp-6
+            match unit_str[0]:
+                case 'n':
+                    exp = exp-9
+                case 'u':
+                    exp = exp-6
+                case 'm':
+                    exp = exp-3
             res: float = num * 10 ** exp
+            logger.debug(f'RBDInput:       Interpreted {original_message} as {res}')
             return res
 
-        except (ValueError, AssertionError):
+        except (ValueError, AssertionError, IndexError):
+            logging.warning(f"RBDInput:       Unexpected error when the line '{message.strip()}' was parsed.")
             return None
 
 

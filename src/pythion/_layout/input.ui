@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>172</width>
-    <height>95</height>
+    <height>129</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>10</x>
      <y>10</y>
      <width>151</width>
-     <height>71</height>
+     <height>111</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -34,7 +34,7 @@
       <x>10</x>
       <y>10</y>
       <width>131</width>
-      <height>51</height>
+      <height>91</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -48,7 +48,7 @@
      <item>
       <widget class="QLCDNumber" name="inputLCD">
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 0, 0);</string>
+        <string notr="true">color: #aaaaaa;</string>
        </property>
        <property name="segmentStyle">
         <enum>QLCDNumber::Flat</enum>
@@ -58,6 +58,13 @@
        </property>
        <property name="intValue" stdset="0">
         <number>0</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="connectBtn">
+       <property name="text">
+        <string>Connect</string>
        </property>
       </widget>
      </item>

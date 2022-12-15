@@ -3,26 +3,25 @@ import numpy as np
 import numpy.typing as npt
 from time import time
 
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QSizePolicy
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg  # type: ignore
 from matplotlib.figure import Figure  # type: ignore
 from matplotlib.lines import Line2D  # type: ignore
-from pythion.connections import InputInterface
+from pythion._connections.input_interface import InputInterface
 
 matplotlib.use('Qt5Agg')
 
 
 class PlotBase(FigureCanvasQTAgg):  # type: ignore
     def __init__(self, *, parent: QWidget):
-        fig = Figure(figsize=(1, 1))
-        self.axes = fig.add_subplot(111)
-        super().__init__(fig)
-
-    def set_axes(self, xlim: tuple[float, float] | None = None, ylim: tuple[float, float] | None = None) -> None:
-        if xlim is not None:
-            self.axes.set_xlim(xlim)
-        if ylim is not None:
-            self.axes.set_ylim(ylim)
+        self.plt = Figure(figsize=(1, 1))
+        self.axes = self.plt.add_subplot(111)
+        super().__init__(self.plt)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
+        self.setSizePolicy(sizePolicy)
 
 
 class LinePlot(PlotBase):

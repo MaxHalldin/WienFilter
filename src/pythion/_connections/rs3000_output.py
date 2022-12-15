@@ -1,11 +1,15 @@
 from __future__ import annotations
 from enum import Enum
 from typing import Self
-import time
 
-from pythion._connections.output import OutputInterface
+from pythion._connections.output_interface import OutputInterface
 from pythion._connections.usb import USBConnection
 from pythion._connections.calibration import Calibration, LinearCalibration
+
+
+class PowerOptions(Enum):
+    VOLTAGE = 0
+    CURRENT = 1
 
 
 class RS3000Output(OutputInterface, USBConnection):
@@ -21,34 +25,28 @@ class RS3000Output(OutputInterface, USBConnection):
         mode            : RS3000Output.PowerOption  - Determines whether voltage [V] or current [mA] will
                                                       be used as target signal.
     """
-    class PowerOptions(Enum):
-        VOLTAGE = 0
-        CURRENT = 1
 
     def __init__(self,
                  *,
-                 port: str,
-                 voltage_limit: float | None = None,
-                 current_limit: float | None = None,
+                 port: str | None,
+                 control_limit: float | None = None,
+                 target_limit: float | None,
                  calibration: Calibration | None = None,
                  mode: PowerOptions = PowerOptions.VOLTAGE
                  ):
 
-        unit = 'V' if mode == self.PowerOptions.VOLTAGE else 'mA'
+        unit = 'V' if mode == PowerOptions.VOLTAGE else 'mA'
 
         if calibration is None:
             calibration = LinearCalibration(1, unit, unit)
 
         # Some hard-coded limits for the RS3005P
-        if voltage_limit is None or voltage_limit > 30:
-            voltage_limit = 30
-        if current_limit is None or current_limit > 5000:
-            current_limit = 5000
+        if mode == PowerOptions.VOLTAGE and (control_limit is None or control_limit > 30):
+            control_limit = 30
+        if mode == PowerOptions.CURRENT and (control_limit is None or control_limit > 5000):
+            control_limit = 5000
 
         self._mode = mode
-        self._voltage_limit = voltage_limit
-        self._current_limit = current_limit
-        target_limit = voltage_limit if mode == self.PowerOptions.VOLTAGE else current_limit
 
         BAUD_RATE = 9600
         USBConnection.__init__(
@@ -59,12 +57,12 @@ class RS3000Output(OutputInterface, USBConnection):
         OutputInterface.__init__(
             self,
             calibration=calibration,
+            control_limit=control_limit,
             target_limit=target_limit
         )
 
     def __enter__(self) -> Self:
         super().__enter__()
-        self._initial_config()
         return self
 
     @staticmethod
@@ -75,21 +73,8 @@ class RS3000Output(OutputInterface, USBConnection):
     def _to_current_string(current: float) -> str:
         return f'{(current / 1000):.3f}'
 
-    def _initial_config(self) -> None:
-        DELAY = 0.3
-        self.write('VSET1:00.00')
-        time.sleep(DELAY)
-        self.write('ISET1:0.000')
-        time.sleep(DELAY)
-        self.write('OUT1')
-        time.sleep(DELAY)
-        if self._mode == self.PowerOptions.VOLTAGE:
-            self.write(f'ISET1:{self._to_current_string(self._current_limit)}')
-        else:
-            self.write(f'VSET1:{self._to_voltage_string(self._voltage_limit)}')
-
     def _write(self, control_value: float) -> None:
-        is_voltage = self._mode == self.PowerOptions.VOLTAGE
+        is_voltage = self._mode == PowerOptions.VOLTAGE
         if is_voltage:
             str = self._to_voltage_string(control_value)
         else:

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Tuple
 from pythion._connections.calibration import Calibration
-from pythion._connections.output import OutputInterface
+from pythion._connections.output_interface import OutputInterface
 from pythion._connections.usb import USBConnection
 
 
@@ -16,7 +16,7 @@ class PicoOutput(OutputInterface, USBConnection):
     Setting a value that's out of bounds for the DAC will result in a maximum/minimum
     signal being sent (provided that the target voltage is safe)
     """
-    def __init__(self, *, port: str, calibration: Calibration, voltage_limit: float | None = None, bits: int = 12):
+    def __init__(self, *, port: str | None, calibration: Calibration, voltage_limit: float | None = None, bits: int = 12):
         self.bits = bits
         BAUD_RATE = 115200
         # Initialize USB Connection
@@ -61,6 +61,3 @@ class PicoOutput(OutputInterface, USBConnection):
             if not control_validation:
                 raise ValueError('No valid output could be set with the current configuration')
         return parent_valid and not changed, target_value, control_value
-
-
-PicoOutput(port='COM3', calibration=Calibration.standard())

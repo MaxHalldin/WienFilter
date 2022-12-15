@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import ClassVar, Any
 import sys
+import matplotlib.pyplot as plt
 
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
@@ -46,3 +47,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def run(self) -> None:
         self.show()
         sys.exit(self._app.exec())
+
+    def closeEvent(self, *args: Any):
+        plt.close('all')

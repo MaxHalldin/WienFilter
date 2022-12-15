@@ -1,34 +1,41 @@
-import numpy as np
-# Hardware interface classes
-from pythion.connections import RS3000Output, PicoOutput, PortSelector, LinearCalibration, MockOutput, InterpolCalibration, OutputInterface, MockInput
+from pythion.gui import MainWindow, Output, PlotStream, Input, Action
+from pythion.connections import MockOutput, MockBufferInput, LinearCalibration
+from pythion.routines import GridSearch
+from pythion._routines.time_series import TimeSeries
+from pythion._routines.file_handling import FileSettings
 
-# GUI Classes
-from pythion import Output, Input, MainWindow, PlotStream, Action
-
-from grid_search import grid_search
-
-op1 = MockOutput()
+cal = LinearCalibration(35)
+op1 = MockOutput(control_limit=10, calibration=cal)
 op2 = MockOutput()
+op1.add_invalid_output_handler(print)
 
 # Setup GUI
-inp = MockInput()
+inp = MockBufferInput(buffer=False, pull_on_buffer_read=True, rate=5)
 
-with op1, op2, inp:
-    inp.start_sampling(10)
-    win = MainWindow(high_resolution=False)
-    com1 = Output(max_value=400, interface=op1, parent=win.main_widget(), name="High voltage supply", unit="V")
-    com2 = Output(max_value=400, interface=op2, parent=win.main_widget(), name="High voltage supply", unit="V")
+win = MainWindow(high_resolution=False)
+velocity_filter = Output(max_value=300,
+                         interface=op1,
+                         parent=win.main_widget(),
+                         name="Velocity filter",
+                         unit="V")
+magnet = Output(max_value=1000, interface=op2, parent=win.main_widget(), name="Magnet", unit="mA")
+input_component = Input(interface=inp, rate=5, name='Beam current', unit='nA', parent=win.main_widget())
 
-    value_list = [round(x) for x in np.linspace(0, 100, 11)]
-    grid_search_args = [
-        (com1, value_list, 0.1),
-        (com2, value_list, 0.1)
-    ]
-    grid_search_kwargs = {
-        'measure': (lambda: 5)
-    }
-    action = Action(grid_search, grid_search_args, grid_search_kwargs, parent=win.main_widget(), text='Tryck på mig!')
-    # input_component = Input(interface=inp, name='Beam current', unit='nA', parent=win.main_widget())
-    plt = PlotStream(parent=win.main_widget(), input=inp, timespan=10, fix_scale=False)
-    win.add_children(com1, com2, action, plt)
+grid_search = GridSearch(
+    GridSearch.Device.from_stepsize(magnet, 0.5, 3000, 0, -1000),
+    GridSearch.Device.from_stepsize(velocity_filter, 0.5, 0, 300, 100, False),
+    input=input_component,
+    settings=GridSearch.GridSearchSettings(3, 0.2, True, plot_every=1),
+    plot_settings=GridSearch.HeatmapSettings(0, 3000, 10),
+    file_settings=FileSettings('results', './gridresults')
+)
+time_series = TimeSeries([velocity_filter, magnet], input_component)
+
+start_button = Action(routine=grid_search, parent=win.main_widget(), text='Grid Search')
+start_button2 = Action(routine=time_series, parent=win.main_widget(), text='Time series')
+
+plt = PlotStream(parent=win.main_widget(), input=inp, timespan=30, fix_scale=False)
+win.add_children(velocity_filter, magnet, plt, input_component, start_button, start_button2)
+
+with magnet, velocity_filter, input_component:
     win.run()
