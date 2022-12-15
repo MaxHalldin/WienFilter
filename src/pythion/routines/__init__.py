@@ -1,3 +1,3 @@
-__all__ = ['GridSearch']
+__all__ = ['GridSearch', 'load_gridsearch_results']
 
-from pythion._routines.grid_search import GridSearch
+from pythion._routines.grid_search import GridSearch, load_gridsearch_result, Heatmap

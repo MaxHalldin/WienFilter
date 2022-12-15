@@ -1,16 +1,14 @@
 from __future__ import annotations
-from matplotlib.colors import SymLogNorm
 from dataclasses import dataclass
 from time import sleep
 import numpy.typing as npt
 import numpy as np
-import seaborn as sns  # type: ignore
-import matplotlib.pyplot as plt  # type: ignore
 import logging
 from typing import Self, Generator
 from contextlib import nullcontext
 from io import TextIOWrapper
 
+from pythion._routines.heatmap import Heatmap
 from pythion._gui.output import Output
 from pythion._gui.input import Input
 from pythion._routines.measurement_routine import MeasurementRoutine, ValueUpdateSettings
@@ -19,52 +17,10 @@ from pythion._routines.file_handling import generate_filename, FileSettings
 logger = logging.getLogger('pythion')
 
 
-# Let's begin with a Heatmap class that will come in handy later.
-class Heatmap:
-    def __init__(self, settings: GridSearch.HeatmapSettings, labels: list[str], ticks: list[int]):
-        self.settings = settings
-        self.labels = labels
-        self.ticks = ticks
-        self.ax = None
-        self.cbar_ax = None
-
-    @classmethod
-    def from_devices(cls, settings: GridSearch.HeatmapSettings, devices: tuple[GridSearch.Device, GridSearch.Device]):
-        labels = [dev.output.label for dev in devices]
-        ticks = [dev.values for dev in devices]
-        return cls(settings, labels, ticks)
-
-    def plot(self, data: npt.NDArray[np.float64]):
-        _, (self.ax, self.cbar_ax) = plt.subplots(1, 2, gridspec_kw={'width_ratios': (0.9, 0.05), 'wspace': 0.2}, figsize=(10, 8))
-        self.update(data)
-        plt.show(block=False)
-
-    def update(self, data: npt.NDArray[np.float64]):
-        if self.ax is None:
-            self.plot(data)
-            return  # plot calls update on its own, so we can return from here
-        assert self.ax is not None, self.cbar_ax is not None
-        ylabel, xlabel = self.labels
-        yticks, xticks = self.ticks
-        self.ax.cla()
-        norm = SymLogNorm(self.settings.log_threshold, vmin=self.settings.color_min, vmax=self.settings.color_max)
-        palette = sns.color_palette('crest', as_cmap=True)
-        sns.heatmap(ax=self.ax, data=data, cmap=palette, cbar_ax=self.cbar_ax, xticklabels=xticks, yticklabels=yticks, norm=norm)
-        self.ax.set_xlabel(xlabel)
-        self.ax.set_ylabel(ylabel)
-        plt.draw()
-
-
 class GridSearch(MeasurementRoutine):
     # Now, three small but helpful dataclasses
     @dataclass
-    class HeatmapSettings:
-        color_min: float
-        color_max: float
-        log_threshold: float
-
-    @dataclass
-    class GridSearchSettings:
+    class Settings:
         measure_samples: int
         measure_checktime: float
         update_graphics: bool
@@ -84,7 +40,7 @@ class GridSearch(MeasurementRoutine):
 
     devices: tuple[Device, ...]
     input: Input
-    settings: GridSearchSettings
+    settings: GridSearch.Settings
     results: npt.NDArray[np.float64]
     heatmap: Heatmap | None
     file_settings: FileSettings | None
@@ -95,8 +51,8 @@ class GridSearch(MeasurementRoutine):
     def __init__(self,
                  *devices: Device,
                  input: Input,
-                 settings: GridSearchSettings,
-                 plot_settings: HeatmapSettings | None = None,
+                 settings: GridSearch.Settings,
+                 plot_settings: Heatmap.Settings | None = None,
                  file_settings: FileSettings | None = None
                  ):
         super().__init__()
@@ -107,7 +63,7 @@ class GridSearch(MeasurementRoutine):
         self.set_output_mode = ValueUpdateSettings.MOVE_KNOBS if settings.update_graphics else ValueUpdateSettings.NO_GRAPHICS
 
         if len(self.devices) == 2 and plot_settings is not None:  # Initiate heatmap plot (don't show yet!)
-            self.heatmap = Heatmap.from_devices(plot_settings, self.devices)
+            self.heatmap = self.heatmap_from_devices(plot_settings, self.devices)
         else:
             self.heatmap = None
 
@@ -213,8 +169,13 @@ class GridSearch(MeasurementRoutine):
     def _get_set_values(self) -> Generator[float, None, None]:
         yield from (device.values[current_index] for device, current_index in zip(self.devices, self._indices))
 
+    def heatmap_from_devices(self, settings: Heatmap.Settings, devices: tuple[GridSearch.Device, GridSearch.Device]):
+        labels = [dev.output.label for dev in devices]
+        ticks = [dev.values for dev in devices]
+        return Heatmap(settings, labels, ticks)
 
-def read_file(filepath: str, plot_settings: GridSearch.HeatmapSettings | None = None) -> Self:
+
+def load_gridsearch_result(filepath: str, plot_settings: GridSearch.HeatmapSettings | None = None) -> Self:
     # To avoid allocating all data in memory, file is read in two passes:
     # First determining the step sizes, and second, getting the values.
 
@@ -247,9 +208,3 @@ def read_file(filepath: str, plot_settings: GridSearch.HeatmapSettings | None = 
         heatmap = Heatmap(plot_settings, device_names, sorted_device_values)
         heatmap.update(results)
     return results
-
-
-if __name__ == '__main__':
-    filename = 'gridresults/221208T1425_results.csv'
-    print(read_file(filename))
-    input('Press enter to continue')

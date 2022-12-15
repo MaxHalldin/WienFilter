@@ -1,6 +1,6 @@
 from pythion.gui import MainWindow, Output, PlotStream, Input, Action
 from pythion.connections import MockOutput, MockBufferInput, LinearCalibration
-from pythion.routines import GridSearch
+from pythion.routines import GridSearch, Heatmap
 from pythion._routines.time_series import TimeSeries
 from pythion._routines.file_handling import FileSettings
 
@@ -25,8 +25,8 @@ grid_search = GridSearch(
     GridSearch.Device.from_stepsize(magnet, 0.5, 3000, 0, -1000),
     GridSearch.Device.from_stepsize(velocity_filter, 0.5, 0, 300, 100, False),
     input=input_component,
-    settings=GridSearch.GridSearchSettings(3, 0.2, True, plot_every=1),
-    plot_settings=GridSearch.HeatmapSettings(0, 3000, 10),
+    settings=GridSearch.Settings(3, 0.2, True, plot_every=1),
+    plot_settings=Heatmap.Settings(0, 3000, 10),
     file_settings=FileSettings('results', './gridresults')
 )
 time_series = TimeSeries([velocity_filter, magnet], input_component)
