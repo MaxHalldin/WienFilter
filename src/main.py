@@ -10,7 +10,7 @@ op2 = MockOutput()
 op1.add_invalid_output_handler(print)
 
 # Setup GUI
-inp = MockBufferInput(buffer=False, pull_on_buffer_read=True, rate=50)
+inp = MockBufferInput(buffer=False, pull_on_buffer_read=True, rate=5)
 
 win = MainWindow(high_resolution=False)
 velocity_filter = Output(max_value=300,
@@ -23,9 +23,9 @@ input_component = Input(interface=inp, rate=5, name='Beam current', unit='nA', p
 
 grid_search = GridSearch(
     GridSearch.Device.from_stepsize(magnet, 0.5, 3000, 0, -1000),
-    GridSearch.Device.from_stepsize(velocity_filter, 0.5, 0, 300, 10),
+    GridSearch.Device.from_stepsize(velocity_filter, 0.5, 0, 300, 100, False),
     input=input_component,
-    settings=GridSearch.GridSearchSettings(11, 0.2, True, plot_every=10),
+    settings=GridSearch.GridSearchSettings(3, 0.2, True, plot_every=1),
     plot_settings=GridSearch.HeatmapSettings(0, 3000, 10),
     file_settings=FileSettings('results', './gridresults')
 )

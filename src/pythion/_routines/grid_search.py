@@ -75,11 +75,12 @@ class GridSearch(MeasurementRoutine):
         output: Output
         values: list[int]
         wait_time: float
+        bidirectional: bool = True
 
         @classmethod
-        def from_stepsize(cls, output: Output, wait_time: float, start_value: int, end_value: int, step_size: int) -> Self:
+        def from_stepsize(cls, output: Output, wait_time: float, start_value: int, end_value: int, step_size: int, bidirectional: bool = True) -> Self:
             values = [round(i) for i in range(start_value, end_value+step_size, step_size)]
-            return cls(output, values, wait_time)
+            return cls(output, values, wait_time, bidirectional)
 
     devices: tuple[Device, ...]
     input: Input
@@ -157,24 +158,42 @@ class GridSearch(MeasurementRoutine):
                 self.run_on_main_thread(self.heatmap.plot, self.results)
 
     def _grid_search(self, depth: int, file: TextIOWrapper | None) -> bool:
-        dev = self.devices[depth]
-        is_inverted = self._indices[depth] > 0
-        iter_list = list(enumerate(dev.values))
-        first = True
-        for i, val in reversed(iter_list) if is_inverted else iter_list:
+        """
+        Iterate the device at the given "depth", and recursively conduct a full grid search for all devices of greater "depths"
+        If an open file stream is provided (TextIOWrapper is the return type of open(filename, 'x')), results will be written continuously.
+
+        It's assumed that all devices are initialized in the correct starting position, *and that a measurement has already been conducted
+        in this position*. Therefore, measurements will only be conducted after a devices settings have changed!
+        """
+        dev = self.devices[depth]  # Device to iterate
+        is_inverted = self._indices[depth] > 0  # Is the devices initial position at the end of its range? Then search backwards
+        iter_list = list(enumerate(dev.values))  # List indices and values of devices settings
+        if is_inverted:
+            iter_list = list(reversed(iter_list))  # Reverse iteration list if backwards search is required
+
+        if depth+1 < len(self.devices):
+            # Do an initial grid search
+            if not self._grid_search(depth + 1, file):
+                return False
+        for i, val in iter_list[1:]:  # Iterate over all settings, skip first as that measurement is assumed to be complete
             if self.handler._cancelled:
                 return False
-            if not first:
-                self._indices[depth] = i
-                logger.debug('GridSearch:     setting value')
-                self.set_output(dev.output, val, self.set_output_mode, False)
-                sleep(dev.wait_time)
-                self._measure(file)
-            else:
-                first = False
+            self._indices[depth] = i
+            logger.debug('GridSearch:     setting value')
+            self.set_output(dev.output, val, self.set_output_mode, False)
+            sleep(dev.wait_time)
+            self._measure(file)
             if depth+1 < len(self.devices):
                 if not self._grid_search(depth + 1, file):
                     return False
+
+        if not dev.bidirectional:
+            # Reset device
+            self._indices[depth] = 0
+            logger.debug('GridSearch:     setting value')
+            self.set_output(dev.output, dev.values[0], self.set_output_mode, False)
+            # Return device to initial state before proceeding
+            sleep(dev.wait_time)
         return True
         # Return True to its caller if run to completion. Return False (early) if
         # cancel flag is set to true, or child routine discover cancel flag set to true
