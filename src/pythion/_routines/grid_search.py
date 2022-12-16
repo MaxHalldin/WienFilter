@@ -175,9 +175,9 @@ class GridSearch(MeasurementRoutine):
         return Heatmap(settings, labels, ticks)
 
 
-def load_gridsearch_result(filepath: str, plot_settings: GridSearch.HeatmapSettings | None = None) -> Self:
-    # To avoid allocating all data in memory, file is read in two passes:
-    # First determining the step sizes, and second, getting the values.
+def load_gridsearch_result(filepath: str, plot_settings: Heatmap.Settings | None = Heatmap.Settings(1, 1000, 1)) -> Self:
+    # The file is read in two passes
+    # First determining which combinations of values have been examined, and second, getting the values.
 
     with open(filepath, 'rt') as file:
         header = file.readline()
@@ -199,9 +199,7 @@ def load_gridsearch_result(filepath: str, plot_settings: GridSearch.HeatmapSetti
             indices = tuple(dev_vals.index(int(val)) for dev_vals, val in zip(sorted_device_values, vals))
             results[indices] = measurement_val
 
-    if len(dims) == 2:
-        if plot_settings is None:
-            plot_settings = GridSearch.HeatmapSettings(0, 3000, 1)
+    if len(dims) == 2 and plot_settings is not None:
         # Flip y axis so that 0 is in bottom left corner
         sorted_device_values[0].reverse()
         results = np.flipud(results)
