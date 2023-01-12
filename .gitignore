@@ -7,12 +7,18 @@
 .VSCodeCounter
 gridresults/
 timeseries/
+labgridresults/
+labtimeseries/
+labtimeseries_modified/
 log.txt
-
+figs/
+requirements_data.txt
+analysis/
 # My virtual environments 
 venv
 devenv
 testenv
+dataenv
 
 # Custom bash scripts
 enter

@@ -1,4 +1,4 @@
-__all__ = ['MainWindow', 'Output', 'Input', 'PlotBase', 'PlotStream', 'Action', 'GUIUpdater', 'GridSearch', 'GridSearchResults']
+__all__ = ['MainWindow', 'Output', 'Input', 'PlotStream', 'Action']
 
 from pythion._gui.main_window import MainWindow
 from pythion._gui.output import Output
