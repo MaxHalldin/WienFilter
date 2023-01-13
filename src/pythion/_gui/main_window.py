@@ -2,12 +2,18 @@ from __future__ import annotations
 
 from typing import ClassVar, Any
 import sys
+import traceback
 import matplotlib.pyplot as plt
+
+import logging
 
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 
 from pythion._layout.ui_main_window import Ui_MainWindow
+
+
+logger = logging.getLogger('pythion')
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -45,9 +51,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.mainLayout.addWidget(child)
 
     def run(self) -> None:
-        self.setWindowTitle("Select Ion Mass - Beam Analysis (SIMBA). Velocity Filter Tuning.")
+        sys.excepthook = self.excepthook
+        self.setWindowTitle("Selection of Ion Mass - Beam Analysis (SIMBA)")
         self.show()
-        sys.exit(self._app.exec())
-
-    def closeEvent(self, *args: Any):
+        logger.info('                Program starts')
+        exit_code = self._app.exec()
+        if exit_code == 0:
+            logger.info('                Program exited normally')
+        else:
+            logger.info('                Successfully exited program after exception')
         plt.close('all')
+        return exit_code
+
+    def excepthook(self, exc_type, exc_value, exc_tb):
+        """
+        Defines what the system should do when errors are raised inside the Qt event loop.
+        Writes error message with traceback to log file, and end the QtApplication with exit code 1
+        This will return control to the 'run' function.
+        """
+        tb = "".join(traceback.format_exception(exc_type, exc_value, exc_tb))
+        logger.error(f'MainWindow:     Exiting due to unexpected error. Traceback: {tb}')
+        self._app.exit(1)
