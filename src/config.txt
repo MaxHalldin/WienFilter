@@ -1,0 +1,47 @@
+# Ports
+PORT_RBD: 'COM6'
+PORT_VELOCITY: 'COM11'
+PORT_MAGNET: 'COM9'
+
+MAGNET_MAXCURRENT: 3000             # mA - Maximum value for the magnet current.
+VELOCITY_MAXVOLTAGE: 300            # V  - Maximum value for the velocity filter voltage.
+
+CURRENT_SAMPLERATE: 10              # Hz - The rate at which the picoammeter samples beam current
+CURRENT_PULLRATE: 5                 # Hz - The rate at which data is read from the beam current measurement picoammeter.
+                                    #           If less than the CURRENT_SAMPLERATE, multiple current measurments will be
+                                    #           read at a time, but will still be regarded as separate sampling points.
+DISCARD_UNSTABLE: True              #    - Whether to discard beam current measurements marked as unstable. True or False.
+
+#   Grid search params
+MAGNET_SETTIME: 0.5                 # s  - The waiting time between setting magnet current and beam current measurement.
+VELOCITY_SETTIME: 0.5               # s  - The waiting time between setting velocity filter voltage and beam current measurement.
+MEASURING_CHECKTIME: 0.1            # s  - The time the program waits for sampling when it needs more sampling points.
+MEASURING_SAMPLES: 3                #    - Number of beam current samples to average a current measurement over.
+
+MAGNET_STARTVALUE: 990              # mA - Initial value for parameter mapping - magnet current.
+MAGNET_STEPSIZE: -20                # mA - Step size value for parameter mapping - magnet current.
+MAGNET_ENDVALUE: 310                # mA - Final value for parameter mapping - magnet current.
+
+VELOCITY_STARTVALUE: 0              # V  - Initial value for parameter mapping - velocity filter voltage.
+VELOCITY_STEPSIZE: 10               # V  - Step size value for parameter mapping - velocity filter voltage.
+VELOCITY_ENDVALUE: 220              # V  - Final value for parameter mapping - velocity filter voltage.
+
+PLOT_EVERY: 1                       #    - Determines how often the heatmap plot should be updated when running a parameter mapping..
+                                    #           For example, PLOT_EVERY: 5 means the plot is updated every fifth measurement.
+                                    #           Set to 1 to update every measurement, or to 0 (or None) to disable live plotting.
+                                    #           (i.e. only show plot when done).
+
+HEATMAP_SCALEMIN: 1                 # nA - Lower limit of the heatmap beam current color scale.
+HEATMAP_SCALEMAX: 1000              # nA - Upper limit of the heatmap beam current color scale.
+HEATMAP_LOGLIMIT: 0                 # nA - Sets the lower limit for the logarithmic scale. Below this level, the scale will be linear .
+                                    #           (this allows scales that include zero or even negative numbers.) Set to 0 if you only.
+                                    #           want logarithmic scale, and set to None for a linear scale everywhere.
+
+RESULTS_FILENAME: "res"             #    - Name for parameter mapping result file. Remember to include quotes for the text string. 
+RESULTS_FOLDERNAME: "results"       #    - Name for parameter mapping result folder. Remember to include quotes for the text string. 
+RESULTS_TIMESTAMP: True             #    - Whether timestamps should be included in the parameter mapping result filenames. Set to
+                                    #           True or False.
+
+STREAMPLOT_REFRESHRATE: 1           # Hz - The refresh rate of the live beam current plot.
+STREAMPLOT_TIMESPAN: 60             # s  - Width of live plot time window
+STREAMPLOT_FIXSCALE: False          #    - Determines whether the time scale of the live plot should move or be fixed. True or False.

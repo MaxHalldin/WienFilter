@@ -1,3 +1,6 @@
+# This file was retrieved from wayoda's GitHub project available at: https://github.com/wayoda/micropython-mcp4725
+# under the 'unlicenced' licence.
+
 #Library for the MCP4725 I2C bus DAC 
 from machine import I2C
 

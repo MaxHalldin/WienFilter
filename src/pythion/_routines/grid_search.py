@@ -172,7 +172,7 @@ class GridSearch(MeasurementRoutine):
     def heatmap_from_devices(self, settings: Heatmap.Settings, devices: tuple[GridSearch.Device, GridSearch.Device]):
         labels = [dev.output.label for dev in devices]
         ticks = [dev.values for dev in devices]
-        return Heatmap(settings, labels, ticks)
+        return Heatmap(settings, labels, ticks, cbar_label=self.input.label)
 
 
 def load_gridsearch_result(filepath: str, plot_settings: Heatmap.Settings | None = Heatmap.Settings(1, 1000, 1)) -> Self:

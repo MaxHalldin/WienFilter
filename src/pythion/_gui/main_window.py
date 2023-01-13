@@ -45,6 +45,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.mainLayout.addWidget(child)
 
     def run(self) -> None:
+        self.setWindowTitle("Select Ion Mass - Beam Analysis (SIMBA). Velocity Filter Tuning.")
         self.show()
         sys.exit(self._app.exec())
 

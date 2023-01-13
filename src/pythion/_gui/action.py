@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from PyQt5.QtWidgets import QWidget
-from PyQt5.QtCore import pyqtSlot
 
 from pythion._layout.ui_action import Ui_Action
 from pythion._routines.routine_handler import RoutineHandler
@@ -10,6 +9,9 @@ from pythion._routines.routine import Routine
 
 class Action(RoutineHandler, Ui_Action):
     """
+    This UI component represents a button which initiates some type of Action,
+    by starting an asynchronous routine on a background thread. The the layout
+    is imported from the Ui_Action parent class, while most of the 
     This class has two main purposes:
         - It's a gui component with a button that initiates the process.
         - It enables running the process concurrently in the background.
