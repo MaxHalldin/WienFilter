@@ -60,8 +60,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             logger.info('                Program exited normally')
         else:
             logger.info('                Successfully exited program after exception')
-        plt.close('all')
         return exit_code
+
+    def closeEvent(self):
+        """
+        Close all open plots (must be called before Qt Application exits).
+        closeEvent will automatically be called when widget is destoyed, and is not explicitly called here.
+        """
+        plt.close('all')
 
     def excepthook(self, exc_type, exc_value, exc_tb):
         """
