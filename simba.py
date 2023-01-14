@@ -7,11 +7,11 @@ logger = logging.getLogger('pythion')
 DEMO = True
 
 
-def log_error(tb: str):
-    s = tb.split('\n')
-    s = [(40 * ' ') + line.lstrip() for line in s]
-    s = '\n'.join(s)
-    logger.error(f'                An error occured. {s.lstrip()}')
+def log_error(description: str, tb: str):
+    tb = tb.split('\n')
+    tb = [(40 * ' ') + line.lstrip() for line in tb]
+    tb = '\n'.join(tb)
+    logger.error(f'                {description} {tb.lstrip()}')
 
 
 try:
@@ -129,7 +129,7 @@ try:
 
 except Exception:
     # Hanldes exceptions that occur before starting the GUI
-    log_error(traceback.format_exc())
+    log_error('An error occured while setting up the program.', traceback.format_exc())
     # Indent the error for logging
     print('An error occured before the program could be started. Traceback has been written to the log.')
     sys.exit(1)

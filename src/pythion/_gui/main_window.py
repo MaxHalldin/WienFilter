@@ -41,7 +41,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, high_resolution: bool = False, master_error_handler=None) -> None:
         if master_error_handler is None:
             # If no error handler is provided, declare a function that does nothing
-            self.master_error_handler = lambda _: None
+            self.master_error_handler = lambda *_: None
         else:
             self.master_error_handler = master_error_handler
         # Boilerplate initialization
@@ -82,5 +82,5 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         This will return control to the 'run' function.
         """
         tb = "".join(traceback.format_exception(exc_type, exc_value, exc_tb))
-        self.master_error_handler(tb)
+        self.master_error_handler('A runtime error was caught - attempting to exit.', tb)
         self._app.exit(1)
