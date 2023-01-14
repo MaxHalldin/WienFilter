@@ -1,19 +1,27 @@
 import sys
 import traceback
-
-from pythion.gui import MainWindow, Output, PlotStream, Input, Action
-from pythion.connections import LinearCalibration, RS3000Output, PowerOptions, RBDInput, MockBufferInput, MockOutput
-from pythion.routines import GridSearch, Heatmap
-from pythion._routines.file_handling import FileSettings
-
-
 import logging
+
 logger = logging.getLogger('pythion')
 
 DEMO = True
 
 
+def log_error(tb: str):
+    s = tb.split('\n')
+    s = [(40 * ' ') + line.lstrip() for line in s]
+    s = '\n'.join(s)
+    logger.error(f'                An error occured. {s.lstrip()}')
+
+
 try:
+    # Imports from the pythion package are wrapped in the try block too,
+    # so that any import-time errors are caught and logged properly.
+    from pythion.gui import MainWindow, Output, PlotStream, Input, Action
+    from pythion.connections import LinearCalibration, RS3000Output, PowerOptions, RBDInput, MockBufferInput, MockOutput
+    from pythion.routines import GridSearch, Heatmap
+    from pythion._routines.file_handling import FileSettings
+
     params = {}
     with open('config.txt', 'r') as file:
         for line in file.readlines():
@@ -55,7 +63,8 @@ try:
         "RESULTS_FOLDERNAME",
         "RESULTS_TIMESTAMP",
         "STREAMPLOT_TIMESPAN",
-        "STREAMPLOT_FIXSCALE"
+        "STREAMPLOT_FIXSCALE",
+        "HEATMAP_MAXLABELS"
     ]
     for key in param_keys:
         if key not in params:
@@ -91,7 +100,7 @@ try:
             discard_unstable=True
         )
 
-    win = MainWindow(high_resolution=False)
+    win = MainWindow(high_resolution=False, master_error_handler=log_error)
     velocity_filter = Output(
         max_value=params['VELOCITY_MAXVOLTAGE'],
         interface=velocity_filter,
@@ -109,7 +118,7 @@ try:
                                         params['VELOCITY_STEPSIZE']),
         input=input_component,
         settings=GridSearch.Settings(params['MEASURING_SAMPLES'], params['MEASURING_CHECKTIME'], True, plot_every=params['PLOT_EVERY']),
-        plot_settings=Heatmap.Settings(params['HEATMAP_SCALEMIN'], params['HEATMAP_SCALEMAX'], params['HEATMAP_LOGLIMIT']),
+        plot_settings=Heatmap.Settings(params['HEATMAP_SCALEMIN'], params['HEATMAP_SCALEMAX'], params['HEATMAP_LOGLIMIT'], params['HEATMAP_MAXLABELS']),
         file_settings=FileSettings(params['RESULTS_FILENAME'], './' + params['RESULTS_FOLDERNAME'], timestamp=params['RESULTS_TIMESTAMP'])
     )
 
@@ -120,8 +129,9 @@ try:
 
 except Exception:
     # Hanldes exceptions that occur before starting the GUI
-    logger.error(f'                An error occured when configuring the program: {traceback.format_exc()}')
-    print(traceback.format_exc())
+    log_error(traceback.format_exc())
+    # Indent the error for logging
+    print('An error occured before the program could be started. Traceback has been written to the log.')
     sys.exit(1)
 
 with magnet, velocity_filter, input_component:

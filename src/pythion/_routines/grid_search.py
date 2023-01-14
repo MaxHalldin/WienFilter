@@ -175,7 +175,7 @@ class GridSearch(MeasurementRoutine):
         return Heatmap(settings, labels, ticks, cbar_label=self.input.label)
 
 
-def load_gridsearch_result(filepath: str, plot_settings: Heatmap.Settings | None = Heatmap.Settings(1, 1000, 1)) -> Self:
+def load_gridsearch_result(filepath: str, plot_settings: Heatmap.Settings | None = Heatmap.Settings(1, 1000, 1, 21)) -> Self:
     # The file is read in two passes
     # First determining which combinations of values have been examined, and second, getting the values.
 

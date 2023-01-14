@@ -38,9 +38,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             cls._instance = super().__new__(cls, *args, **kwargs)
         return cls._instance
 
-    def __init__(self, high_resolution: bool = False) -> None:
+    def __init__(self, high_resolution: bool = False, master_error_handler=None) -> None:
+        if master_error_handler is None:
+            # If no error handler is provided, declare a function that does nothing
+            self.master_error_handler = lambda _: None
+        else:
+            self.master_error_handler = master_error_handler
         # Boilerplate initialization
         super().__init__(None)
+        # Custom initialization
         self.setupUi(self)  # type: ignore
 
     def main_widget(self) -> QWidget:
@@ -62,7 +68,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             logger.info('                Successfully exited program after exception')
         return exit_code
 
-    def closeEvent(self):
+    def closeEvent(self, _: Any):
         """
         Close all open plots (must be called before Qt Application exits).
         closeEvent will automatically be called when widget is destoyed, and is not explicitly called here.
@@ -76,5 +82,5 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         This will return control to the 'run' function.
         """
         tb = "".join(traceback.format_exception(exc_type, exc_value, exc_tb))
-        logger.error(f'MainWindow:     Exiting due to unexpected error. Traceback: {tb}')
+        self.master_error_handler(tb)
         self._app.exit(1)

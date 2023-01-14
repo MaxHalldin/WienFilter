@@ -18,13 +18,13 @@ VELOCITY_SETTIME: 0.5               # s  - The waiting time between setting velo
 MEASURING_CHECKTIME: 0.1            # s  - The time the program waits for sampling when it needs more sampling points.
 MEASURING_SAMPLES: 3                #    - Number of beam current samples to average a current measurement over.
 
-MAGNET_STARTVALUE: 990              # mA - Initial value for parameter mapping - magnet current.
+MAGNET_STARTVALUE: 800              # mA - Initial value for parameter mapping - magnet current.
 MAGNET_STEPSIZE: -20                # mA - Step size value for parameter mapping - magnet current.
-MAGNET_ENDVALUE: 310                # mA - Final value for parameter mapping - magnet current.
+MAGNET_ENDVALUE: 0                # mA - Final value for parameter mapping - magnet current.
 
 VELOCITY_STARTVALUE: 0              # V  - Initial value for parameter mapping - velocity filter voltage.
 VELOCITY_STEPSIZE: 10               # V  - Step size value for parameter mapping - velocity filter voltage.
-VELOCITY_ENDVALUE: 220              # V  - Final value for parameter mapping - velocity filter voltage.
+VELOCITY_ENDVALUE: 400              # V  - Final value for parameter mapping - velocity filter voltage.
 
 PLOT_EVERY: 1                       #    - Determines how often the heatmap plot should be updated when running a parameter mapping..
                                     #           For example, PLOT_EVERY: 5 means the plot is updated every fifth measurement.
@@ -36,6 +36,7 @@ HEATMAP_SCALEMAX: 1000              # nA - Upper limit of the heatmap beam curre
 HEATMAP_LOGLIMIT: 0                 # nA - Sets the lower limit for the logarithmic scale. Below this level, the scale will be linear .
                                     #           (this allows scales that include zero or even negative numbers.) Set to 0 if you only.
                                     #           want logarithmic scale, and set to None for a linear scale everywhere.
+HEATMAP_MAXLABELS: 20               #    - Maximum number of axis labels that will be shown on the heatmap axes.
 
 RESULTS_FILENAME: "res"             #    - Name for parameter mapping result file. Remember to include quotes for the text string. 
 RESULTS_FOLDERNAME: "results"       #    - Name for parameter mapping result folder. Remember to include quotes for the text string. 
