@@ -140,3 +140,8 @@ class Output(QWidget, Ui_Output, ConnectButton):
         if move_knobs:
             self.outputDial.setValue(val)
         self._update_graphics()
+
+    def __exit__(self, *args):
+        if self.zeroOnDisconnectBox.isChecked() and self._connected:
+            self.set_value(0, True)
+        super().__exit__(self, *args)

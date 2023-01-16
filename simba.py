@@ -47,7 +47,6 @@ try:
         "DISCARD_UNSTABLE",
         "MAGNET_SETTIME",
         "VELOCITY_SETTIME",
-        "MEASURING_CHECKTIME",
         "MEASURING_SAMPLES",
         "MAGNET_STARTVALUE",
         "MAGNET_STEPSIZE",
@@ -64,7 +63,8 @@ try:
         "RESULTS_TIMESTAMP",
         "STREAMPLOT_TIMESPAN",
         "STREAMPLOT_FIXSCALE",
-        "HEATMAP_MAXLABELS"
+        "HEATMAP_MAXLABELS",
+        "VELOCITY_BIDIRECTIONAL"
     ]
     for key in param_keys:
         if key not in params:
@@ -115,9 +115,9 @@ try:
     grid_search = GridSearch(
         GridSearch.Device.from_stepsize(magnet, params['MAGNET_SETTIME'], params['MAGNET_STARTVALUE'], params['MAGNET_ENDVALUE'], params['MAGNET_STEPSIZE']),
         GridSearch.Device.from_stepsize(velocity_filter, params['VELOCITY_SETTIME'], params['VELOCITY_STARTVALUE'], params['VELOCITY_ENDVALUE'],
-                                        params['VELOCITY_STEPSIZE']),
+                                        params['VELOCITY_STEPSIZE'], bidirectional=params['VELOCITY_BIDIRECTIONAL']),
         input=input_component,
-        settings=GridSearch.Settings(params['MEASURING_SAMPLES'], params['MEASURING_CHECKTIME'], True, plot_every=params['PLOT_EVERY']),
+        settings=GridSearch.Settings(params['MEASURING_SAMPLES'], 1/params['CURRENT_PULLRATE'], True, plot_every=params['PLOT_EVERY']),
         plot_settings=Heatmap.Settings(params['HEATMAP_SCALEMIN'], params['HEATMAP_SCALEMAX'], params['HEATMAP_LOGLIMIT'], params['HEATMAP_MAXLABELS']),
         file_settings=FileSettings(params['RESULTS_FILENAME'], './' + params['RESULTS_FOLDERNAME'], timestamp=params['RESULTS_TIMESTAMP'])
     )

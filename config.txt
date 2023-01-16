@@ -13,20 +13,20 @@ CURRENT_PULLRATE: 5                 # Hz - The rate at which data is read from t
 DISCARD_UNSTABLE: True              #    - Whether to discard beam current measurements marked as unstable. True or False.
 
 #   Grid search params
-MAGNET_SETTIME: 0.5                 # s  - The waiting time between setting magnet current and beam current measurement.
-VELOCITY_SETTIME: 0.5               # s  - The waiting time between setting velocity filter voltage and beam current measurement.
-MEASURING_CHECKTIME: 0.1            # s  - The time the program waits for sampling when it needs more sampling points.
-MEASURING_SAMPLES: 3                #    - Number of beam current samples to average a current measurement over.
+MAGNET_SETTIME: 0.1                 # s  - The waiting time between setting magnet current and beam current measurement.
+VELOCITY_SETTIME: 0.1               # s  - The waiting time between setting velocity filter voltage and beam current measurement.
+MEASURING_SAMPLES: 1                #    - Number of beam current samples to average a current measurement over.
 
 MAGNET_STARTVALUE: 800              # mA - Initial value for parameter mapping - magnet current.
 MAGNET_STEPSIZE: -20                # mA - Step size value for parameter mapping - magnet current.
-MAGNET_ENDVALUE: 0                # mA - Final value for parameter mapping - magnet current.
+MAGNET_ENDVALUE: 0                  # mA - Final value for parameter mapping - magnet current.
 
 VELOCITY_STARTVALUE: 0              # V  - Initial value for parameter mapping - velocity filter voltage.
 VELOCITY_STEPSIZE: 10               # V  - Step size value for parameter mapping - velocity filter voltage.
 VELOCITY_ENDVALUE: 400              # V  - Final value for parameter mapping - velocity filter voltage.
+VELOCITY_BIDIRECTIONAL: True        #    - Whether to do a bidirectional search on the velocity filter settings. True or False.
 
-PLOT_EVERY: 1                       #    - Determines how often the heatmap plot should be updated when running a parameter mapping..
+PLOT_EVERY: 10                      #    - Determines how often the heatmap plot should be updated when running a parameter mapping..
                                     #           For example, PLOT_EVERY: 5 means the plot is updated every fifth measurement.
                                     #           Set to 1 to update every measurement, or to 0 (or None) to disable live plotting.
                                     #           (i.e. only show plot when done).
@@ -43,6 +43,11 @@ RESULTS_FOLDERNAME: "results"       #    - Name for parameter mapping result fol
 RESULTS_TIMESTAMP: True             #    - Whether timestamps should be included in the parameter mapping result filenames. Set to
                                     #           True or False.
 
-STREAMPLOT_REFRESHRATE: 1           # Hz - The refresh rate of the live beam current plot.
+STREAMPLOT_REFRESHRATE: 0.5           # Hz - The refresh rate of the live beam current plot.
 STREAMPLOT_TIMESPAN: 60             # s  - Width of live plot time window
 STREAMPLOT_FIXSCALE: False          #    - Determines whether the time scale of the live plot should move or be fixed. True or False.
+
+# Changes:
+# removed MEASURING_CHECKTIME (1 / CURRENT_PULLRATE is used instead)
+# added HEATMAP_MAXLABELS
+# added VELOCITY_BIDIRECTIONAL
