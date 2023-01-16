@@ -54,6 +54,7 @@ class BufferInput(TimerInput):
     def __exit__(self, *args: Any) -> None:
         if self._pull_timer is not None:
             self._pull_timer.cancel()
+            self._pull_timer = Timer(self._pull_wait_time, self._pull_callback)
         super().__exit__(*args)
 
     def _update_buffer(self) -> None:
