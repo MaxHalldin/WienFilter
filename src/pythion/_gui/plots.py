@@ -63,7 +63,7 @@ class PlotStream(LinePlot):
     fix_scale: bool  # If set to true, then x values will be fixed between 0 and timespan.
     _cutting: bool  # Internal state variable that keeps track of whether data has overflown the timespan
 
-    def __init__(self, *, parent: QWidget, input: InputInterface, timespan: int = 60, fix_scale: bool = False):
+    def __init__(self, *, parent: QWidget | None = None, input: InputInterface, timespan: int = 60, fix_scale: bool = False):
         super().__init__(parent=parent)
         self.init_time = None
         self.time_list = np.empty((0,))

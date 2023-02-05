@@ -11,7 +11,7 @@ class Input(QWidget, Ui_Input, ConnectButton):
         self, *,
         interface: InputInterface,
         rate: int,
-        parent: QWidget | None,
+        parent: QWidget | None = None,
         name: str | None = None,
         unit: str | None = None
     ):

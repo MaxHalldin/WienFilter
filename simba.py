@@ -104,13 +104,12 @@ try:
     velocity_filter = Output(
         max_value=params['VELOCITY_MAXVOLTAGE'],
         interface=velocity_filter,
-        parent=win.main_widget(),
         name="Velocity filter",
         unit="V"
     )
 
-    magnet = Output(max_value=params['MAGNET_MAXCURRENT'], interface=magnet, parent=win.main_widget(), name="Magnet", unit="mA")
-    input_component = Input(interface=input_device, rate=params['STREAMPLOT_REFRESHRATE'], name='Beam current', unit='nA', parent=win.main_widget())
+    magnet = Output(max_value=params['MAGNET_MAXCURRENT'], interface=magnet, name="Magnet", unit="mA")
+    input_component = Input(interface=input_device, rate=params['STREAMPLOT_REFRESHRATE'], name='Beam current', unit='nA')
 
     grid_search = GridSearch(
         GridSearch.Device.from_stepsize(magnet, params['MAGNET_SETTIME'], params['MAGNET_STARTVALUE'], params['MAGNET_ENDVALUE'], params['MAGNET_STEPSIZE']),
@@ -122,9 +121,9 @@ try:
         file_settings=FileSettings(params['RESULTS_FILENAME'], './' + params['RESULTS_FOLDERNAME'], timestamp=params['RESULTS_TIMESTAMP'])
     )
 
-    start_button = Action(routine=grid_search, parent=win.main_widget(), text='Grid Search')
+    start_button = Action(routine=grid_search, text='Grid Search')
 
-    plt = PlotStream(parent=win.main_widget(), input=input_device, timespan=params['STREAMPLOT_TIMESPAN'], fix_scale=params['STREAMPLOT_FIXSCALE'])
+    plt = PlotStream(input=input_device, timespan=params['STREAMPLOT_TIMESPAN'], fix_scale=params['STREAMPLOT_FIXSCALE'])
     win.add_children(velocity_filter, magnet, plt, input_component, start_button)
 
 except Exception:
