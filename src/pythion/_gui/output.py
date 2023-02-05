@@ -4,7 +4,7 @@ import time
 
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import pyqtSlot, pyqtSignal
-from pythion._layout.ui_output import Ui_Output
+from pythion._gui.layout.ui_output import Ui_Output
 from pythion._connections.output_interface import OutputInterface
 from pythion._gui.connect_button import ConnectButton
 

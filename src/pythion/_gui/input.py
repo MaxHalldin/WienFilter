@@ -1,7 +1,7 @@
 from __future__ import annotations
 from PyQt5.QtWidgets import QWidget
 
-from pythion._layout.ui_input import Ui_Input
+from pythion._gui.layout.ui_input import Ui_Input
 from pythion._connections.input_interface import InputInterface
 from pythion._gui.connect_button import ConnectButton
 

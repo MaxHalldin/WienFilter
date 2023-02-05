@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from PyQt5.QtWidgets import QWidget
 
-from pythion._layout.ui_action import Ui_Action
+from pythion._gui.layout.ui_action import Ui_Action
 from pythion._routines.routine_handler import RoutineHandler
 from pythion._routines.routine import Routine
 
