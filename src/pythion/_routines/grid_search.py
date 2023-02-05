@@ -188,7 +188,7 @@ def load_gridsearch_result(filepath: str, plot_settings: Heatmap.Settings | None
     with open(filepath, 'rt') as file:
         header = file.readline()
         device_names = header.split(',')
-        _ = device_names.pop()  # Todo: add title to plot
+        cbar_title = device_names.pop()  # Todo: add title to plot
         device_values = [set() for _ in device_names]
         for line in file.readlines():
             vals = line.split(',')[0:-1]
@@ -209,6 +209,7 @@ def load_gridsearch_result(filepath: str, plot_settings: Heatmap.Settings | None
         # Flip y axis so that 0 is in bottom left corner
         sorted_device_values[0].reverse()
         results = np.flipud(results)
-        heatmap = Heatmap(plot_settings, device_names, sorted_device_values)
+        heatmap = Heatmap(plot_settings, device_names, sorted_device_values, cbar_title)
         heatmap.update(results)
+
     return results
