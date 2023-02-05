@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>142</width>
-    <height>42</height>
+    <height>89</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,6 +24,35 @@
    </property>
    <property name="text">
     <string>PushButton</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="initiatedLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>121</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="finishedLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>121</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: green;</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+from datetime import datetime
 from PyQt5.QtWidgets import QWidget
 
 from pythion._layout.ui_action import Ui_Action
@@ -35,9 +35,14 @@ class Action(RoutineHandler, Ui_Action):
 
     def on_reset(self) -> None:
         self.button.setText(self.text)
+        self._finished_time = datetime.now()
+        self.finishedLabel.setText(f'Finished at {self._finished_time.strftime("%H:%M:%S")}')
 
     def on_start(self) -> None:
         self.button.setText('Cancel')
+        self._starttime = datetime.now()
+        self.initiatedLabel.setText(f'Started at {self._starttime.strftime("%H:%M:%S")}')
+        self.finishedLabel.setText('')
 
     def configure(self) -> None:
         # Set name label

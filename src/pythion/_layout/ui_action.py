@@ -14,10 +14,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Action(object):
     def setupUi(self, Action):
         Action.setObjectName("Action")
-        Action.resize(142, 42)
+        Action.resize(142, 89)
         self.button = QtWidgets.QPushButton(Action)
         self.button.setGeometry(QtCore.QRect(10, 10, 121, 21))
         self.button.setObjectName("button")
+        self.initiatedLabel = QtWidgets.QLabel(Action)
+        self.initiatedLabel.setGeometry(QtCore.QRect(10, 40, 121, 16))
+        self.initiatedLabel.setText("")
+        self.initiatedLabel.setObjectName("initiatedLabel")
+        self.finishedLabel = QtWidgets.QLabel(Action)
+        self.finishedLabel.setGeometry(QtCore.QRect(10, 60, 121, 16))
+        self.finishedLabel.setStyleSheet("color: green;")
+        self.finishedLabel.setText("")
+        self.finishedLabel.setObjectName("finishedLabel")
 
         self.retranslateUi(Action)
         QtCore.QMetaObject.connectSlotsByName(Action)
