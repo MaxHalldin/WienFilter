@@ -55,6 +55,7 @@ try:
         "VELOCITY_STEPSIZE",
         "VELOCITY_ENDVALUE",
         "PLOT_EVERY",
+        "RESET_AFTER_GRIDSEARCH",
         "HEATMAP_SCALEMIN",
         "HEATMAP_SCALEMAX",
         "HEATMAP_LOGLIMIT",
@@ -111,12 +112,17 @@ try:
     magnet = Output(max_value=params['MAGNET_MAXCURRENT'], interface=magnet, name="Magnet", unit="mA")
     input_component = Input(interface=input_device, rate=params['STREAMPLOT_REFRESHRATE'], name='Beam current', unit='nA')
 
+    gridsearch_settings = GridSearch.Settings(measure_samples=params['MEASURING_SAMPLES'],
+                                              measure_checktime=1/params['CURRENT_PULLRATE'],
+                                              update_graphics=True,
+                                              plot_every=params['PLOT_EVERY'],
+                                              reset_to_zero=params['RESET_AFTER_GRIDSEARCH'])
     grid_search = GridSearch(
         GridSearch.Device.from_stepsize(magnet, params['MAGNET_SETTIME'], params['MAGNET_STARTVALUE'], params['MAGNET_ENDVALUE'], params['MAGNET_STEPSIZE']),
         GridSearch.Device.from_stepsize(velocity_filter, params['VELOCITY_SETTIME'], params['VELOCITY_STARTVALUE'], params['VELOCITY_ENDVALUE'],
                                         params['VELOCITY_STEPSIZE'], bidirectional=params['VELOCITY_BIDIRECTIONAL']),
         input=input_component,
-        settings=GridSearch.Settings(params['MEASURING_SAMPLES'], 1/params['CURRENT_PULLRATE'], True, plot_every=params['PLOT_EVERY']),
+        settings=gridsearch_settings,
         plot_settings=Heatmap.Settings(params['HEATMAP_SCALEMIN'], params['HEATMAP_SCALEMAX'], params['HEATMAP_LOGLIMIT'], params['HEATMAP_MAXLABELS']),
         file_settings=FileSettings(params['RESULTS_FILENAME'], './' + params['RESULTS_FOLDERNAME'], timestamp=params['RESULTS_TIMESTAMP'])
     )

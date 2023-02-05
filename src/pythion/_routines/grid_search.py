@@ -25,6 +25,7 @@ class GridSearch(MeasurementRoutine):
         measure_checktime: float
         update_graphics: bool
         plot_every: int | None = None  # Setting plot_every to 0 or None will disable live plots.
+        reset_to_zero: bool = False
 
     @dataclass
     class Device:
@@ -105,6 +106,11 @@ class GridSearch(MeasurementRoutine):
             self._measure(f)
             # The rest are measured by recursion
             self._grid_search(0, f)
+
+        # Reset all devices to 0 upon completed grid search
+        if self.settings.reset_to_zero:
+            for dev in self.devices:
+                self.set_output(dev.output, 0, self.set_output_mode, False)
 
         # Final plot
         if self.heatmap:
