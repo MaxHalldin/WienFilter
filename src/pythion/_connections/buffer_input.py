@@ -117,7 +117,7 @@ class MockBufferInput(BufferInput):
     def _read_from_device(self) -> list[float]:
         start_int = self._next_int
         self._next_int = floor((time.time() - self._init_time) * self.rate)
-        return [x % self.mod for x in range(start_int, self._next_int)]
+        return [1000*(x % self.mod) for x in range(start_int, self._next_int)]
 
 
 class PicoMockBufferInput(BufferInput, USBConnection):

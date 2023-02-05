@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\Gustav\Desktop\Projektkurs\Code\src\pythion\_layout\main_window.ui'
+# Form implementation generated from reading ui file 'c:\Users\Gustav\Desktop\Projektkurs\Code\src\pythion\_gui\layout\main_window.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1515, 599)
+        MainWindow.resize(1920, 1080)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -39,15 +39,15 @@ class Ui_MainWindow(object):
 "}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(9, 9, 1491, 551))
-        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
-        self.mainLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
-        self.mainLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName("gridLayout")
+        self.mainLayout = QtWidgets.QHBoxLayout()
+        self.mainLayout.setSpacing(0)
         self.mainLayout.setObjectName("mainLayout")
+        self.gridLayout.addLayout(self.mainLayout, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1515, 18))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1920, 18))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)

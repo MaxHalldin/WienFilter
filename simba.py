@@ -124,7 +124,7 @@ try:
     start_button = Action(routine=grid_search, text='Grid Search')
 
     plt = PlotStream(input=input_device, timespan=params['STREAMPLOT_TIMESPAN'], fix_scale=params['STREAMPLOT_FIXSCALE'])
-    win.add_children(velocity_filter, magnet, plt, input_component, start_button)
+    win.add_children(velocity_filter, magnet, input_component, start_button, plt.frame)
 
 except Exception:
     # Hanldes exceptions that occur before starting the GUI

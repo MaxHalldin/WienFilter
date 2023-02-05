@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\Gustav\Desktop\Projektkurs\Code\src\pythion\_layout\input.ui'
+# Form implementation generated from reading ui file 'c:\Users\Gustav\Desktop\Projektkurs\Code\src\pythion\_gui\layout\input.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -15,6 +15,12 @@ class Ui_Input(object):
     def setupUi(self, Input):
         Input.setObjectName("Input")
         Input.resize(172, 129)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Input.sizePolicy().hasHeightForWidth())
+        Input.setSizePolicy(sizePolicy)
+        Input.setMinimumSize(QtCore.QSize(172, 0))
         self.frame = QtWidgets.QFrame(Input)
         self.frame.setGeometry(QtCore.QRect(10, 10, 151, 111))
         self.frame.setFrameShape(QtWidgets.QFrame.Box)

@@ -8,20 +8,31 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg  # type: ignore
 from matplotlib.figure import Figure  # type: ignore
 from matplotlib.lines import Line2D  # type: ignore
 from pythion._connections.input_interface import InputInterface
+from pythion._gui.layout.ui_plotframe import Ui_PlotFrame
 
 matplotlib.use('Qt5Agg')
 
 
+class PlotFrame(QWidget, Ui_PlotFrame):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+
 class PlotBase(FigureCanvasQTAgg):  # type: ignore
     def __init__(self, *, parent: QWidget):
+        self.sizeHint = (100, 100)
         self.plt = Figure(figsize=(1, 1))
         self.axes = self.plt.add_subplot(111)
         super().__init__(self.plt)
+        self.figure.subplots_adjust(left=0.2)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
         self.setSizePolicy(sizePolicy)
+        self.frame = PlotFrame()
+        self.frame.mainLayout.addWidget(self)
 
 
 class LinePlot(PlotBase):

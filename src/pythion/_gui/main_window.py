@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import logging
 
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QDesktopWidget
 
 from pythion._gui.layout.ui_main_window import Ui_MainWindow
 
@@ -48,6 +48,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__(None)
         # Custom initialization
         self.setupUi(self)  # type: ignore
+        self.resize(QDesktopWidget().availableGeometry(self).size() * 0.7)
 
     def main_widget(self) -> QWidget:
         return self.horizontalLayoutWidget

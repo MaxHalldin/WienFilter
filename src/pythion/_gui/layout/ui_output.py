@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\Gustav\Desktop\Projektkurs\Code\src\pythion\_layout\output.ui'
+# Form implementation generated from reading ui file 'c:\Users\Gustav\Desktop\Projektkurs\Code\src\pythion\_gui\layout\output.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -15,6 +15,12 @@ class Ui_Output(object):
     def setupUi(self, Output):
         Output.setObjectName("Output")
         Output.resize(230, 500)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Output.sizePolicy().hasHeightForWidth())
+        Output.setSizePolicy(sizePolicy)
+        Output.setMinimumSize(QtCore.QSize(230, 0))
         self.frame_2 = QtWidgets.QFrame(Output)
         self.frame_2.setGeometry(QtCore.QRect(10, 10, 211, 481))
         self.frame_2.setFrameShape(QtWidgets.QFrame.Box)
