@@ -17,10 +17,10 @@ def log_error(description: str, tb: str):
 try:
     # Imports from the pythion package are wrapped in the try block too,
     # so that any import-time errors are caught and logged properly.
-    from pythion.gui import MainWindow, Output, PlotStream, Input, Action
-    from pythion.connections import LinearCalibration, RS3000Output, PowerOptions, RBDInput, MockBufferInput, MockOutput
-    from pythion.routines import GridSearch, Heatmap
-    from pythion._routines.file_handling import FileSettings
+    from src.pythion.gui import MainWindow, Output, PlotStream, Input, Action
+    from src.pythion.connections import LinearCalibration, RS3000Output, PowerOptions, RBDInput, MockBufferInput, MockOutput
+    from src.pythion.routines import GridSearch, Heatmap
+    from src.pythion._routines.file_handling import FileSettings
 
     params = {}
     with open('config.txt', 'r') as file:
@@ -130,7 +130,7 @@ try:
     start_button = Action(routine=grid_search, text='Grid Search')
 
     plt = PlotStream(input=input_device, timespan=params['STREAMPLOT_TIMESPAN'], fix_scale=params['STREAMPLOT_FIXSCALE'])
-    win.add_children(velocity_filter, magnet, input_component, start_button, plt.frame)
+    win.add_children(velocity_filter, magnet, input_component, start_button, plt.frame) ### IT IS HERE WE CAN CHANGHE THE ORDER OF PANELS
 
 except Exception:
     # Hanldes exceptions that occur before starting the GUI

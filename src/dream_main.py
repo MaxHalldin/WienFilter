@@ -1,7 +1,7 @@
 from pythion.gui import MainWindow, Output, PlotStream, Input
 from pythion.connections import MockOutput, MockBufferInput, LinearCalibration
 
-from grid_search import grid_seach_function
+from pythion._routines.grid_search import grid_seach_function
 
 win = MainWindow(high_resolution=False)
 

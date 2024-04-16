@@ -12,7 +12,7 @@ logger = logging.getLogger('pythion')
 
 class BufferInput(TimerInput):
     """
-    The abstract BufferInput class extends the ordinary Input class (thruogh TimerInput),
+    The abstract BufferInput class extends the ordinary Input class (through TimerInput),
     and provides one major new feature for the subclasses to implement: sampling data at a different
     rate than what's presented to the user interface. For example, a sample rate of 1 Hz might be
     enough to update the GUI reading, but numerical computations such as integrating a current could
