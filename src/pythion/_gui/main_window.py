@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import logging
 
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QDesktopWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QDesktopWidget, QVBoxLayout
 
 from pythion._gui.layout.ui_main_window import Ui_MainWindow
 
@@ -56,6 +56,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def add_children(self, *children: QWidget) -> None:
         for child in children:
             self.mainLayout.addWidget(child)
+
+    def add_vert(self, posistion: int) -> None:
+        self.sublayout = QVBoxLayout()
+        self.sublayout.setSpacing(0)
+        self.sublayout.setObjectName('subLayout')
+        self.mainLayout.insertLayout(posistion, self.sublayout)
+
+    def add_vert_children(self, *children: QWidget) -> None:
+        for child in children:
+            self.sublayout.addWidget(child)
 
     def run(self) -> None:
         sys.excepthook = self.excepthook

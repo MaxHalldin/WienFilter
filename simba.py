@@ -37,6 +37,8 @@ try:
 
     param_keys = [
         "PORT_RBD",
+        "PORT_RBD2",
+        "PORT_RBD3",
         "PORT_VELOCITY",
         "PORT_MAGNET",
         "MAGNET_MAXCURRENT",
@@ -80,6 +82,8 @@ try:
         )
         magnet = MockOutput(target_limit=params['MAGNET_MAXCURRENT'])
         input_device = MockBufferInput(pull_rate=params['CURRENT_PULLRATE'])
+        input_device_2 = MockBufferInput(pull_rate=params['CURRENT_PULLRATE'])
+        input_device_3 = MockBufferInput(pull_rate=params['CURRENT_PULLRATE'])
     else:
         velocity_filter = RS3000Output(
             port=params['PORT_VELOCITY'],
@@ -100,6 +104,20 @@ try:
             unit=RBDInput.CurrentUnit.NANO,
             discard_unstable=True
         )
+        input_device_2 = RBDInput(
+            port=params['PORT_RBD2'],
+            rbd_sample_rate=params['CURRENT_SAMPLERATE'],
+            pull_rate=params['CURRENT_PULLRATE'],
+            unit=RBDInput.CurrentUnit.NANO,
+            discard_unstable=True
+        )
+        input_device_3 = RBDInput(
+            port=params['PORT_RBD3'],
+            rbd_sample_rate=params['CURRENT_SAMPLERATE'],
+            pull_rate=params['CURRENT_PULLRATE'],
+            unit=RBDInput.CurrentUnit.NANO,
+            discard_unstable=True
+        )
 
     win = MainWindow(high_resolution=False, master_error_handler=log_error)
     velocity_filter = Output(
@@ -111,6 +129,8 @@ try:
 
     magnet = Output(max_value=params['MAGNET_MAXCURRENT'], interface=magnet, name="Magnet", unit="mA")
     input_component = Input(interface=input_device, rate=params['STREAMPLOT_REFRESHRATE'], name='Beam current', unit='nA')
+    input_component_2 = Input(interface=input_device_2, rate=params['STREAMPLOT_REFRESHRATE'], name='Beam current 2', unit='nA')
+    input_component_3 = Input(interface=input_device_3, rate=params['STREAMPLOT_REFRESHRATE'], name='Beam current 3', unit='nA')
 
     gridsearch_settings = GridSearch.Settings(measure_samples=params['MEASURING_SAMPLES'],
                                               measure_checktime=1/params['CURRENT_PULLRATE'],
@@ -130,8 +150,11 @@ try:
     start_button = Action(routine=grid_search, text='Grid Search')
 
     plt = PlotStream(input=input_device, timespan=params['STREAMPLOT_TIMESPAN'], fix_scale=params['STREAMPLOT_FIXSCALE'])
-    win.add_children(velocity_filter, magnet, input_component, start_button, plt.frame) ### IT IS HERE WE CAN CHANGHE THE ORDER OF PANELS
+    win.add_children(velocity_filter, magnet, start_button, plt.frame) ### IT IS HERE WE CAN CHANGHE THE ORDER OF PANELS
 
+    win.add_vert(2)
+    win.add_vert_children(input_component, input_component_2, input_component_3)
+        
 except Exception:
     # Hanldes exceptions that occur before starting the GUI
     log_error('An error occured while setting up the program.', traceback.format_exc())

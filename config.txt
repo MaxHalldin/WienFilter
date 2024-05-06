@@ -1,7 +1,9 @@
 # Ports
 PORT_RBD: 'COM6'
-PORT_VELOCITY: 'COM11'
-PORT_MAGNET: 'COM9'
+PORT_RBD2: 'COM9'
+PORT_RBD3: 'COM12'
+PORT_VELOCITY: 'COM11'              # actually on 7/8
+PORT_MAGNET: 'COM9'                 # actually on 7/8
 
 MAGNET_MAXCURRENT: 3000             # mA - Maximum value for the magnet current.
 VELOCITY_MAXVOLTAGE: 300            # V  - Maximum value for the velocity filter voltage.
