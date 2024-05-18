@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>439</width>
+    <height>353</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>290</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Panel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <property name="lineWidth">
+    <number>2</number>
+   </property>
+   <property name="text">
+    <string>BOARD CONTROLL</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>10</y>
+     <width>120</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CLEAR ALARMS</string>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>205</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <row>
+    <property name="text">
+     <string>BDILK</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>BDILKM</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>BDCTR</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>BDTERM</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>BDALARM</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>PARAMS</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>50</y>
+     <width>200</width>
+     <height>285</height>
+    </rect>
+   </property>
+   <row>
+    <property name="text">
+     <string>CH 00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>CH 01</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>CH 02</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>CH 03</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>PW FAIL</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>OVP</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>HVCKFAIL</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>ALARMS</string>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
