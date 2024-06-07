@@ -117,6 +117,13 @@ class OutputInterface(ABC):
         """
         pass
 
+    @abstractmethod
+    def _read_from_device(self) -> list[float, str]:
+        """
+        Actual implementation of reading from device
+        """
+        pass
+
     def _validate(self, target_signal: float, control_signal: float) -> Tuple[bool, float, float]:
         """
         Returns (isValid, new_target, new_control)
@@ -141,7 +148,7 @@ class MockOutput(OutputInterface):
     def _write(self, control_value: float) -> None:
         # print(f'Writing control signal value {control_value}')
         logger.debug(f'MockOutput:     Setting control_signal to {control_value}')
-
-class MockCAEN(OutputInterface):
-    def _write(self, msg):
-        logger.debug(f"MockCAEN:        message: {msg}")
+    
+    def _read_from_device(self) -> None:
+        pass
+    

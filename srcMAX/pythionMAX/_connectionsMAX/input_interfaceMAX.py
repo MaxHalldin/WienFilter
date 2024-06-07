@@ -121,6 +121,23 @@ class MockInput(TimerInput):
         self._val = (self._val + 1) % 10
         return self._val
 
+from srcMAX.pythionMAX._connectionsMAX.input_interfaceMAX import TimerInput
+import random as rd
+class MockCAEN(TimerInput):
+    _val: float = 10
+    
+    def _read_from_device(self) -> list[float] | None:
+        return ['OK']*4
+
+    def _write(self, cmd: str, par: str, val: int|str|None = None, ch: int|None = None, bd = 0) -> None:
+        msg = f"{bd} {cmd} {ch} {par} {val}"
+        logger.debug(f"MockCAEN:        message: {msg}.")
+        #print(msg)
+
+ 
+    def _read(self) -> None:
+        self._val = self._val + (rd.random()-0.5)*2
+        return self._val
 
 def main() -> None:
     x = MockInput()
@@ -129,7 +146,6 @@ def main() -> None:
     input('Press enter to quit reading\n')
     x.stop_sampling()
     input('Enter to exit')
-
 
 if __name__ == '__main__':
     main()

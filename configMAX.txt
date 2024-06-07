@@ -17,6 +17,8 @@ CURRENT_PULLRATE: 5                 # Hz - The rate at which data is read from t
                                     #           read at a time, but will still be regarded as separate sampling points.
 DISCARD_UNSTABLE: True              #    - Whether to discard beam current measurements marked as unstable. True or False.
 
+CAEN_UPDATE_RATE: 1                 # Hz - The rate at which the CAEN R1419ET interface is updated. 
+
 #   Grid search params
 MAGNET_SETTIME: 0.1                 # s  - The waiting time between setting magnet current and beam current measurement.
 VELOCITY_SETTIME: 0.1               # s  - The waiting time between setting velocity filter voltage and beam current measurement.

@@ -49,7 +49,7 @@ class ConnectButton():
     def _select_port_and_retry(self):
         logger.waring('ConnectButton:  Port selection not implemented!')
 
-    def __enter__(self) -> Self:
+    def __enter__(self, *args) -> Self:
         self._in_context_manager = True
         return self
 

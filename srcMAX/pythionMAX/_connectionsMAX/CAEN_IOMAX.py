@@ -3,14 +3,18 @@ from typing import Self
 import logging
 import re
 
+from threading import Timer
+
 logger = logging.getLogger('pythion')
 
-from srcMAX.pythionMAX._connectionsMAX.calibrationMAX import LinearCalibration, Calibration
+from srcMAX.pythionMAX._connectionsMAX.calibrationMAX import Calibration
 from srcMAX.pythionMAX._connectionsMAX.output_interfaceMAX import OutputInterface
 from srcMAX.pythionMAX._connectionsMAX.usbMAX import USBConnection
-#from srcMAX.pythionMAX._connectionsMAX.buffer_inputMAX import BufferInput
+from srcMAX.pythionMAX._connectionsMAX.input_interfaceMAX import TimerInput
+from srcMAX.pythionMAX._connectionsMAX.buffer_inputMAX import BufferInput
+from typing import TypeGuard
 
-class CAENOutput(OutputInterface, USBConnection):
+class CAENOutput(USBConnection, BufferInput):
     """
     Specialization of the Output class for a CAEN R1419ET HV power supply.
     
@@ -23,7 +27,8 @@ class CAENOutput(OutputInterface, USBConnection):
     def __init__(self, *, 
                  port: str | None,
                  calibration: Calibration | None = None,
-                 bd: str | None = 0
+                 bd: str | None = 0,
+                 pullRate: int | None = None
                  ):
         
         self.bd = bd
@@ -35,14 +40,16 @@ class CAENOutput(OutputInterface, USBConnection):
             eol_char= ' \r \n',
             xon_xoff=True
             )
-        OutputInterface.__init__(
-            self,
-            calibration = calibration
-        )
+        BufferInput.__init__(self, pull_rate=pullRate)
 
     def __enter__(self)-> Self:
         super().__enter__()
+        self._write(bd=self.bd, cmd='MON', par='BDSNUM')
         return self
+    
+    def __exit__(self, *args: logging.Any) -> None:
+        self._write(self.bd, cmd='SET', ch=4, par='off') #Turns of all channels before disconnect. 
+        super().__exit__(*args)
 
     def parse_response_string(self, msg:str) -> list[float|str] | None:
         try:
@@ -78,7 +85,7 @@ class CAENOutput(OutputInterface, USBConnection):
             logger.warning(f"CAENOutput:       Unexpected error when the line '{msg.strip()}' was parsed.")
             return None
 
-    def _write(self, msg: str) -> None:
+    def _write(self, cmd: str, par: str, val: int|str|None = None, ch: int|None = None, bd = 0) -> None:
         """
         Message is of shape " $BD:**,CMD:***,CH*,PAR:***,VAL:***.**\r \n"
 
@@ -91,43 +98,57 @@ class CAENOutput(OutputInterface, USBConnection):
         when MON: VAL = ''.
 
         """        
-        self.write(msg)
-
-    def makeMessage(self, cmd: str, ch: int | None = None, bd = 0, par = str, val = int | str | None) -> str:
-            """
-            Constructs a message to be sent over the bus to CAEN.
-            """
-            message = '$BD:'
-            parlist = ['VSET', 'VMIN', 'VMAX', 'VDEC', 'VMON', 
+        msg = '$BD:'
+        parlist = ['VSET', 'VMIN', 'VMAX', 'VDEC', 'VMON', 
                     'ISET', 'IMIN', 'IMAX', 'ISDEC', 'IMON', 'IMRANGE', 'IMDEC',
                     'MAXV', 'MVMIN', 'MVMAX', 'MVDEC', 
                     'RUP', 'RUPMIN', 'RUPMAX', 'RUPDEC', 
                     'RDW', 'RDWMIN', 'RDWMAX', 'RDWDEC',
                     'TRIP', 'TRIPMIN', 'TRIPMAX', 'TRIPDEC',
+                    'BDNAME', 'BDNCH', 'BDFREL', 'BDSNUM', 'BDILK', 'BDILKM', 'BDCTR', 'BDTERM', 'BDALARM',
                     'PDDW', 'POL', 'STAT'#, 'ZSDTC', 'ZCADJ'    ### These are not avalible on the R1419ET
                     ]
 
-            #
-            message = message + '0' + str(bd) + ',CMD:'
+        #
+        msg = msg + '0' + str(bd) + ',CMD:'
 
-            #
-            match cmd:
-                case 'MON':
-                    message = message + 'MON'
-                case 'SET':
-                    message = message + 'SET'
+        #
+        match cmd:
+            case 'MON':
+                msg = msg + 'MON'
+            case 'SET':
+                msg = msg + 'SET'
+            case _:
+                logger.exception(f"CAEN:         Invalid command: {cmd}.")
         
-            #
-            if ch is not None:
-                message + message + str(ch) + ','
+        #
+        if ch is not None:
+            msg = msg + ',CH:' + str(ch)
         
-            #
-            if par not in parlist:
-                logger.exception(f"CAEN:         Invalid parameter {par}.")
-            else:
-                message = message + 'PAR:' + str(par) + ','
+        #
+        if par not in parlist:
+            logger.exception(f"CAEN:         Invalid parameter: {par}.")
+            return
+        else:
+            msg = msg + ',PAR:' + str(par)
         
-            #
-            if val is not None:
-                message = message + str(val)
-            return message 
+        #
+        if val is not None:
+            msg = msg + ',' + str(val)
+
+        self.write(message=msg)
+        #print(msg)
+        
+    def _read_from_device(self) -> list[float, str]:
+        generator = (self.parse_response_string(str) for str in self.read_newlines())
+
+        def check_value(x: float|str|None) -> TypeGuard[float|str]:
+            return x is not None
+
+        return list(filter(check_value, generator))
+    
+def main():
+    pass
+
+if __name__ == '__main__':
+    main()

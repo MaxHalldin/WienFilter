@@ -49,6 +49,7 @@ try:
         "CURRENT_PULLRATE",
         "STREAMPLOT_REFRESHRATE",
         "DISCARD_UNSTABLE",
+        "CAEN_UPDATE_RATE",
         "MAGNET_SETTIME",
         "VELOCITY_SETTIME",
         "MEASURING_SAMPLES",
@@ -123,7 +124,8 @@ try:
             discard_unstable=True
         )
         CAEN_device = CAENOutput(port=params['PORT_CAEN'],
-                                 bd='0'
+                                 bd='0',
+                                 pullRate=params['CAEN_UPDATE_RATE'],
                                  )
 
     win = MainWindow(high_resolution=False, master_error_handler=log_error)
@@ -139,7 +141,7 @@ try:
     input_component_s = Input(interface=input_device_s, rate=params['STREAMPLOT_REFRESHRATE'], name='Sample current', unit='nA')
     input_component_fc = Input(interface=input_device_fc, rate=params['STREAMPLOT_REFRESHRATE'], name='FC current', unit='nA')
 
-    CAEN_device = CAEN(interface=CAEN_device, unit='0')
+    CAEN_device = CAEN(interface=CAEN_device, unit='0', rate=5)
 
     gridsearch_settings = GridSearch.Settings(measure_samples=params['MEASURING_SAMPLES'],
                                               measure_checktime=1/params['CURRENT_PULLRATE'],

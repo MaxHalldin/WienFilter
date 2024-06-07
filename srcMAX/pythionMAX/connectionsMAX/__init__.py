@@ -26,10 +26,10 @@ __all__ = [
 ]
 from srcMAX.pythionMAX._connectionsMAX.calibrationMAX import Calibration, LinearCalibration, InterpolCalibration
 from srcMAX.pythionMAX._connectionsMAX.usbMAX import USBConnection, USBDevice, PortSelector, ConnectionSettings
-from srcMAX.pythionMAX._connectionsMAX.output_interfaceMAX import OutputInterface, MockOutput, MockCAEN
+from srcMAX.pythionMAX._connectionsMAX.output_interfaceMAX import OutputInterface, MockOutput
 from srcMAX.pythionMAX._connectionsMAX.pico_outputMAX import PicoOutput
 from srcMAX.pythionMAX._connectionsMAX.rs3000_outputMAX import RS3000Output, PowerOptions
-from srcMAX.pythionMAX._connectionsMAX.input_interfaceMAX import InputInterface, MockInput
+from srcMAX.pythionMAX._connectionsMAX.input_interfaceMAX import InputInterface, MockInput, MockCAEN
 from srcMAX.pythionMAX._connectionsMAX.buffer_inputMAX import BufferInput, MockBufferInput
 from srcMAX.pythionMAX._connectionsMAX.rbd_inputMAX import RBDInput
 from srcMAX.pythionMAX._connectionsMAX.CAEN_IOMAX import CAENOutput
